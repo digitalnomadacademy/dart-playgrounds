@@ -64,9 +64,8 @@ class CourseO {
       unlocked.hashCode;
 }
 
-class MockCoursesO implements CoursesO {
-  @override
-  List<CourseO> get courses => [
+class MockCoursesO {
+  static List<CourseO> get _introductionCourses => [
         CourseO(
             courseID: '1',
             name: 'Dart Introduction 1',
@@ -83,4 +82,5 @@ class MockCoursesO implements CoursesO {
             progress: 0,
             unlocked: false),
       ];
+  static CoursesO get introduction => CoursesO(courses: _introductionCourses);
 }

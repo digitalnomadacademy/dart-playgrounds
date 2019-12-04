@@ -1,4 +1,6 @@
-import 'package:mokuteki_io_playgrounds/observable/lessons/courses_observable.dart';
+
+
+import 'package:mokuteki_playgrounds/observable_lessons/courses_observable.dart';
 import 'package:provider/provider.dart';
 
 ///Observables are immutable objects that can be consumed by the UI

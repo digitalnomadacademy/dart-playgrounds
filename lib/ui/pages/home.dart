@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mokuteki_io_playgrounds/observable/lessons/courses_observable.dart';
+import 'package:mokuteki_playgrounds/observable/lessons/courses_observable.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {

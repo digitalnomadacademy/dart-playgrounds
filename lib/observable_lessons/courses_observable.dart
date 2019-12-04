@@ -1,38 +1,27 @@
 import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
-class CoursesE {
-  final List<CourseE> courses;
+class CoursesO {
+  final List<CourseO> courses;
 
-  const CoursesE({
+  const CoursesO({
     @required this.courses,
   });
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is CoursesE &&
+          other is CoursesO &&
               runtimeType == other.runtimeType &&
               courses == other.courses;
 
   @override
   int get hashCode => courses.hashCode;
-
-  Map<String, dynamic> toMap() {
-    return {
-      'courses': this.courses,
-    };
-  }
-
-  factory CoursesE.fromMap(Map<String, dynamic> map) {
-    return new CoursesE(
-      courses: map['courses'] as List<CourseE>,
-    );
-  }
 }
 
-class CourseE {
+class CourseO {
   final String courseID;
 
   final String name;
@@ -44,7 +33,7 @@ class CourseE {
 
   final bool unlocked;
 
-  const CourseE({
+  const CourseO({
     @required this.courseID,
     @required this.name,
     @required this.color,
@@ -56,7 +45,7 @@ class CourseE {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is CourseE &&
+          other is CourseO &&
               runtimeType == other.runtimeType &&
               courseID == other.courseID &&
               name == other.name &&
@@ -73,26 +62,25 @@ class CourseE {
       progress.hashCode ^
       color.hashCode ^
       unlocked.hashCode;
+}
 
-  Map<String, dynamic> toMap() {
-    return {
-      'courseID': this.courseID,
-      'name': this.name,
-      'description': this.description,
-      'progress': this.progress,
-      'color': this.color,
-      'unlocked': this.unlocked,
-    };
-  }
-
-  factory CourseE.fromMap(Map<String, dynamic> map) {
-    return new CourseE(
-      courseID: map['courseID'] as String,
-      name: map['name'] as String,
-      description: map['description'] as String,
-      progress: map['progress'] as double,
-      color: map['color'] as Color,
-      unlocked: map['unlocked'] as bool,
-    );
-  }
+class MockCoursesO {
+  static List<CourseO> get _introductionCourses => [
+    CourseO(
+        courseID: '1',
+        name: 'Dart Introduction 1',
+        color: Colors.blue,
+        description: 'Basic steps into programming',
+        progress: 0.5,
+        unlocked: true),
+    CourseO(
+        courseID: '2',
+        name: 'Dart Introduction 2',
+        color: Colors.blueAccent,
+        description:
+        'Once you finished the basics, get ready for some advanced topics',
+        progress: 0,
+        unlocked: false),
+  ];
+  static CoursesO get introduction => CoursesO(courses: _introductionCourses);
 }

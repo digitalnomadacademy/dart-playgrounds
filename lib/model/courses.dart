@@ -1,7 +1,9 @@
 import 'dart:async';
 
-import 'package:mokuteki_io_playgrounds/observable/lessons/courses_observable.dart';
-import 'package:mokuteki_io_playgrounds/shared/interfaces.dart';
+import 'package:mokuteki_playgrounds/observable_lessons/courses_observable.dart';
+import 'package:mokuteki_playgrounds/shared/interfaces.dart';
+
+
 
 class CoursesModel implements Disposable {
   StreamController<CoursesO> _coursesO = StreamController<CoursesO>.broadcast();

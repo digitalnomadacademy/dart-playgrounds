@@ -1,7 +1,8 @@
 import 'dart:async';
 
-import 'package:mokuteki_io_playgrounds/entity/courses_entity.dart';
-import 'package:mokuteki_io_playgrounds/shared/interfaces.dart';
+import 'package:mokuteki_playgrounds/entity/courses_entity.dart';
+import 'package:mokuteki_playgrounds/shared/interfaces.dart';
+
 
 class CoursesApi implements Disposable {
   StreamController<CoursesE> _coursesO = StreamController<CoursesE>.broadcast();
@@ -12,5 +13,3 @@ class CoursesApi implements Disposable {
     _coursesO.close();
   }
 }
-
-

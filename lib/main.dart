@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: providers,
-      child: MaterialApp(
+      child: MaterialApp(debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.pink,
         ),

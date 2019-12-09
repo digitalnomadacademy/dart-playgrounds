@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:playground_app/observable_lessons/courses_observable.dart';
 import 'package:playground_app/widgets/drawer.dart';
+import 'package:playground_app/widgets/menu_button.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,10 +16,14 @@ class _HomePageState extends State<HomePage> {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          endDrawer: CustomDrawer(),
+endDrawer: CustomDrawer(),
           appBar: AppBar(
-            title: Text('Mokuteki.io Playgrounds'),
+            automaticallyImplyLeading: false,
+            title: Center(child: Text('Mokuteki.io Playgrounds')),
             backgroundColor: Colors.pink,
+            actions: <Widget>[
+
+            ],
           ),
           body: Center(
             child: Consumer<CoursesO>(

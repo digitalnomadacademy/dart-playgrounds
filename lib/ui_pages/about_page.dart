@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:universal_html/prefer_universal/html.dart' as html;
+import 'package:playground_app/widgets/menu_button.dart';
+
 import 'package:url_launcher/url_launcher.dart';
-import 'dart:async';
+
+import 'home.dart';
 
 class AboutPage extends StatefulWidget {
   @override
@@ -11,8 +13,25 @@ class AboutPage extends StatefulWidget {
 class _AboutPageState extends State<AboutPage> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
+        appBar: AppBar(
+            backgroundColor: Colors.pink,
+            title: Row(
+              children: <Widget>[
+                IconButton(alignment: Alignment.centerLeft,
+                  icon: Icon(Icons.arrow_back),
+                  onPressed: ()=>Navigator.push(context,MaterialPageRoute(
+                      builder: (context) => HomePage()
+                  )
+                  ),
+                ),
+                Text('About Page'),
+                SizedBox(width: 175,),
+                MenuButton(),
+              ],)
+        ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -27,9 +46,12 @@ class _AboutPageState extends State<AboutPage> {
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
+                          Image(image: AssetImage('images/GithubIcon.png'),),
                           Padding(
-                              padding: EdgeInsets.only(right: 5),
-                              child: Text("Mokuteki")),
+                            padding: EdgeInsets.only(right: 5),
+                            child:
+                            Text("Mokuteki"),
+                          ),
                           Text("Github",
                               style: TextStyle(fontWeight: FontWeight.bold)),
                           Padding(
@@ -45,18 +67,23 @@ class _AboutPageState extends State<AboutPage> {
                 },
               ),
               SizedBox(
+                width: 150,
                 height: 50,
+                child: Divider(color: Colors.pink,),
               ),
+
               Text(
                 "This app has been brought to you by Mokuteki.io Students:",
                 style: TextStyle(fontStyle: FontStyle.italic),
               ),
+
               InkWell(
                 child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
+                          Image(image: AssetImage('images/GithubIcon.png'),),
                           Padding(
                               padding: EdgeInsets.only(right: 5),
                               child: Text("djkowa")),
@@ -78,6 +105,7 @@ class _AboutPageState extends State<AboutPage> {
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
+                          Image(image: AssetImage('images/GithubIcon.png'),),
                           Padding(
                               padding: EdgeInsets.only(right: 5),
                               child: Text("lea88pu")),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mokuteki_playgrounds/observable_lessons/courses_observable.dart';
-import 'package:mokuteki_playgrounds/router/router.dart';
+import 'package:mokuteki_playgrounds/widgets/drawer.dart';
+
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,13 +13,15 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        drawer: Drawer(),
+       endDrawer: CustomDrawer(),
         appBar: AppBar(
-          title: Text('Mokuteki.io Playgrounds'),
+          automaticallyImplyLeading: false,
+          title: Center(child: Text('Mokuteki.io Playgrounds')),
           backgroundColor: Colors.pink,
           actions: <Widget>[
-            MenuButton(),
+
           ],
         ),
         body: Center(
@@ -28,41 +31,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class MenuButton extends StatelessWidget {
-  const MenuButton({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      icon: Icon(
-        Icons.menu,
-      ),
-      onPressed: () => Scaffold.of(context).openDrawer(),
-    );
-  }
-}
-
-class Drawer extends StatelessWidget {
-  const Drawer({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        FlatButton(
-          child: Text('About'),
-          onPressed: () =>
-              Navigator.pushNamed(context, RouteName.aboutPage),
-        )
-      ],
     );
   }
 }

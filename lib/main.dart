@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mokuteki_playgrounds/provider/provider_main.dart';
 import 'package:mokuteki_playgrounds/router/router.dart';
+
 import 'package:provider/provider.dart';
 
 
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: providers,
-      child: MaterialApp(
+      child: MaterialApp(debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.pink,
         ),

@@ -12,17 +12,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+    return Scaffold(
        endDrawer: CustomDrawer(),
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: Center(child: Text('Mokuteki.io Playgrounds')),
+          title: Text('Mokuteki.io Playgrounds'),
           backgroundColor: Colors.pink,
-          actions: <Widget>[
-
-          ],
         ),
         body: Center(
           child: Consumer<CoursesO>(
@@ -30,7 +25,6 @@ class _HomePageState extends State<HomePage> {
                 Text('there are ${o.courses.length} courses available'),
           ),
         ),
-      ),
     );
   }
 }

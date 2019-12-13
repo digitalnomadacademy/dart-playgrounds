@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mokuteki_playgrounds/ui_pages/about_page.dart';
+import 'package:mokuteki_playgrounds/router/router.dart';
 
 
 
@@ -19,10 +19,8 @@ class CustomDrawer extends StatelessWidget {
             child: FlatButton(
               child: Text('About',style: TextStyle(fontSize: 20,fontStyle: FontStyle.italic) ),
               onPressed: () =>
-                  Navigator.push(context, MaterialPageRoute(
-                      builder: (context) =>
-                          AboutPage())
-                  ),
+                  Navigator.pushNamed(context, RouteName.aboutPage),
+
             ),
           ),
 

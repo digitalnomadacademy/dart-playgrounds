@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       providers: providers,
       child: MaterialApp(debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.pink,
+          primaryColor: Colors.pink,
         ),
         onGenerateRoute: Router.generator,
       ),

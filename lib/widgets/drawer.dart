@@ -17,7 +17,10 @@ class CustomDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(28.0),
             child: FlatButton(
-              child: Text('About',style: TextStyle(fontSize: 20,fontStyle: FontStyle.italic) ),
+              child: Text('About',
+                  style: TextStyle(fontSize: 20,
+                  fontStyle: FontStyle.italic)
+              ),
               onPressed: () =>
                   Navigator.pushNamed(context, RouteName.aboutPage),
 

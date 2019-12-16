@@ -2,13 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mokuteki_playgrounds/widgets/drawer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
-class AboutPage extends StatefulWidget {
-  @override
-  _AboutPageState createState() => _AboutPageState();
-}
-
-class _AboutPageState extends State<AboutPage> {
+class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,3 +100,5 @@ class _AboutPageState extends State<AboutPage> {
     );
   }
 }
+
+

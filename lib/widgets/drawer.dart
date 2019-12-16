@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playground_app/ui_pages/about_page.dart';
-
+import 'package:playground_app/router/router.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({
@@ -9,22 +8,23 @@ class CustomDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(color: Colors.white,
+    return Container(
+      color: Colors.white,
       width: 200,
       child: Column(
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(28.0),
             child: FlatButton(
-              child: Text('About',style: TextStyle(fontSize: 20,fontStyle: FontStyle.italic) ),
+              child: Text(
+                'About',
+                    style: TextStyle(fontSize: 20,
+                    fontStyle: FontStyle.italic),
+              ),
               onPressed: () =>
-                  Navigator.push(context, MaterialPageRoute(
-                      builder: (context) =>
-                          AboutPage())
-                  ),
+                  Navigator.pushNamed(context, RouteName.aboutPage),
             ),
           ),
-
         ],
       ),
     );

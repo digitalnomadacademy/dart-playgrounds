@@ -8,72 +8,53 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  bool start = true;
-  bool positiveNegative = true;
-  bool stopTimer;
-  Widget mainWidget;
+  bool _increaseOpacity = true;
+  Widget _currentWidget;
   double _opacity = 0;
+  Timer _timer;
 
-  Widget emptyWidget() {
-    return Text("");
-  }
-
-  Widget textOne() {
-    return Text(
-      "Mokuteki.io",
-      style: TextStyle(
-        fontSize: 40,
-      ),
-    );
-  }
-
-  Widget textTwo() {
-    return Text(
-      "Dart Playgrounds",
-      style: TextStyle(fontSize: 40),
-    );
-  }
-
-  Widget newRouting() {
-    stopTimer = true;
+  void newRouting() {
     Navigator.pushReplacementNamed(context, RouteName.homePage);
-
   }
 
   changeWidget() {
-    mainWidget.toString() == emptyWidget().toString()
-        ? mainWidget = textOne()
-        : mainWidget.toString() == textOne().toString()
-        ? mainWidget = textTwo()
-        : mainWidget.toString() == textTwo().toString()
-        ? mainWidget = newRouting()
-        : stopTimer = true;
+    _currentWidget.toString() == _EmptyWidget().toString()
+        ? _currentWidget = _TextOne()
+        : _currentWidget.toString() == _TextOne().toString()
+            ? _currentWidget = _TextTwo()
+            : _currentWidget.toString() == _TextTwo().toString()
+                ? newRouting()
+                : Container();
   }
 
   @override
   void initState() {
-    mainWidget = emptyWidget();
-    Timer.periodic(Duration(milliseconds: 1000), (timer) {
-      stopTimer == true
-          ? timer.cancel()
-          : setState(() {
-        if (positiveNegative == true) {
-          _opacity += 0.1;
-        }
-        if (positiveNegative == false) {
-          _opacity -= 0.1;
-        }
-        if (_opacity > 0.9) {
-          positiveNegative = false;
-        }
-        if (_opacity < 0.1) {
-          positiveNegative = true;
-          changeWidget();
-        }
-      });
+    _currentWidget = _EmptyWidget();
+   _timer = Timer.periodic(Duration(milliseconds: 200), (timer) {
+           setState(() {
+              if (_increaseOpacity == true) {
+                _opacity += 0.1;
+              }
+              if (_increaseOpacity == false) {
+                _opacity -= 0.1;
+              }
+              if (_opacity > 0.9) {
+                _increaseOpacity = false;
+              }
+              if (_opacity < 0.1) {
+                _increaseOpacity = true;
+                changeWidget();
+              }
+            });
     });
 
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
   }
 
   @override
@@ -85,9 +66,39 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
       body: Center(
           child: Opacity(
-            opacity: _opacity,
-            child: mainWidget,
-          )),
+        opacity: _opacity,
+        child: _currentWidget,
+      )),
+    );
+  }
+}
+
+class _EmptyWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Container();
+  }
+}
+
+class _TextOne extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Text(
+      "Mokuteki.io",
+      style: Theme.of(context).textTheme.display1,
+    );
+  }
+}
+
+class _TextTwo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Text(
+      "Dart Playgrounds",
+      style: Theme.of(context).textTheme.display1,
     );
   }
 }

@@ -24,5 +24,5 @@ class Router {
 class RouteName {
   static const homePage = '/';
   static const aboutPage = '/aboutPage';
-  static const splashScreen = "/splashScreen";
+  static const splashScreen = "splashScreen";
 }

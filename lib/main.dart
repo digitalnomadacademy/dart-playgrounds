@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.pink,
         ),
         onGenerateRoute: Router.generator,
-        initialRoute: "/splashScreen",
+        initialRoute: "splashScreen",
       ),
     );
   }

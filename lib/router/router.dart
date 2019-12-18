@@ -15,7 +15,7 @@ class Router {
       case RouteName.aboutPage:
         return MaterialPageRoute (builder: (_) => AboutPage());
       case RouteName.splashScreen:
-        return MaterialPageRoute(builder: (_)=> SplashScreen());
+       return MaterialPageRoute(builder: (_)=> SplashScreen());
 
     }
   }

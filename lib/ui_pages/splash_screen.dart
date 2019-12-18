@@ -30,22 +30,22 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     _currentWidget = _EmptyWidget();
-   _timer = Timer.periodic(Duration(milliseconds: 200), (timer) {
-           setState(() {
-              if (_increaseOpacity == true) {
-                _opacity += 0.1;
-              }
-              if (_increaseOpacity == false) {
-                _opacity -= 0.1;
-              }
-              if (_opacity > 0.9) {
-                _increaseOpacity = false;
-              }
-              if (_opacity < 0.1) {
-                _increaseOpacity = true;
-                changeWidget();
-              }
-            });
+    _timer = Timer.periodic(Duration(milliseconds: 200), (timer) {
+      setState(() {
+        if (_increaseOpacity == true) {
+          _opacity += 0.1;
+        }
+        if (_increaseOpacity == false) {
+          _opacity -= 0.1;
+        }
+        if (_opacity > 0.9) {
+          _increaseOpacity = false;
+        }
+        if (_opacity < 0.1) {
+          _increaseOpacity = true;
+          changeWidget();
+        }
+      });
     });
 
     super.initState();
@@ -60,10 +60,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.pink,
-      ),
       body: Center(
           child: Opacity(
         opacity: _opacity,
@@ -76,7 +72,6 @@ class _SplashScreenState extends State<SplashScreen> {
 class _EmptyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Container();
   }
 }
@@ -84,7 +79,6 @@ class _EmptyWidget extends StatelessWidget {
 class _TextOne extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Text(
       "Mokuteki.io",
       style: Theme.of(context).textTheme.display1,
@@ -95,7 +89,6 @@ class _TextOne extends StatelessWidget {
 class _TextTwo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Text(
       "Dart Playgrounds",
       style: Theme.of(context).textTheme.display1,

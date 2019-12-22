@@ -6,7 +6,8 @@ class SplashScreen extends StatefulWidget {
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation _animation;
   String _fadingString;
@@ -61,13 +62,13 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   Widget build(BuildContext context) {
     return Scaffold(
         body: FadeTransition(
-          opacity: _animation,
-          child: Center(
-            child: Text(
-              "$_fadingString",
-              style: TextStyle(color: Colors.black),
-            ),
-          ),
-        ));
+      opacity: _animation,
+      child: Center(
+        child: Text(
+          "$_fadingString",
+          style: Theme.of(context).textTheme.display1,
+        ),
+      ),
+    ));
   }
 }

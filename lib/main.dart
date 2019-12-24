@@ -4,7 +4,6 @@ import 'package:playground_app/router/router.dart';
 import 'package:provider/provider.dart';
 
 
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -17,6 +16,7 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.pink,
         ),
         onGenerateRoute: Router.generator,
+        initialRoute: RouteName.splashScreen,
       ),
     );
   }

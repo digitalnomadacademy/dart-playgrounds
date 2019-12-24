@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:playground_app/ui_pages/about_page.dart';
 import 'package:playground_app/ui_pages/home.dart';
-
+import 'package:playground_app/ui_pages/splash_screen.dart';
 
 
 
@@ -14,8 +14,9 @@ class Router {
         return MaterialPageRoute(builder: (_) => HomePage());
       case RouteName.aboutPage:
         return MaterialPageRoute (builder: (_) => AboutPage());
-      default:
-        return MaterialPageRoute(builder: (_) => HomePage());
+      case RouteName.splashScreen:
+       return MaterialPageRoute(builder: (_)=> SplashScreen());
+
     }
   }
 }
@@ -23,4 +24,5 @@ class Router {
 class RouteName {
   static const homePage = '/';
   static const aboutPage = '/aboutPage';
+  static const splashScreen = "splashScreen";
 }

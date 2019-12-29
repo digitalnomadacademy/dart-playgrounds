@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "841240088696",
+    "firebase_url": "https://dart-playgrounds.firebaseio.com",
+    "project_id": "dart-playgrounds",
+    "storage_bucket": "dart-playgrounds.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:841240088696:android:71c757ecedbac7810e5d8d",
+        "android_client_info": {
+          "package_name": "io.mokuteki.mokuteki_playgrounds"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "841240088696-g2ait6vjr066dbs4uu8dn2nfoh6qno1e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCllaBGMO2H-s3pFPKU3cGfCyNpa_6mofs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "841240088696-g2ait6vjr066dbs4uu8dn2nfoh6qno1e.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "841240088696-mcinb6e28qtu6usarahaari5hpa4443s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "io.mokuteki.mokutekiPlaygrounds"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

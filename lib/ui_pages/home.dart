@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:playground_app/widgets/courses_list.dart';
 import 'package:playground_app/widgets/drawer.dart';
 
-
 class HomePage extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

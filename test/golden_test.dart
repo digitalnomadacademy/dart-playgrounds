@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 import 'package:playground_app/ui_pages/splash_screen.dart';
-
 void main() {
 
   Widget homePageTest() {

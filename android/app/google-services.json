@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "841240088696-3u3414tlii5eqrshfd25fbogr3jvej61.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.mokuteki.mokuteki_playgrounds",
+            "certificate_hash": "8a6734e6a846152edce0374451e28971296d3a1b"
+          }
+        },
+        {
           "client_id": "841240088696-g2ait6vjr066dbs4uu8dn2nfoh6qno1e.apps.googleusercontent.com",
           "client_type": 3
         }

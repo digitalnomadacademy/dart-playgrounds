@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:playground_app/router/router.dart';
 
@@ -17,6 +18,14 @@ class _SplashScreenState extends State<SplashScreen>
     null,
   ];
 
+  Future<void> _signInAnonymously() async {
+    try {
+      await FirebaseAuth.instance.signInAnonymously();
+    } catch (e) {
+      print(e);
+    }
+  }
+
   void newRouting() {
     Navigator.pushReplacementNamed(context, RouteName.homePage);
   }
@@ -31,6 +40,7 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   void initState() {
+    _signInAnonymously();
     _fadingString = _strings.first;
     _controller = AnimationController(
       vsync: this,

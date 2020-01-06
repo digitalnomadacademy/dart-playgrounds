@@ -4,6 +4,7 @@ import 'package:playground_app/observable_lessons/courses_observable.dart';
 import 'package:provider/provider.dart';
 
 class CoursesList extends StatefulWidget {
+
   @override
   _CoursesListState createState() => _CoursesListState();
 }
@@ -26,11 +27,16 @@ class _CoursesListState extends State<CoursesList> {
             ),
             subtitle: Text('${model.courses[index].description}'),
             trailing: CircularPercentIndicator(
+              animation: true,
+              animationDuration: 1500,
               radius: 40,
               percent: model.courses[index].progress,
-              center: Text('${(model.courses[index].progress*100.ceil()).toStringAsFixed(0)}%'),
+              center: Text(
+                  '${(model.courses[index].progress * 100.ceil()).toStringAsFixed(0)}%'),
               lineWidth: 4.0,
-              progressColor: Colors.pink,
+             backgroundColor: Colors.red,
+              progressColor: Colors.green,
+
             ),
           );
         },

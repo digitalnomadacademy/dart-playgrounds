@@ -15,10 +15,7 @@ class _CoursesListState extends State<CoursesList> {
       builder: (context, model, child) => ListView.separated(
         separatorBuilder: (context, index) => Divider(thickness: 2),
         itemCount: model.courses.length,
-        itemBuilder: (
-          context,
-          index,
-        ) {
+        itemBuilder: (context, index) {
           return ListTile(
             title: Text(
               '${model.courses[index].name}',
@@ -26,11 +23,15 @@ class _CoursesListState extends State<CoursesList> {
             ),
             subtitle: Text('${model.courses[index].description}'),
             trailing: CircularPercentIndicator(
+              animation: true,
+              animationDuration: 1500,
               radius: 40,
               percent: model.courses[index].progress,
-              center: Text('${(model.courses[index].progress*100.ceil()).toStringAsFixed(0)}%'),
+              center: Text(
+                  '${(model.courses[index].progress * 100.ceil()).toStringAsFixed(0)}%'),
               lineWidth: 4.0,
-              progressColor: Colors.pink,
+              backgroundColor: Colors.red,
+              progressColor: Colors.green,
             ),
           );
         },

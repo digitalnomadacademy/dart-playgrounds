@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:playground_app/router/router.dart';
 import 'package:playground_app/widgets/drawer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -8,6 +9,11 @@ class AboutPage extends StatelessWidget {
     return Scaffold(
       endDrawer: CustomDrawer(),
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () =>
+              Navigator.popAndPushNamed(context, RouteName.homePage),
+        ),
         title: Text('About Page'),
       ),
       body: Padding(
@@ -100,5 +106,3 @@ class AboutPage extends StatelessWidget {
     );
   }
 }
-
-

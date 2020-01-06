@@ -8,6 +8,7 @@ class CustomDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var route = ModalRoute.of(context).settings.name;
     return Container(
       color: Colors.white,
       width: 200,
@@ -18,11 +19,13 @@ class CustomDrawer extends StatelessWidget {
             child: FlatButton(
               child: Text(
                 'About',
-                    style: TextStyle(fontSize: 20,
-                    fontStyle: FontStyle.italic),
+                style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
               ),
-              onPressed: () =>
-                  Navigator.pushNamed(context, RouteName.aboutPage),
+              onPressed: () {
+                route != RouteName.aboutPage
+                    ? Navigator.pushNamed(context, RouteName.aboutPage)
+                    : Navigator.pop(context);
+              },
             ),
           ),
         ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import 'package:playground_app/observable_lessons/courses_observable.dart';
+import 'package:playground_app/mvos/model/observable/courses_observable.dart';
 import 'package:provider/provider.dart';
 
 class CoursesList extends StatefulWidget {

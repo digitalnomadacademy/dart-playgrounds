@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:playground_app/ui_pages/about_page.dart';
-import 'package:playground_app/ui_pages/home.dart';
-import 'package:playground_app/ui_pages/splash_screen.dart';
+import 'package:playground_app/mvos/ui/page/about_page.dart';
+import 'package:playground_app/mvos/ui/page/home.dart';
+import 'package:playground_app/mvos/ui/page/splash_screen.dart';
 
 
 

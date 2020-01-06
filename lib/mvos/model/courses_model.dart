@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:playground_app/observable_lessons/courses_observable.dart';
+import 'package:playground_app/mvos/model/observable/courses_observable.dart';
 import 'package:playground_app/shared/interfaces.dart';
 
 

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:playground_app/router/router.dart';
 
 class CustomDrawer extends StatelessWidget {
-
   const CustomDrawer({
     Key key,
   }) : super(key: key);
@@ -23,13 +22,10 @@ class CustomDrawer extends StatelessWidget {
                 style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
               ),
               onPressed: () {
-                route!= '/aboutPage'?
-                Navigator.pushNamed(context, RouteName.aboutPage):
-              Navigator.pop(context);
-              }
-
-
-
+                route != RouteName.aboutPage
+                    ? Navigator.pushNamed(context, RouteName.aboutPage)
+                    : Navigator.pop(context);
+              },
             ),
           ),
         ],

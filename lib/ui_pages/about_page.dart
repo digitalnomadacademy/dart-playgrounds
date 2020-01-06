@@ -12,7 +12,7 @@ class AboutPage extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () =>
-              Navigator.pushReplacementNamed(context, RouteName.homePage),
+              Navigator.popAndPushNamed(context, RouteName.homePage),
         ),
         title: Text('About Page'),
       ),

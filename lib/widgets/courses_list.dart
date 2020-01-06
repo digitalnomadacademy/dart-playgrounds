@@ -4,7 +4,6 @@ import 'package:playground_app/observable_lessons/courses_observable.dart';
 import 'package:provider/provider.dart';
 
 class CoursesList extends StatefulWidget {
-
   @override
   _CoursesListState createState() => _CoursesListState();
 }
@@ -16,10 +15,7 @@ class _CoursesListState extends State<CoursesList> {
       builder: (context, model, child) => ListView.separated(
         separatorBuilder: (context, index) => Divider(thickness: 2),
         itemCount: model.courses.length,
-        itemBuilder: (
-          context,
-          index,
-        ) {
+        itemBuilder: (context, index) {
           return ListTile(
             title: Text(
               '${model.courses[index].name}',
@@ -34,9 +30,8 @@ class _CoursesListState extends State<CoursesList> {
               center: Text(
                   '${(model.courses[index].progress * 100.ceil()).toStringAsFixed(0)}%'),
               lineWidth: 4.0,
-             backgroundColor: Colors.red,
+              backgroundColor: Colors.red,
               progressColor: Colors.green,
-
             ),
           );
         },

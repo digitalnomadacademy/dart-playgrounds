@@ -9,13 +9,13 @@ class Router {
     switch (settings.name) {
       case RouteName.homePage:
         return MaterialPageRoute(
+          settings: settings,
           builder: (_) => HomePage(),
-          settings: RouteSettings(name: '/'),
         );
       case RouteName.aboutPage:
         return MaterialPageRoute(
+          settings: settings,
           builder: (_) => AboutPage(),
-          settings: RouteSettings(name: '/aboutPage'),
         );
       case RouteName.splashScreen:
         return MaterialPageRoute(builder: (_) => SplashScreen());

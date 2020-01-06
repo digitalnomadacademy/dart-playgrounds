@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:playground_app/entity/courses_entity.dart';
+import 'package:playground_app/mvos/model/entity/courses_entity.dart';
 import 'package:playground_app/shared/interfaces.dart';
 
 

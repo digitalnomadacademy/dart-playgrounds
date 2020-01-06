@@ -28,7 +28,8 @@ class _CoursesListState extends State<CoursesList> {
             trailing: CircularPercentIndicator(
               radius: 40,
               percent: model.courses[index].progress,
-              center: Text('${(model.courses[index].progress*100.ceil()).toStringAsFixed(0)}%'),
+              center: Text(
+                  '${(model.courses[index].progress * 100.ceil()).toStringAsFixed(0)}%'),
               lineWidth: 4.0,
               progressColor: Colors.pink,
             ),

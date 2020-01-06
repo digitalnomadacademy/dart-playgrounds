@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:playground_app/mvos/model/entity/courses_entity.dart';
 import 'package:playground_app/shared/interfaces.dart';
 
-
 class CoursesApi implements Disposable {
   StreamController<CoursesE> _coursesO = StreamController<CoursesE>.broadcast();
   Stream<CoursesE> get coursesO => _coursesO.stream;

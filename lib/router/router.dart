@@ -4,19 +4,15 @@ import 'package:playground_app/mvos/ui/page/about_page.dart';
 import 'package:playground_app/mvos/ui/page/home.dart';
 import 'package:playground_app/mvos/ui/page/splash_screen.dart';
 
-
-
-
 class Router {
   static Route generator(RouteSettings settings) {
     switch (settings.name) {
       case RouteName.homePage:
         return MaterialPageRoute(builder: (_) => HomePage());
       case RouteName.aboutPage:
-        return MaterialPageRoute (builder: (_) => AboutPage());
+        return MaterialPageRoute(builder: (_) => AboutPage());
       case RouteName.splashScreen:
-       return MaterialPageRoute(builder: (_)=> SplashScreen());
-
+        return MaterialPageRoute(builder: (_) => SplashScreen());
     }
   }
 }

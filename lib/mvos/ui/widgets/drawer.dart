@@ -18,8 +18,7 @@ class CustomDrawer extends StatelessWidget {
             child: FlatButton(
               child: Text(
                 'About',
-                    style: TextStyle(fontSize: 20,
-                    fontStyle: FontStyle.italic),
+                style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
               ),
               onPressed: () =>
                   Navigator.pushNamed(context, RouteName.aboutPage),

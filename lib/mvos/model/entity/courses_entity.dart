@@ -12,9 +12,9 @@ class CoursesE {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is CoursesE &&
-              runtimeType == other.runtimeType &&
-              courses == other.courses;
+      other is CoursesE &&
+          runtimeType == other.runtimeType &&
+          courses == other.courses;
 
   @override
   int get hashCode => courses.hashCode;
@@ -56,14 +56,14 @@ class CourseE {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is CourseE &&
-              runtimeType == other.runtimeType &&
-              courseID == other.courseID &&
-              name == other.name &&
-              description == other.description &&
-              progress == other.progress &&
-              color == other.color &&
-              unlocked == other.unlocked;
+      other is CourseE &&
+          runtimeType == other.runtimeType &&
+          courseID == other.courseID &&
+          name == other.name &&
+          description == other.description &&
+          progress == other.progress &&
+          color == other.color &&
+          unlocked == other.unlocked;
 
   @override
   int get hashCode =>

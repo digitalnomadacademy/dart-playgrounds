@@ -19,7 +19,6 @@ class Router {
         );
       case RouteName.splashScreen:
         return MaterialPageRoute(builder: (_) => SplashScreen());
-
       default:
         return MaterialPageRoute(builder: (_) => HomePage());
     }

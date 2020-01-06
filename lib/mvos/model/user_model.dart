@@ -11,7 +11,7 @@ class UserModel implements Disposable {
   final FirebaseService firebaseService;
 
   StreamController<LoggedInO> _loggedInO$ = StreamController.broadcast();
-  Stream<LoggedInO> get loggedInO$ =>_loggedInO$.stream;
+  Stream<LoggedInO> get loggedInO$ => _loggedInO$.stream;
   UserModel({
     @required this.firebaseService,
   }) : assert(firebaseService != null,

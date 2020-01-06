@@ -10,9 +10,9 @@ class LoggedInO {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is LoggedInO &&
-              runtimeType == other.runtimeType &&
-              loggedIn == other.loggedIn;
+      other is LoggedInO &&
+          runtimeType == other.runtimeType &&
+          loggedIn == other.loggedIn;
 
   @override
   int get hashCode => loggedIn.hashCode;

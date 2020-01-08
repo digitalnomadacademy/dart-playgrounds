@@ -26,6 +26,7 @@ class CustomDrawer extends StatelessWidget {
                     ? Navigator.pushNamed(context, RouteName.aboutPage)
                     : Navigator.pop(context);
               },
+
             ),
           ),
         ],

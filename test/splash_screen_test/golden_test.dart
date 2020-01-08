@@ -31,3 +31,4 @@ void main() {
     await expectLater(find.byType(SplashScreen), matchesGoldenFile('splashScreenGoldenThreeSecond.png'));
   });
 }
+

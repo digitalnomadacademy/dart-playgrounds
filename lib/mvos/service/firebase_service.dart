@@ -18,6 +18,12 @@ class FirebaseService implements Disposable {
     logger.info('Login anonymously called');
     FirebaseAuth.instance.signInAnonymously();
   }
+// ONLY FOR TEST LOGIN
+  Future<void> loginWithEmailAndPassword()async{
+    logger.info("Login email and password called");
+    FirebaseAuth.instance.signInWithEmailAndPassword(email: "goranesine@gmail.com", password: "Testpassword01");
+  }
+
 
   @override
   Future<void> dispose() {

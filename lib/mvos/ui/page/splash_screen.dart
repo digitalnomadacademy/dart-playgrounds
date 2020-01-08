@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:playground_app/mvos/model/observable/user_observable.dart';
-import 'package:playground_app/mvos/service/firebase_service.dart';
 import 'package:playground_app/router/router.dart';
 import 'package:provider/provider.dart';
 
@@ -22,7 +21,6 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 2), _signInAnonymously);
     _fadingString = _strings.first;
     _controller = AnimationController(
       vsync: this,
@@ -44,20 +42,12 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
   }
 
-  Future<void> _signInAnonymously() async {
-    FirebaseService firebaseService = Provider.of(context, listen: false);
-    firebaseService.loginAnonymously();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Consumer<LoggedInO>(
-          builder: (context, o, child) => Text(o.loggedIn ? 'Yes' : 'No'),
-        ),
         FadeTransition(
           opacity: _animation,
           child: Center(
@@ -72,7 +62,10 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   void newRouting() {
-    Navigator.pushReplacementNamed(context, RouteName.homePage);
+    bool _loggedIn = Provider.of<LoggedInO>(context, listen: false).loggedIn;
+    _loggedIn == true
+        ? Navigator.pushReplacementNamed(context, RouteName.homePage)
+        : Navigator.pushReplacementNamed(context, RouteName.logInPage);
   }
 
   void changeString() {

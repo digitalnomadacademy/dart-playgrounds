@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:playground_app/widgets/courses_list.dart';
-import 'package:playground_app/widgets/drawer.dart';
-
+import 'package:playground_app/mvos/ui/widgets/courses_list.dart';
+import 'package:playground_app/mvos/ui/widgets/drawer.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -10,7 +9,7 @@ class HomePage extends StatelessWidget {
       endDrawer: CustomDrawer(),
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text('Mokuteki.io Playgrounds'),
+        title: Text(''),
         backgroundColor: Colors.pink,
       ),
       body: CoursesList(),

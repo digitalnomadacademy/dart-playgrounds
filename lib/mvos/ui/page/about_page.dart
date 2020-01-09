@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playground_app/router/router.dart';
-import 'package:playground_app/widgets/drawer.dart';
+import 'package:playground_app/mvos/ui/widgets/drawer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutPage extends StatelessWidget {

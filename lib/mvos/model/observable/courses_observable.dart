@@ -13,9 +13,9 @@ class CoursesO {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is CoursesO &&
-              runtimeType == other.runtimeType &&
-              courses == other.courses;
+      other is CoursesO &&
+          runtimeType == other.runtimeType &&
+          courses == other.courses;
 
   @override
   int get hashCode => courses.hashCode;
@@ -45,14 +45,14 @@ class CourseO {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is CourseO &&
-              runtimeType == other.runtimeType &&
-              courseID == other.courseID &&
-              name == other.name &&
-              description == other.description &&
-              progress == other.progress &&
-              color == other.color &&
-              unlocked == other.unlocked;
+      other is CourseO &&
+          runtimeType == other.runtimeType &&
+          courseID == other.courseID &&
+          name == other.name &&
+          description == other.description &&
+          progress == other.progress &&
+          color == other.color &&
+          unlocked == other.unlocked;
 
   @override
   int get hashCode =>
@@ -66,21 +66,21 @@ class CourseO {
 
 class MockCoursesO {
   static List<CourseO> get _introductionCourses => [
-    CourseO(
-        courseID: '1',
-        name: 'Dart Introduction 1',
-        color: Colors.blue,
-        description: 'Basic steps into programming',
-        progress: 0.5,
-        unlocked: true),
-    CourseO(
-        courseID: '2',
-        name: 'Dart Introduction 2',
-        color: Colors.blueAccent,
-        description:
-        'Once you finished the basics, get ready for some advanced topics',
-        progress: 0,
-        unlocked: false),
-  ];
+        CourseO(
+            courseID: '1',
+            name: 'Dart Introduction 1',
+            color: Colors.blue,
+            description: 'Basic steps into programming',
+            progress: 0.5,
+            unlocked: true),
+        CourseO(
+            courseID: '2',
+            name: 'Dart Introduction 2',
+            color: Colors.blueAccent,
+            description:
+                'Once you finished the basics, get ready for some advanced topics',
+            progress: 0,
+            unlocked: false),
+      ];
   static CoursesO get introduction => CoursesO(courses: _introductionCourses);
 }

@@ -1,16 +1,6 @@
-
-
-
-
-import 'package:playground_app/provider/api_provider.dart';
 import 'package:playground_app/provider/model_provider.dart';
 import 'package:playground_app/provider/observable_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:playground_app/provider/service_provider.dart';
+import 'package:provider/single_child_widget.dart';
 
-
-
-List<SingleChildCloneableWidget> providers = [
-  ...apis,
-  ...models,
-  ...observables
-];
+List<SingleChildWidget> providers = [...services, ...models, ...observables];

@@ -11,6 +11,15 @@ typedef Future<void> LoginA({String email, String password});
 typedef Future<void> CreateAccountA(
     {String name, String surname, String email, String phone, List courseCode});
 
+typedef Future<void> LoginA({String email});
+typedef Future<void> ConfirmEmailCodeA({String confirmEmailCode});
+typedef Future<void> CreateAccountA(
+    {String name,
+    String surname,
+    String email,
+    String phone,
+    String courseCode});
+
 class UserModel implements Disposable {
   final FirebaseService firebaseService;
 

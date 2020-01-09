@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
       endDrawer: CustomDrawer(),
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text('Mokuteki.io Playgrounds'),
+        title: Text(''),
         backgroundColor: Colors.pink,
       ),
       body: CoursesList(),

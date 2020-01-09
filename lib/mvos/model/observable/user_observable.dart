@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:playground_app/mvos/model/user_model.dart';
 
 class LoggedInO {
   final bool loggedIn;
@@ -16,4 +17,13 @@ class LoggedInO {
 
   @override
   int get hashCode => loggedIn.hashCode;
+}
+
+class LoginO {
+  final LoginA login;
+  final ConfirmEmailCodeA confirmEmailCode;
+
+  const LoginO({@required this.login, @required this.confirmEmailCode})
+      : assert(login != null),
+        assert(confirmEmailCode != null);
 }

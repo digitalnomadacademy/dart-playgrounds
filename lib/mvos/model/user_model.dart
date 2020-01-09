@@ -7,6 +7,15 @@ import 'package:playground_app/mvos/model/observable/user_observable.dart';
 import 'package:playground_app/mvos/service/firebase_service.dart';
 import 'package:playground_app/shared/interfaces.dart';
 
+typedef Future<void> LoginA({String email});
+typedef Future<void> ConfirmEmailCodeA({String confirmEmailCode});
+typedef Future<void> CreateAccountA(
+    {String name,
+    String surname,
+    String email,
+    String phone,
+    String courseCode});
+
 class UserModel implements Disposable {
   final FirebaseService firebaseService;
 

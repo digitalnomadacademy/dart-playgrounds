@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
       endDrawer: CustomDrawer(),
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text(''),
+        title: Text('Dart Playgrounds'),
         backgroundColor: Colors.pink,
       ),
       body: CoursesList(),

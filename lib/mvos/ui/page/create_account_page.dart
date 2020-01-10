@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:playground_app/mvos/ui/widgets/create_account_form.dart';
 import 'package:playground_app/router/router.dart';
-
-
 
 class CreateAccountPage extends StatelessWidget {
   @override
@@ -11,10 +10,12 @@ class CreateAccountPage extends StatelessWidget {
         automaticallyImplyLeading: false,
         backgroundColor: Colors.pink,
         title: Text('Create Account'),
-    leading: IconButton(icon:Icon(Icons.arrow_back),
-    onPressed:() => Navigator.pop(context, RouteName.welcomePage),
-
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context, RouteName.welcomePage),
+        ),
       ),
-    ));
+      body: CAForm(),
+    );
   }
 }

@@ -9,14 +9,16 @@ class WelcomePage extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-
           children: <Widget>[
             Text(
               'Welcome to Playgrounds',
               style: TextStyle(color: Colors.white, fontSize: 35),
             ),
-            SizedBox(height: 100,),
-            Container(width: 180,
+            SizedBox(
+              height: 100,
+            ),
+            Container(
+              width: 180,
               height: 50,
               child: RaisedButton(
                 onPressed: () =>
@@ -31,7 +33,9 @@ class WelcomePage extends StatelessWidget {
             SizedBox(
               height: 50,
             ),
-            Container(width: 180,height: 50,
+            Container(
+              width: 180,
+              height: 50,
               child: RaisedButton(
                 onPressed: () =>
                     Navigator.pushNamed(context, RouteName.createAccountPage),

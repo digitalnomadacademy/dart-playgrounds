@@ -50,8 +50,8 @@ class Router {
 class RouteName {
   static const homePage = '/';
   static const aboutPage = '/aboutPage';
-  static const splashScreen = "splashScreen";
-  static const logInPage = "logInPage";
+  static const splashScreen = 'splashScreen';
+  static const logInPage = 'welcome/login';
   static const welcomePage = 'welcome';
   static const createAccountPage = 'welcome/createAccount';
 }

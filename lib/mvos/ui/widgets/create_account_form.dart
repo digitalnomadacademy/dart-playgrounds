@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:playground_app/router/router.dart';
 
+class CreateAccountForm extends StatefulWidget {
+  @override
+  _CreateAccountFormState createState() => _CreateAccountFormState();
+}
 
-class CAForm extends StatelessWidget {
+class _CreateAccountFormState extends State<CreateAccountForm> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -11,10 +15,14 @@ class CAForm extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              SizedBox(height: 24,),
+              SizedBox(
+                height: 24,
+              ),
               TextFormField(
-                decoration: InputDecoration(icon: Icon(Icons.person),
-                  labelText: 'Ime',
+                decoration: InputDecoration(
+
+                  icon: Icon(Icons.person),
+                  labelText: 'Name',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(5.0),
@@ -22,11 +30,13 @@ class CAForm extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 24,),
+              SizedBox(
+                height: 24,
+              ),
               TextFormField(
                 decoration: InputDecoration(
                   icon: Icon(Icons.person),
-                  labelText: 'Prezime',
+                  labelText: 'Surname',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(5.0),
@@ -34,7 +44,9 @@ class CAForm extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 24,),
+              SizedBox(
+                height: 24,
+              ),
               TextFormField(
                 decoration: InputDecoration(
                   icon: Icon(Icons.email),
@@ -46,11 +58,15 @@ class CAForm extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 24,),
+              SizedBox(
+                height: 24,
+              ),
               TextFormField(
+                keyboardType: TextInputType.phone,
+
                 decoration: InputDecoration(
                   icon: Icon(Icons.phone),
-                  labelText: 'Telefon',
+                  labelText: 'Telephone',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(5.0),
@@ -58,7 +74,9 @@ class CAForm extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 24,),
+              SizedBox(
+                height: 24,
+              ),
               TextFormField(
                 decoration: InputDecoration(
                   icon: Icon(Icons.vpn_key),
@@ -73,12 +91,22 @@ class CAForm extends StatelessWidget {
               SizedBox(
                 height: 50,
               ),
-              RaisedButton(
-                color: Colors.pink,
-                onPressed: ()=> Navigator.pushNamed(context, RouteName.homePage),
-                child: Text(
-                  'Create Account',
-                  style: TextStyle(color: Colors.white),
+              Container(
+                width: 180,
+                height: 50,
+                child: RaisedButton(
+                  color: Colors.pink,
+                  //this will be block function instead of arrow,
+                  // because you will first validate form
+                  // before sending the data trough observable.
+                  // only if observable future gets resolved,
+                  // you will push new route
+                  onPressed: () =>
+                      Navigator.pushNamed(context, RouteName.homePage),
+                  child: Text(
+                    'Create account',
+                    style: TextStyle(color: Colors.white, fontSize: 18),
+                  ),
                 ),
               )
             ],
@@ -88,6 +116,4 @@ class CAForm extends StatelessWidget {
     );
   }
 }
-
-
 

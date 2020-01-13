@@ -22,6 +22,8 @@ class UserModel implements Disposable {
 
   BehaviorSubject<LoggedInO> loggedInO$ = BehaviorSubject<LoggedInO>();
   LoginO loginO;
+  AccountO accountO;
+
   UserModel({
     @required this.firebaseService,
   }) : assert(firebaseService != null,
@@ -30,7 +32,18 @@ class UserModel implements Disposable {
   }
 
   Future<void> login({String email, String password}) async {
-//    todo implement
+    firebaseService.loginWithEmailAndPassword(email, password);
+  }
+
+  Future<void> createAccount(
+      {String name,
+      String surname,
+      String email,
+      String password,
+      String phone,
+      String courseCode}) async {
+    firebaseService.createAccount(
+        name, surname, email, password, phone, courseCode);
   }
 
   void _initUserModel() {
@@ -40,6 +53,7 @@ class UserModel implements Disposable {
     });
 
     loginO = LoginO(login: login);
+    accountO = AccountO(createAccount: createAccount);
   }
 
   @override

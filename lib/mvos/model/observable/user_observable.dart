@@ -22,22 +22,33 @@ class LoggedInO {
 class LoginO {
   final LoginA login;
 
-  const LoginO({@required this.login})
-      : assert(login != null);
+  const LoginO({@required this.login}) : assert(login != null);
 
   @override
   bool operator ==(Object other) =>
-      identical(
-          this, other) ||
-          other is LoginO &&
-              runtimeType == other.runtimeType &&
-              login == other.login;
+      identical(this, other) ||
+      other is LoginO &&
+          runtimeType == other.runtimeType &&
+          login == other.login;
 
   @override
   int get hashCode => login.hashCode;
+}
 
+class AccountO {
+  final CreateAccountA createAccount;
 
+  const AccountO({
+    @required this.createAccount,
+  }) : assert(createAccount != null);
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is AccountO &&
+          runtimeType == other.runtimeType &&
+          createAccount == other.createAccount;
 
-
+  @override
+  int get hashCode => createAccount.hashCode;
 }

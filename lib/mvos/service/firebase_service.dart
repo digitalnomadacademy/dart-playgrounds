@@ -5,7 +5,8 @@ import 'package:playground_app/shared/interfaces.dart';
 import 'package:rxdart/rxdart.dart';
 
 class FirebaseService implements Disposable {
-  PublishSubject<FirebaseUserE> userE$ = PublishSubject<FirebaseUserE>()..add(FirebaseUserE(uid: null));
+  PublishSubject<FirebaseUserE> userE$ = PublishSubject<FirebaseUserE>()
+    ..add(FirebaseUserE(uid: null));
 
   FirebaseService() {
     _initFirebase();
@@ -16,10 +17,15 @@ class FirebaseService implements Disposable {
     FirebaseAuth.instance.signInAnonymously();
   }
 
-  Future<void> loginWithEmailAndPassword() async {
+  Future<void> loginWithEmailAndPassword(String email, String password) async {
     logger.info("Login email and password called");
-    FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: "goranesine@gmail.com", password: "Testpassword01");
+    FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: email, password: password);
+  }
+
+  Future<void> createAccount(String name, String surname, String email,
+      String password, String phone, String courseCode) async {
+
   }
 
   @override
@@ -31,7 +37,8 @@ class FirebaseService implements Disposable {
   void _initFirebase() async {
     FirebaseAuth.instance.onAuthStateChanged.listen((firebaseUser) {
       logger.info('auth state changed $firebaseUser');
-      userE$.add(FirebaseUserE(uid: firebaseUser?.uid));
+      userE$.add(
+          FirebaseUserE(uid: firebaseUser?.uid, email: firebaseUser?.email));
     });
   }
 }

@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:playground_app/router/router.dart';
+import 'package:email_validator/email_validator.dart';
 
 class CreateAccountForm extends StatefulWidget {
+
   @override
   _CreateAccountFormState createState() => _CreateAccountFormState();
 }
 
 class _CreateAccountFormState extends State<CreateAccountForm> {
+  final formKey = GlobalKey<FormState>();
+  String email;
+  String name;
+  String surname;
+  String phone;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Form(
+        key: formKey,
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
@@ -19,8 +27,14 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                 height: 24,
               ),
               TextFormField(
+                validator: (value) {
+                  if (value.length < 3) {
+                    return 'Please enter more text';
+                  }
+                  return null;
+                },
+                onSaved: (value)  => name = value,
                 decoration: InputDecoration(
-
                   icon: Icon(Icons.person),
                   labelText: 'Name',
                   border: OutlineInputBorder(
@@ -34,6 +48,13 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                 height: 24,
               ),
               TextFormField(
+                validator: (value) {
+                  if (value.length < 3) {
+                    return 'Please enter more text';
+                  }
+                  return null;
+                },
+                onSaved: (value)  => surname = value,
                 decoration: InputDecoration(
                   icon: Icon(Icons.person),
                   labelText: 'Surname',
@@ -48,6 +69,10 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                 height: 24,
               ),
               TextFormField(
+                validator: (val) => !EmailValidator.validate(val, true)
+                    ? 'Not a valid email.'
+                    : null,
+                onSaved: (val) => email = val,
                 decoration: InputDecoration(
                   icon: Icon(Icons.email),
                   labelText: 'Email',
@@ -62,8 +87,14 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                 height: 24,
               ),
               TextFormField(
+                validator: (value) {
+                  var potentialNumber = int.tryParse(value);
+                  if (potentialNumber == null) {
+                    return 'Enter a phone number';
+                  }
+                },
+                onSaved: (value)  => phone = value,
                 keyboardType: TextInputType.phone,
-
                 decoration: InputDecoration(
                   icon: Icon(Icons.phone),
                   labelText: 'Telephone',
@@ -101,8 +132,16 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                   // before sending the data trough observable.
                   // only if observable future gets resolved,
                   // you will push new route
-                  onPressed: () =>
-                      Navigator.pushNamed(context, RouteName.homePage),
+                  onPressed: () {
+                    if (formKey.currentState.validate()) {
+                      formKey.currentState.save();
+                      print(name);
+                      print(surname);
+                      print(email);
+                      print(phone);
+                    }
+                  },
+
                   child: Text(
                     'Create account',
                     style: TextStyle(color: Colors.white, fontSize: 18),
@@ -116,4 +155,3 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
     );
   }
 }
-

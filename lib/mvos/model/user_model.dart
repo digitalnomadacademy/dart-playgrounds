@@ -6,21 +6,22 @@ import 'package:playground_app/mvos/model/entity/user_entity.dart';
 import 'package:playground_app/mvos/model/observable/user_observable.dart';
 import 'package:playground_app/mvos/service/firebase_service.dart';
 import 'package:playground_app/shared/interfaces.dart';
+import 'package:rxdart/subjects.dart';
 
-typedef Future<void> LoginA({String email});
-typedef Future<void> ConfirmEmailCodeA({String confirmEmailCode});
+typedef Future<void> LoginA({String email, String password});
 typedef Future<void> CreateAccountA(
     {String name,
     String surname,
     String email,
+    String password,
     String phone,
     String courseCode});
 
 class UserModel implements Disposable {
   final FirebaseService firebaseService;
 
-  StreamController<LoggedInO> _loggedInO$ = StreamController.broadcast();
-  Stream<LoggedInO> get loggedInO$ => _loggedInO$.stream;
+  BehaviorSubject<LoggedInO> loggedInO$ = BehaviorSubject<LoggedInO>();
+  LoginO loginO;
   UserModel({
     @required this.firebaseService,
   }) : assert(firebaseService != null,
@@ -28,16 +29,22 @@ class UserModel implements Disposable {
     _initUserModel();
   }
 
-  @override
-  Future<void> dispose() {
-    _loggedInO$.close();
-    return null;
+  Future<void> login({String email, String password}) async {
+//    todo implement
   }
 
   void _initUserModel() {
-    firebaseService.userE$.listen((UserE userE) {
+    firebaseService.userE$.listen((FirebaseUserE userE) {
       logger.info('user entity received $userE');
-      _loggedInO$.add(LoggedInO(loggedIn: userE.uid != null));
+      loggedInO$.add(LoggedInO(loggedIn: userE.email != null));
     });
+
+    loginO = LoginO(login: login);
+  }
+
+  @override
+  Future<void> dispose() {
+    loggedInO$.close();
+    return null;
   }
 }

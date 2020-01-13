@@ -5,7 +5,7 @@ import 'package:playground_app/shared/interfaces.dart';
 import 'package:rxdart/rxdart.dart';
 
 class FirebaseService implements Disposable {
-  PublishSubject<UserE> userE$ = PublishSubject<UserE>()..add(UserE(uid: null));
+  PublishSubject<FirebaseUserE> userE$ = PublishSubject<FirebaseUserE>()..add(FirebaseUserE(uid: null));
 
   FirebaseService() {
     _initFirebase();
@@ -31,7 +31,7 @@ class FirebaseService implements Disposable {
   void _initFirebase() async {
     FirebaseAuth.instance.onAuthStateChanged.listen((firebaseUser) {
       logger.info('auth state changed $firebaseUser');
-      userE$.add(UserE(uid: firebaseUser?.uid));
+      userE$.add(FirebaseUserE(uid: firebaseUser?.uid));
     });
   }
 }

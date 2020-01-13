@@ -21,11 +21,9 @@ class LoggedInO {
 
 class LoginO {
   final LoginA login;
-  final ConfirmEmailCodeA confirmEmailCode;
 
-  const LoginO({@required this.login, @required this.confirmEmailCode})
-      : assert(login != null),
-        assert(confirmEmailCode != null);
+  const LoginO({@required this.login})
+      : assert(login != null);
 
   @override
   bool operator ==(Object other) =>
@@ -33,14 +31,13 @@ class LoginO {
           this, other) ||
           other is LoginO &&
               runtimeType == other.runtimeType &&
-              login == other.login &&
-              confirmEmailCode == other.confirmEmailCode;
+              login == other.login;
 
   @override
-  int get hashCode =>
-      login.hashCode ^
-      confirmEmailCode.hashCode;
-  
+  int get hashCode => login.hashCode;
+
+
+
 
 
 }

@@ -25,6 +25,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
   var _passwordFocusNode = FocusNode();
   var _repeatPasswordFocusNode = FocusNode();
   var _codeFocusNode = FocusNode();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -34,17 +35,17 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-
               SizedBox(
                 height: 20,
               ),
-              Container(height: 50,
+              Container(
+                height: 50,
                 child: TextFormField(
                   controller: _nameController,
                   textInputAction: TextInputAction.go,
                   onEditingComplete: () => _surnameFocusNode.requestFocus(),
                   validator: (value) {
-                    if (value.length < 3) {
+                    if (value.length < 2) {
                       return 'Please enter more text';
                     }
                     return null;
@@ -63,14 +64,15 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
               SizedBox(
                 height: 20,
               ),
-              Container(height: 50,
+              Container(
+                height: 50,
                 child: TextFormField(
                   focusNode: _surnameFocusNode,
                   textInputAction: TextInputAction.go,
                   onEditingComplete: () => _phoneFocusNode.requestFocus(),
                   controller: _surnameController,
                   validator: (value) {
-                    if (value.length < 3) {
+                    if (value.length < 2) {
                       return 'Please enter more text';
                     }
                     return null;
@@ -88,16 +90,17 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
               ),
               SizedBox(
                 height: 20,
-              ),Container(height: 50,
+              ),
+              Container(
+                height: 50,
                 child: TextFormField(
                   focusNode: _phoneFocusNode,
                   textInputAction: TextInputAction.go,
                   onEditingComplete: () => _emailFocusNode.requestFocus(),
                   controller: _phoneController,
                   validator: (value) {
-                    if (value.length<9) {
+                    if (value.length < 8) {
                       return 'Please enter more number';
-
                     }
                     return null;
                   },
@@ -116,7 +119,8 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
               SizedBox(
                 height: 20,
               ),
-              Container(height: 50,
+              Container(
+                height: 50,
                 child: TextFormField(
                   focusNode: _emailFocusNode,
                   controller: _emailController,
@@ -136,20 +140,22 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                   ),
                 ),
               ),
-
               SizedBox(
                 height: 20,
               ),
-              Container(height: 50,
+              Container(
+                height: 50,
                 child: TextFormField(
                   focusNode: _passwordFocusNode,
                   textInputAction: TextInputAction.go,
-                  onEditingComplete: () => _repeatPasswordFocusNode.requestFocus(),
+                  onEditingComplete: () =>
+                      _repeatPasswordFocusNode.requestFocus(),
                   controller: _passwordController,
                   validator: (value) {
-                   if (value.length < 6) {
-                     return 'Please enter more text';
-                   }  return null;
+                    if (value.length < 5) {
+                      return 'Password should have at least 6 characters';
+                    }
+                    return null;
                   },
                   keyboardType: TextInputType.phone,
                   obscureText: true,
@@ -167,16 +173,18 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
               SizedBox(
                 height: 20,
               ),
-              Container(height: 50,
+              Container(
+                height: 50,
                 child: TextFormField(
                   focusNode: _repeatPasswordFocusNode,
                   textInputAction: TextInputAction.go,
                   onEditingComplete: () => _codeFocusNode.requestFocus(),
                   controller: _repeatPasswordController,
                   validator: (value) {
-                  if (value != _passwordController.text) {
-                    return 'Password is not matching';
-                  }return null;
+                    if (value != _passwordController.text) {
+                      return 'Password is not matching';
+                    }
+                    return null;
                   },
                   keyboardType: TextInputType.phone,
                   obscureText: true,
@@ -194,7 +202,8 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
               SizedBox(
                 height: 20,
               ),
-              Container(height: 50,
+              Container(
+                height: 50,
                 child: TextFormField(
                   focusNode: _codeFocusNode,
                   controller: _codeController,
@@ -220,7 +229,6 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                     width: 180,
                     height: 50,
                     child: RaisedButton(
-                      color: Colors.pink,
                       //this will be block function instead of arrow,
                       // because you will first validate form
                       // before sending the data trough observable.
@@ -234,7 +242,10 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
 
                       child: Text(
                         'Create account',
-                        style: TextStyle(color: Colors.white, fontSize: 18),
+                        style: Theme.of(context)
+                            .textTheme
+                            .display1
+                            .copyWith(color: Colors.white),
                       ),
                     ),
                   ),
@@ -251,5 +262,3 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
 class CreateAccountO {
   //todo delete
 }
-
-

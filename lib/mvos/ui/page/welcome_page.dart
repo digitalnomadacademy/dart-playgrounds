@@ -26,7 +26,10 @@ class WelcomePage extends StatelessWidget {
                 color: Colors.pink,
                 child: Text(
                   'Login',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
+                  style: Theme.of(context)
+                      .textTheme
+                      .display2
+                      .copyWith(color: Colors.white),
                 ),
               ),
             ),
@@ -42,7 +45,10 @@ class WelcomePage extends StatelessWidget {
                 color: Colors.pink,
                 child: Text(
                   'Create Account',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
+                  style: Theme.of(context)
+                      .textTheme
+                      .display2
+                      .copyWith(color: Colors.white),
                 ),
               ),
             ),

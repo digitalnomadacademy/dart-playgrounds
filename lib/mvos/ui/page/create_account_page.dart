@@ -8,7 +8,6 @@ class CreateAccountPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.pink,
         title: Text('Create Account'),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),

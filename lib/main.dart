@@ -16,7 +16,14 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primaryColor: Colors.pink,
+          primarySwatch: Colors.pink,
+          buttonTheme: ButtonThemeData(
+            buttonColor: Colors.pink,
+          ),
+          textTheme: TextTheme(
+            display1: TextStyle(fontSize: 18),
+            display2: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
         ),
         onGenerateRoute: Router.generator,
         initialRoute: RouteName.splashScreen,
@@ -24,4 +31,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

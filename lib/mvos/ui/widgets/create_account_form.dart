@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:playground_app/mvos/model/observable/user_observable.dart';
+import 'package:playground_app/router/router.dart';
 import 'package:provider/provider.dart';
 
 class CreateAccountForm extends StatefulWidget {
@@ -221,32 +222,35 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
               SizedBox(
                 height: 25,
               ),
-              Provider<CreateAccountO>.value(
-                // todo delete once goran creates observable
-                value: CreateAccountO(),
-                child: Consumer<CreateAccountO>(
-                  builder: (context, o, _) => Container(
-                    width: 180,
-                    height: 50,
-                    child: RaisedButton(
-                      //this will be block function instead of arrow,
-                      // because you will first validate form
-                      // before sending the data trough observable.
-                      // only if observable future gets resolved,
-                      // you will push new route
-                      onPressed: () {
-                        if (formKey.currentState.validate()) {
+              Consumer<AccountO>(
+                builder: (context, o, _) => Container(
+                  width: 180,
+                  height: 50,
+                  child: RaisedButton(
+                    //this will be block function instead of arrow,
+                    // because you will first validate form
+                    // before sending the data trough observable.
+                    // only if observable future gets resolved,
+                    // you will push new route
+                    onPressed: () {
+                      if (formKey.currentState.validate()) {
+                        o.createAccount().then((_) {
+                          Navigator.of(context).pushNamed(RouteName.logInPage);
+                        }).catchError((e) {
+                          Scaffold.of(context).showSnackBar(SnackBar(
+                            content: Text(e),
+                          ));
+                        });
 //                        call o.createAccount(name:_controller.name,....
-                        }
-                      },
+                      }
+                    },
 
-                      child: Text(
-                        'Create account',
-                        style: Theme.of(context)
-                            .textTheme
-                            .display1
-                            .copyWith(color: Colors.white),
-                      ),
+                    child: Text(
+                      'Create account',
+                      style: Theme.of(context)
+                          .textTheme
+                          .display1
+                          .copyWith(color: Colors.white),
                     ),
                   ),
                 ),
@@ -257,8 +261,4 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
       ),
     );
   }
-}
-
-class CreateAccountO {
-  //todo delete
 }

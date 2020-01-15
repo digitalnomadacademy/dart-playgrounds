@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:playground_app/logger/logger.dart';
 import 'package:playground_app/mvos/model/entity/user_entity.dart';
@@ -13,9 +13,8 @@ typedef Future<void> CreateAccountA(
     {String name,
     String surname,
     String email,
-    String password,
     String phone,
-    String courseCode});
+    List courseCode});
 
 class UserModel implements Disposable {
   final FirebaseService firebaseService;
@@ -39,11 +38,13 @@ class UserModel implements Disposable {
       {String name,
       String surname,
       String email,
-      String password,
+        String password,
       String phone,
-      String courseCode}) async {
+      List courseCode}) async {
+
     firebaseService.createAccount(
-        name, surname, email, password, phone, courseCode);
+        name, surname, email,password, phone, courseCode);
+    return null;
   }
 
   void _initUserModel() {

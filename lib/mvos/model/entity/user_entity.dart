@@ -4,13 +4,12 @@ class FirebaseUserE {
   final String name;
   final String surname;
   final String email;
-  final String password;
   final String phone;
   final String uid;
   final List courseCode;
 
 
-  const FirebaseUserE({ @required this.name,@required  this.surname,@required  this.password,@required  this.phone,
+  const FirebaseUserE({ @required this.name,@required  this.surname,@required  this.phone,
   @required  this.courseCode, @required this.uid, @required this.email});
 
   @override
@@ -22,7 +21,6 @@ class FirebaseUserE {
               name == other.name &&
               surname == other.surname &&
               email == other.email &&
-              password == other.password &&
               phone == other.phone &&
               uid == other.uid &&
               courseCode == other.courseCode;
@@ -32,13 +30,12 @@ class FirebaseUserE {
       name.hashCode ^
       surname.hashCode ^
       email.hashCode ^
-      password.hashCode ^
       phone.hashCode ^
       uid.hashCode ^
       courseCode.hashCode;
-});
-
-
-
-
 }
+
+
+
+
+

@@ -35,17 +35,17 @@ class LoginO {
   int get hashCode => login.hashCode;
 }
 
-class AccountO {
+class CreateAccountO {
   final CreateAccountA createAccount;
 
-  const AccountO({
+  const CreateAccountO({
     @required this.createAccount,
   }) : assert(createAccount != null);
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is AccountO &&
+      other is CreateAccountO &&
           runtimeType == other.runtimeType &&
           createAccount == other.createAccount;
 

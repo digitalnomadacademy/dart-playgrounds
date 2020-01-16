@@ -127,9 +127,8 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                   controller: _emailController,
                   textInputAction: TextInputAction.go,
                   onEditingComplete: () => _passwordFocusNode.requestFocus(),
-                  validator: (val) => !EmailValidator.validate(val, true)
-                      ? 'Not a valid email.'
-                      : null,
+                  validator: (value) =>
+                      !value.contains('@') ? 'Not a valid Email' : null,
                   decoration: InputDecoration(
                     icon: Icon(Icons.email),
                     labelText: 'Email',
@@ -232,17 +231,29 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                     // before sending the data trough observable.
                     // only if observable future gets resolved,
                     // you will push new route
-                    onPressed: () {
+                    onPressed: () async {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return Center(
+                              child: CircularProgressIndicator(
+                                backgroundColor: Colors.white,
+                              ),
+                            );
+                          });
+                      await loginAction();
                       if (formKey.currentState.validate()) {
                         o.createAccount().then((_) {
-                          Navigator.of(context).pushNamed(RouteName.logInPage);
+                          Navigator.of(context)
+                              .popAndPushNamed(RouteName.homePage);
                         }).catchError((e) {
                           Scaffold.of(context).showSnackBar(SnackBar(
                             content: Text(e),
                           ));
                         });
 //                        call o.createAccount(name:_controller.name,....
-                      }
+                      } else
+                        Navigator.pop(context);
                     },
 
                     child: Text(
@@ -261,4 +272,10 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
       ),
     );
   }
+}
+
+Future<bool> loginAction() async {
+  //replace the below line of code with your login request
+  await new Future.delayed(const Duration(seconds: 2));
+  return true;
 }

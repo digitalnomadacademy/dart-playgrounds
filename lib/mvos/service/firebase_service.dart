@@ -9,8 +9,13 @@ class FirebaseService implements Disposable {
   final database = Firestore.instance;
 
   PublishSubject<FirebaseUserE> userE$ = PublishSubject<FirebaseUserE>()
-    ..add(FirebaseUserE(name: null,surname: null,email: null,phone: null,
-    courseCode: null,uid: null));
+    ..add(FirebaseUserE(
+        name: null,
+        surname: null,
+        email: null,
+        phone: null,
+        courseCode: null,
+        uid: null));
 
   FirebaseService() {
     _initFirebase();
@@ -24,30 +29,31 @@ class FirebaseService implements Disposable {
   Future<void> loginWithEmailAndPassword(String email, String password) async {
     logger.info("Login email and password called");
     try {
-     await FirebaseAuth.instance
+      await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
     } catch (e) {
-      throw("");
+      throw ("");
     }
     return;
   }
 
-  Future<void> createAccount(String name, String surname, String email,
+  Future<FirebaseUser> createAccount(String name, String surname, String email,
       String password, String phone, List courseCode) async {
     logger.info("Create account called");
     try {
-    await  FirebaseAuth.instance
+      await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
+      await database.collection("users").add({
+        "name": name,
+        "surname": surname,
+        "email": email,
+        "phone": phone,
+        "coursecode": courseCode,
+      });
+      return FirebaseAuth.instance.currentUser();
     } catch (e) {
-      throw("");
+      throw ("");
     }
-    await database.collection("users").add({
-      "name": name,
-      "surname": surname,
-      "email": email,
-      "phone": phone,
-      "coursecode": courseCode,
-    });
   }
 
   @override
@@ -59,9 +65,9 @@ class FirebaseService implements Disposable {
   void _initFirebase() async {
     FirebaseAuth.instance.onAuthStateChanged.listen((firebaseUser) {
       logger.info('auth state changed $firebaseUser');
-      userE$.add(
-          FirebaseUserE(uid: firebaseUser?.uid,));
-
+      userE$.add(FirebaseUserE(
+        uid: firebaseUser?.uid,
+      ));
     });
   }
 }

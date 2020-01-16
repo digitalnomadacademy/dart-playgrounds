@@ -52,3 +52,22 @@ class CreateAccountO {
   @override
   int get hashCode => createAccount.hashCode;
 }
+
+class UserO{
+  final String user;
+  const UserO({
+    @required this.user
+}): assert(user != null);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(
+          this, other) ||
+          other is UserO &&
+              runtimeType == other.runtimeType &&
+              user == other.user;
+
+  @override
+  int get hashCode => user.hashCode;
+
+}

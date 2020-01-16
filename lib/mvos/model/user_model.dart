@@ -10,16 +10,13 @@ import 'package:rxdart/subjects.dart';
 
 typedef Future<void> LoginA({String email, String password});
 typedef Future<void> CreateAccountA(
-    {String name,
-    String surname,
-    String email,
-    String phone,
-    List courseCode});
+    {String name, String surname, String email, String phone, List courseCode});
 
 class UserModel implements Disposable {
   final FirebaseService firebaseService;
 
   BehaviorSubject<LoggedInO> loggedInO$ = BehaviorSubject<LoggedInO>();
+  BehaviorSubject<UserO>     userO$ = BehaviorSubject<UserO>();
   LoginO loginO;
   CreateAccountO accountO;
 
@@ -31,26 +28,25 @@ class UserModel implements Disposable {
   }
 
   Future<void> login({String email, String password}) async {
-    firebaseService.loginWithEmailAndPassword(email, password);
+  return  firebaseService.loginWithEmailAndPassword(email, password);
   }
 
-  Future<FirebaseUserE> createAccount(
+  Future<void> createAccount(
       {String name,
       String surname,
       String email,
-        String password,
+      String password,
       String phone,
       List courseCode}) async {
-
-  await  firebaseService.createAccount(
-        name, surname, email,password, phone, courseCode);
-    return null;
+    return firebaseService.createAccount(
+        name, surname, email, password, phone, courseCode);
   }
 
   void _initUserModel() {
     firebaseService.userE$.listen((FirebaseUserE userE) {
       logger.info('user entity received $userE');
       loggedInO$.add(LoggedInO(loggedIn: userE.email != null));
+      userO$.add(UserO(user: userE.name));
     });
 
     loginO = LoginO(login: login);
@@ -60,6 +56,7 @@ class UserModel implements Disposable {
   @override
   Future<void> dispose() {
     loggedInO$.close();
+    userO$.close();
     return null;
   }
 }

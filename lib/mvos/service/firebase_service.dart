@@ -9,7 +9,7 @@ class FirebaseService implements Disposable {
   final database = Firestore.instance;
 
   PublishSubject<FirebaseUserE> userE$ = PublishSubject<FirebaseUserE>()
-    ..add(FirebaseUserE(name: null,surname: null,email: null,password: null,phone: null,
+    ..add(FirebaseUserE(name: null,surname: null,email: null,phone: null,
     courseCode: null,uid: null));
 
   FirebaseService() {

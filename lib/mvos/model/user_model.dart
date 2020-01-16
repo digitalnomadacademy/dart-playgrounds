@@ -19,6 +19,7 @@ class UserModel implements Disposable {
   BehaviorSubject<UserO>     userO$ = BehaviorSubject<UserO>();
   LoginO loginO;
   CreateAccountO accountO;
+  UserO userO;
 
   UserModel({
     @required this.firebaseService,

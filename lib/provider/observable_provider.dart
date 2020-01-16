@@ -21,5 +21,9 @@ List<SingleChildWidget> observables = [
   Provider<CreateAccountO>(
     create: (context) =>
         Provider.of<UserModel>(context, listen: false).accountO,
+  ),
+  Provider<UserO>(
+    create: (context)=>
+    Provider.of<UserModel>(context,listen: false).userO,
   )
 ];

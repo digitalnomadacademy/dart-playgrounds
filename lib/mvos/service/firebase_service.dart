@@ -24,9 +24,11 @@ class FirebaseService implements Disposable {
   Future<void> loginWithEmailAndPassword(String email, String password) async {
     logger.info("Login email and password called");
     try {
-      FirebaseAuth.instance
+     await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-    } catch (e) {}
+    } catch (e) {
+      throw("");
+    }
     return;
   }
 
@@ -34,9 +36,11 @@ class FirebaseService implements Disposable {
       String password, String phone, List courseCode) async {
     logger.info("Create account called");
     try {
-      FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password);
-    } catch (e) {}
+    await  FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password);
+    } catch (e) {
+      throw("");
+    }
     await database.collection("users").add({
       "name": name,
       "surname": surname,

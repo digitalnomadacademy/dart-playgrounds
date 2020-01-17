@@ -21,27 +21,29 @@ class FirebaseService implements Disposable {
     _initFirebase();
   }
 
-  Future<void> signInAnonymously() async {
+  Future<String> signInAnonymously() async {
     logger.info('Login anonymously called');
-    FirebaseAuth.instance.signInAnonymously();
+   AuthResult result = await FirebaseAuth.instance.signInAnonymously();
+   return result.user.uid;
   }
 
-  Future<void> loginWithEmailAndPassword(String email, String password) async {
+  Future<String> loginWithEmailAndPassword(String email, String password) async {
     logger.info("Login email and password called");
     try {
-      await FirebaseAuth.instance
+    AuthResult result =  await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
+    return result.user.email;
     } catch (e) {
       throw ("");
     }
-    return;
+
   }
 
-  Future<FirebaseUser> createAccount(String name, String surname, String email,
+  Future<String> createAccount(String name, String surname, String email,
       String password, String phone, List courseCode) async {
     logger.info("Create account called");
     try {
-      await FirebaseAuth.instance
+   AuthResult result =   await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
       await database.collection("users").add({
         "name": name,
@@ -50,7 +52,7 @@ class FirebaseService implements Disposable {
         "phone": phone,
         "coursecode": courseCode,
       });
-      return FirebaseAuth.instance.currentUser();
+      return result.user.email;
     } catch (e) {
       throw ("");
     }
@@ -67,6 +69,7 @@ class FirebaseService implements Disposable {
       logger.info('auth state changed $firebaseUser');
       userE$.add(FirebaseUserE(
         uid: firebaseUser?.uid,
+        email: firebaseUser?.email,
       ));
     });
   }

@@ -14,6 +14,7 @@ class CreateAccountPage extends StatelessWidget {
           onPressed: () => Navigator.pop(context, RouteName.welcomePage),
         ),
       ),
+      
       body: CreateAccountForm(),
     );
   }

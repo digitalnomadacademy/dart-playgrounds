@@ -10,9 +10,11 @@ class WelcomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'Welcome to Playgrounds',
-              style: TextStyle(color: Colors.white, fontSize: 35),
+            FittedBox(
+              child: Text(
+                'Welcome to Playgrounds',
+                style: TextStyle(color: Colors.white, fontSize: 35),
+              ),
             ),
             SizedBox(
               height: 100,

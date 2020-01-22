@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:playground_app/mvos/model/observable/user_observable.dart';
 import 'package:playground_app/router/router.dart';
 import 'package:provider/provider.dart';
@@ -10,8 +9,10 @@ class CreateAccountForm extends StatefulWidget {
 }
 
 class _CreateAccountFormState extends State<CreateAccountForm> {
+  //Form Global Key
   final formKey = GlobalKey<FormState>();
 
+  //Controllers
   var _nameController = TextEditingController();
   var _surnameController = TextEditingController();
   var _phoneController = TextEditingController();
@@ -20,6 +21,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
   var _repeatPasswordController = TextEditingController();
   var _codeController = TextEditingController();
 
+  //Focus Nodes
   var _surnameFocusNode = FocusNode();
   var _phoneFocusNode = FocusNode();
   var _emailFocusNode = FocusNode();
@@ -39,6 +41,8 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
               SizedBox(
                 height: 20,
               ),
+
+              //Name FormField
               Container(
                 height: 50,
                 child: TextFormField(
@@ -47,7 +51,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                   onEditingComplete: () => _surnameFocusNode.requestFocus(),
                   validator: (value) {
                     if (value.length < 2) {
-                      return 'Please enter more text';
+                      return 'Please enter some text';
                     }
                     return null;
                   },
@@ -65,6 +69,8 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
               SizedBox(
                 height: 20,
               ),
+
+              //Surname FormField
               Container(
                 height: 50,
                 child: TextFormField(
@@ -74,7 +80,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                   controller: _surnameController,
                   validator: (value) {
                     if (value.length < 2) {
-                      return 'Please enter more text';
+                      return 'Please enter some text';
                     }
                     return null;
                   },
@@ -92,6 +98,8 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
               SizedBox(
                 height: 20,
               ),
+
+              //Phone FormField
               Container(
                 height: 50,
                 child: TextFormField(
@@ -101,7 +109,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                   controller: _phoneController,
                   validator: (value) {
                     if (value.length < 8) {
-                      return 'Please enter more number';
+                      return 'Please enter your phone number';
                     }
                     return null;
                   },
@@ -120,6 +128,8 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
               SizedBox(
                 height: 20,
               ),
+
+              //Email FormField
               Container(
                 height: 50,
                 child: TextFormField(
@@ -143,6 +153,8 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
               SizedBox(
                 height: 20,
               ),
+
+              //Password FormField
               Container(
                 height: 50,
                 child: TextFormField(
@@ -173,6 +185,8 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
               SizedBox(
                 height: 20,
               ),
+
+              //Repeat Password Field
               Container(
                 height: 50,
                 child: TextFormField(
@@ -202,6 +216,8 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
               SizedBox(
                 height: 20,
               ),
+
+              //Code FormField
               Container(
                 height: 50,
                 child: TextFormField(
@@ -226,11 +242,6 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                   width: 180,
                   height: 50,
                   child: RaisedButton(
-                    //this will be block function instead of arrow,
-                    // because you will first validate form
-                    // before sending the data trough observable.
-                    // only if observable future gets resolved,
-                    // you will push new route
                     onPressed: () async {
                       showDialog(
                           context: context,
@@ -241,21 +252,21 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                               ),
                             );
                           });
-                      await loginAction();
                       if (formKey.currentState.validate()) {
                         o.createAccount().then((_) {
                           Navigator.of(context)
-                              .popAndPushNamed(RouteName.homePage);
+                              .popAndPushNamed(RouteName.logInPage);
                         }).catchError((e) {
+                          Navigator.pop(context);
                           Scaffold.of(context).showSnackBar(SnackBar(
                             content: Text(e),
                           ));
                         });
 //                        call o.createAccount(name:_controller.name,....
-                      } else
+                      } else {
                         Navigator.pop(context);
+                      }
                     },
-
                     child: Text(
                       'Create account',
                       style: Theme.of(context)
@@ -272,10 +283,4 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
       ),
     );
   }
-}
-
-Future<bool> loginAction() async {
-  //replace the below line of code with your login request
-  await new Future.delayed(const Duration(seconds: 2));
-  return true;
 }

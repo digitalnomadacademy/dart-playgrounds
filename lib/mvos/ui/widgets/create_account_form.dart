@@ -237,7 +237,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
               SizedBox(
                 height: 25,
               ),
-              Consumer<AccountO>(
+              Consumer<CreateAccountA>(
                 builder: (context, o, _) => Container(
                   width: 180,
                   height: 50,
@@ -253,13 +253,49 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                             );
                           });
                       if (formKey.currentState.validate()) {
-                        o.createAccount().then((_) {
-                          Navigator.of(context)
-                              .popAndPushNamed(RouteName.logInPage);
+                        o
+                            .createAccount(
+                                name: _nameController.text,
+                                surname: _surnameController.text,
+                                courseCode: _codeController.text,
+                                email: _emailController.text,
+                                phone: _phoneController.text,
+                                password: _passwordController.text)
+                            .then((_) async {
+                          Navigator.pop(context);
+                          showDialog(
+                              context: context,
+                              barrierDismissible: false,
+                              builder: (context) => Align(
+                                child: Card(
+                                      child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Container(
+                                                child: Text(
+                                                    'Please verify your email address'),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: RaisedButton(
+                                                child: Text('OK'),
+                                                onPressed: () {
+                                                  Navigator.of(context)
+                                                      .popAndPushNamed(
+                                                          RouteName.logInPage);
+                                                },
+                                              ),
+                                            )
+                                          ]),
+                                    ),
+                              ));
                         }).catchError((e) {
                           Navigator.pop(context);
                           Scaffold.of(context).showSnackBar(SnackBar(
-                            content: Text(e),
+                            content: Text(e.toString()),
                           ));
                         });
 //                        call o.createAccount(name:_controller.name,....

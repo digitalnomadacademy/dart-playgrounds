@@ -15,15 +15,14 @@ List<SingleChildWidget> observables = [
     create: (context) =>
         Provider.of<UserModel>(context, listen: false).loggedInO$,
   ),
-  Provider<LoginO>(
-    create: (context) => Provider.of<UserModel>(context, listen: false).loginO,
+  Provider<LoginA>(
+    create: (context) => Provider.of<UserModel>(context, listen: false).loginA,
   ),
-  Provider<CreateAccountO>(
+  Provider<CreateAccountA>(
     create: (context) =>
-        Provider.of<UserModel>(context, listen: false).accountO,
-        ),
+        Provider.of<UserModel>(context, listen: false).createAccountA,
+  ),
   Provider<UserO>(
-    create: (context)=>
-    Provider.of<UserModel>(context,listen: false).userO,
+    create: (context) => Provider.of<UserModel>(context, listen: false).userO,
   )
 ];

@@ -19,15 +19,15 @@ class LoggedInO {
   int get hashCode => loggedIn.hashCode;
 }
 
-class LoginO {
-  final LoginA login;
+class LoginA {
+  final Login login;
 
-  const LoginO({@required this.login}) : assert(login != null);
+  const LoginA({@required this.login}) : assert(login != null);
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is LoginO &&
+      other is LoginA &&
           runtimeType == other.runtimeType &&
           login == other.login;
 
@@ -35,17 +35,17 @@ class LoginO {
   int get hashCode => login.hashCode;
 }
 
-class CreateAccountO {
-  final CreateAccountA createAccount;
+class CreateAccountA {
+  final CreateAccount createAccount;
 
-  const CreateAccountO({
+  const CreateAccountA({
     @required this.createAccount,
   }) : assert(createAccount != null);
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is CreateAccountO &&
+      other is CreateAccountA &&
           runtimeType == other.runtimeType &&
           createAccount == other.createAccount;
 

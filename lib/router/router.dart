@@ -37,7 +37,7 @@ class Router {
       case RouteName.createAccountPage:
         return MaterialPageRoute(
           settings: settings,
-          builder: (_)=> CreateAccountPage(),
+          builder: (_) => CreateAccountPage(),
         );
       default:
         return MaterialPageRoute(

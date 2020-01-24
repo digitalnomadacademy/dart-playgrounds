@@ -80,7 +80,7 @@ class _LoginFormState extends State<LoginForm> {
                 SizedBox(
                   height: 24,
                 ),
-                Consumer<LoginO>(
+                Consumer<LoginA>(
                   builder: (context, o, _) => Container(
                     width: 180,
                     height: 50,
@@ -99,14 +99,18 @@ class _LoginFormState extends State<LoginForm> {
 
                         if (formKey.currentState.validate()) {
 //                      try login
-                          o.login().then((_) {
+                          o
+                              .login(
+                                  email: _emailLoginController.text,
+                                  password: _passwordLoginController.text)
+                              .then((_) {
 //                        if succeed, route.
                             Navigator.of(context)
                                 .popAndPushNamed(RouteName.homePage);
                           }).catchError((e) {
                             Navigator.pop(context);
                             Scaffold.of(context).showSnackBar(SnackBar(
-                              content: Text('Login error'),
+                              content: Text(e.toString()),
 //                        content: Text(e),
                             ));
                           });

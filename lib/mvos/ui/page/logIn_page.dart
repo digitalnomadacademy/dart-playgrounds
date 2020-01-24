@@ -3,9 +3,6 @@ import 'package:playground_app/mvos/ui/widgets/loginPage_form.dart';
 import 'package:playground_app/router/router.dart';
 
 class LogInPage extends StatelessWidget {
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -7,26 +7,22 @@ import 'package:playground_app/mvos/service/firebase_service.dart';
 import 'package:playground_app/shared/interfaces.dart';
 import 'package:rxdart/subjects.dart';
 
-typedef Future<void> LoginA({String email, String password});
-typedef Future<void> CreateAccountA(
-    {String name, String surname, String email, String phone, List courseCode});
-
-typedef Future<void> LoginA({String email});
-typedef Future<void> ConfirmEmailCodeA({String confirmEmailCode});
-typedef Future<void> CreateAccountA(
+typedef Future<void> Login({String email, String password});
+typedef Future<void> CreateAccount(
     {String name,
     String surname,
     String email,
     String phone,
-    String courseCode});
+    String courseCode,
+    String password});
 
 class UserModel implements Disposable {
   final FirebaseService firebaseService;
 
   BehaviorSubject<LoggedInO> loggedInO$ = BehaviorSubject<LoggedInO>();
   BehaviorSubject<UserO> userO$ = BehaviorSubject<UserO>();
-  LoginO loginO;
-  CreateAccountO accountO;
+  LoginA loginA;
+  CreateAccountA createAccountA;
   UserO userO;
 
   UserModel({
@@ -46,7 +42,7 @@ class UserModel implements Disposable {
       String email,
       String password,
       String phone,
-      List courseCode}) async {
+      String courseCode}) async {
     return firebaseService.createAccount(
         name, surname, email, password, phone, courseCode);
   }
@@ -54,12 +50,15 @@ class UserModel implements Disposable {
   void _initUserModel() {
     firebaseService.userE$.listen((FirebaseUserE userE) {
       logger.info('user entity received $userE');
-      loggedInO$.add(LoggedInO(loggedIn: userE.email != null));
-      userO$.add(UserO(user: userE.name));
+      bool isLoggedIn = userE.email != null;
+      loggedInO$.add(LoggedInO(loggedIn: isLoggedIn));
+      if (userE.name != null) {
+        userO$.add(UserO(user: userE.name));
+      }
     });
 
-    loginO = LoginO(login: login);
-    accountO = CreateAccountO(createAccount: createAccount);
+    loginA = LoginA(login: login);
+    createAccountA = CreateAccountA(createAccount: createAccount);
   }
 
   @override

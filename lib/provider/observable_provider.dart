@@ -14,5 +14,16 @@ List<SingleChildWidget> observables = [
     catchError: (context, error) => LoggedInO(loggedIn: false),
     create: (context) =>
         Provider.of<UserModel>(context, listen: false).loggedInO$,
+  ),
+  Provider<LoginO>(
+    create: (context) => Provider.of<UserModel>(context, listen: false).loginO,
+  ),
+  Provider<CreateAccountO>(
+    create: (context) =>
+        Provider.of<UserModel>(context, listen: false).accountO,
+        ),
+  Provider<UserO>(
+    create: (context)=>
+    Provider.of<UserModel>(context,listen: false).userO,
   )
 ];

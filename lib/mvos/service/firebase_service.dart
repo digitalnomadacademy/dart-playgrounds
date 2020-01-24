@@ -8,53 +8,51 @@ import 'package:rxdart/rxdart.dart';
 class FirebaseService implements Disposable {
   final database = Firestore.instance;
 
-  PublishSubject<FirebaseUserE> userE$ = PublishSubject<FirebaseUserE>()
-    ..add(FirebaseUserE(
-        name: null,
-        surname: null,
-        email: null,
-        phone: null,
-        courseCode: null,
-        uid: null));
+  PublishSubject<FirebaseUserE> userE$ = PublishSubject<FirebaseUserE>();
 
   FirebaseService() {
     _initFirebase();
   }
 
-  Future<String> signInAnonymously() async {
+  Future<void> signInAnonymously() async {
     logger.info('Login anonymously called');
-   AuthResult result = await FirebaseAuth.instance.signInAnonymously();
-   return result.user.uid;
+    try {
+      await FirebaseAuth.instance.signInAnonymously();
+    } catch (e) {
+      throw ('sign in anonymously failed');
+    }
+    return null;
   }
 
-  Future<String> loginWithEmailAndPassword(String email, String password) async {
+  Future<void> loginWithEmailAndPassword(String email, String password) async {
     logger.info("Login email and password called");
     try {
-    AuthResult result =  await FirebaseAuth.instance
+      await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-    return result.user.email;
+      return null;
     } catch (e) {
-      throw ("");
+      throw ("login error");
     }
-
   }
 
-  Future<String> createAccount(String name, String surname, String email,
+  Future<void> createAccount(String name, String surname, String email,
       String password, String phone, List courseCode) async {
     logger.info("Create account called");
     try {
-   AuthResult result =   await FirebaseAuth.instance
+      await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
       await database.collection("users").add({
         "name": name,
         "surname": surname,
-        "email": email,
         "phone": phone,
         "coursecode": courseCode,
       });
-      return result.user.email;
+      FirebaseUser user = await FirebaseAuth.instance.currentUser();
+      user.updateProfile(UserUpdateInfo());
+      return null;
     } catch (e) {
-      throw ("");
+      print(e.toString());
+      throw ("error:$e");
     }
   }
 
@@ -65,12 +63,24 @@ class FirebaseService implements Disposable {
   }
 
   void _initFirebase() async {
-    FirebaseAuth.instance.onAuthStateChanged.listen((firebaseUser) {
+    FirebaseAuth.instance.onAuthStateChanged.listen((firebaseUser) async {
       logger.info('auth state changed $firebaseUser');
+      var userDocument = await Firestore.instance
+          .collection(Collections.users)
+          .document(firebaseUser.uid)
+          .get();
       userE$.add(FirebaseUserE(
         uid: firebaseUser?.uid,
         email: firebaseUser?.email,
+        phone: userDocument['phone'],
+        name: userDocument['name'],
+        surname: userDocument['surname'],
+        courseCode: userDocument['courseCode'],
       ));
     });
   }
+}
+
+class Collections {
+  static const users = 'users';
 }

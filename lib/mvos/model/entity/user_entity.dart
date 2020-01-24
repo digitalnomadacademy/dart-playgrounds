@@ -8,22 +8,25 @@ class FirebaseUserE {
   final String uid;
   final List courseCode;
 
-
-  const FirebaseUserE({ @required this.name,@required  this.surname,@required  this.phone,
-  @required  this.courseCode, @required this.uid, @required this.email});
+  const FirebaseUserE(
+      {this.name,
+      this.surname,
+      this.phone,
+      this.courseCode,
+      @required this.uid,
+      @required this.email});
 
   @override
   bool operator ==(Object other) =>
-      identical(
-          this, other) ||
-          other is FirebaseUserE &&
-              runtimeType == other.runtimeType &&
-              name == other.name &&
-              surname == other.surname &&
-              email == other.email &&
-              phone == other.phone &&
-              uid == other.uid &&
-              courseCode == other.courseCode;
+      identical(this, other) ||
+      other is FirebaseUserE &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          surname == other.surname &&
+          email == other.email &&
+          phone == other.phone &&
+          uid == other.uid &&
+          courseCode == other.courseCode;
 
   @override
   int get hashCode =>
@@ -34,8 +37,3 @@ class FirebaseUserE {
       uid.hashCode ^
       courseCode.hashCode;
 }
-
-
-
-
-

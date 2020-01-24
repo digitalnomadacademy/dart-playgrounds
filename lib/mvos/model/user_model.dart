@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:playground_app/logger/logger.dart';
 import 'package:playground_app/mvos/model/entity/user_entity.dart';
@@ -16,7 +15,7 @@ class UserModel implements Disposable {
   final FirebaseService firebaseService;
 
   BehaviorSubject<LoggedInO> loggedInO$ = BehaviorSubject<LoggedInO>();
-  BehaviorSubject<UserO>     userO$ = BehaviorSubject<UserO>();
+  BehaviorSubject<UserO> userO$ = BehaviorSubject<UserO>();
   LoginO loginO;
   CreateAccountO accountO;
   UserO userO;
@@ -28,8 +27,8 @@ class UserModel implements Disposable {
     _initUserModel();
   }
 
-  Future<void> login({String email, String password}) async {
-  return  firebaseService.loginWithEmailAndPassword(email, password);
+  Future<void> login({String email, String password}) {
+    return firebaseService.loginWithEmailAndPassword(email, password);
   }
 
   Future<void> createAccount(

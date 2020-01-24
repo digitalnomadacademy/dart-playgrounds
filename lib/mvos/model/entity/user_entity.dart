@@ -14,7 +14,7 @@ class FirebaseUserE {
       this.phone,
       this.courseCode,
       @required this.uid,
-      @required this.email});
+      this.email});
 
   @override
   bool operator ==(Object other) =>

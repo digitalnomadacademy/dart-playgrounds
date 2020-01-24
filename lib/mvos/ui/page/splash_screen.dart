@@ -71,7 +71,7 @@ class _SplashScreenState extends State<SplashScreen>
     bool _loggedIn = Provider.of<LoggedInO>(context, listen: false).loggedIn;
     _loggedIn == true
         ? Navigator.pushReplacementNamed(context, RouteName.homePage)
-        : Navigator.pushReplacementNamed(context, RouteName.logInPage);
+        : Navigator.pushReplacementNamed(context, RouteName.welcomePage);
   }
 
   void changeString() {

@@ -19,7 +19,8 @@ class FirebaseService implements Disposable {
     try {
       await FirebaseAuth.instance.signInAnonymously();
     } catch (e) {
-      throw ('sign in anonymously failed');
+      logger.warning(e);
+      throw (e);
     }
     return null;
   }
@@ -27,32 +28,38 @@ class FirebaseService implements Disposable {
   Future<void> loginWithEmailAndPassword(String email, String password) async {
     logger.info("Login email and password called");
     try {
-      await FirebaseAuth.instance
+      var result = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
+      var user = result.user;
+      if (!user.isEmailVerified) {
+        throw ('Email is not verified');
+      }
       return null;
     } catch (e) {
-      throw ("login error");
+      logger.warning(e);
+      throw (e);
     }
   }
 
   Future<void> createAccount(String name, String surname, String email,
-      String password, String phone, List courseCode) async {
+      String password, String phone, String courseCode) async {
     logger.info("Create account called");
     try {
-      await FirebaseAuth.instance
+      AuthResult result = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
-      await database.collection("users").add({
+
+      await result.user.sendEmailVerification();
+      await database.collection("users").document(result.user.uid).setData({
+        "id": result.user.uid,
         "name": name,
         "surname": surname,
         "phone": phone,
-        "coursecode": courseCode,
+        "coursecode": [courseCode],
       });
-      FirebaseUser user = await FirebaseAuth.instance.currentUser();
-      user.updateProfile(UserUpdateInfo());
       return null;
     } catch (e) {
-      print(e.toString());
-      throw ("error:$e");
+      logger.warning(e);
+      throw (e);
     }
   }
 
@@ -65,18 +72,24 @@ class FirebaseService implements Disposable {
   void _initFirebase() async {
     FirebaseAuth.instance.onAuthStateChanged.listen((firebaseUser) async {
       logger.info('auth state changed $firebaseUser');
-      var userDocument = await Firestore.instance
-          .collection(Collections.users)
-          .document(firebaseUser.uid)
-          .get();
-      userE$.add(FirebaseUserE(
-        uid: firebaseUser?.uid,
-        email: firebaseUser?.email,
-        phone: userDocument['phone'],
-        name: userDocument['name'],
-        surname: userDocument['surname'],
-        courseCode: userDocument['courseCode'],
-      ));
+      if (firebaseUser != null) {
+        if (firebaseUser.email != null && firebaseUser.email != '') {
+          DocumentSnapshot userDocument = await Firestore.instance
+              .collection(Collections.users)
+              .document(firebaseUser.uid)
+              .get();
+          userE$.add(FirebaseUserE(
+            uid: firebaseUser?.uid,
+            email: firebaseUser?.email,
+            phone: userDocument?.data['phone'] ?? null,
+            name: userDocument?.data['name'] ?? null,
+            surname: userDocument?.data['surname'] ?? null,
+            courseCode: userDocument?.data['courseCode'] ?? null,
+          ));
+        } else {
+          userE$.add(FirebaseUserE(uid: firebaseUser.uid));
+        }
+      }
     });
   }
 }

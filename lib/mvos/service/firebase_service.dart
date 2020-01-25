@@ -63,6 +63,16 @@ class FirebaseService implements Disposable {
     }
   }
 
+  Future<void> logOut() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      return null;
+    } catch (e) {
+      logger.warning(e);
+      throw (e);
+    }
+  }
+
   @override
   Future<void> dispose() {
     userE$.close();

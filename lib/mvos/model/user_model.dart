@@ -8,6 +8,7 @@ import 'package:playground_app/shared/interfaces.dart';
 import 'package:rxdart/subjects.dart';
 
 typedef Future<void> Login({String email, String password});
+typedef Future<void> LogOut();
 typedef Future<void> CreateAccount(
     {String name,
     String surname,
@@ -23,6 +24,7 @@ class UserModel implements Disposable {
   BehaviorSubject<UserO> userO$ = BehaviorSubject<UserO>();
   LoginA loginA;
   CreateAccountA createAccountA;
+  LogOutA logOutA;
   UserO userO;
 
   UserModel({
@@ -34,6 +36,10 @@ class UserModel implements Disposable {
 
   Future<void> login({String email, String password}) {
     return firebaseService.loginWithEmailAndPassword(email, password);
+  }
+
+  Future<void> logOut() async {
+    return firebaseService.logOut();
   }
 
   Future<void> createAccount(
@@ -59,6 +65,7 @@ class UserModel implements Disposable {
 
     loginA = LoginA(login: login);
     createAccountA = CreateAccountA(createAccount: createAccount);
+    logOutA = LogOutA(logOut: logOut);
   }
 
   @override

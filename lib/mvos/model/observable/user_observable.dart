@@ -35,6 +35,24 @@ class LoginA {
   int get hashCode => login.hashCode;
 }
 
+class LogOutA {
+  final LogOut logOut;
+
+  const LogOutA({@required this.logOut}) : assert(logOut != null);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(
+          this, other) ||
+          other is LogOutA &&
+              runtimeType == other.runtimeType &&
+              logOut == other.logOut;
+
+  @override
+  int get hashCode => logOut.hashCode;
+
+}
+
 class CreateAccountA {
   final CreateAccount createAccount;
 
@@ -55,6 +73,7 @@ class CreateAccountA {
 
 class UserO {
   final String user;
+
   const UserO({@required this.user}) : assert(user != null);
 
   @override

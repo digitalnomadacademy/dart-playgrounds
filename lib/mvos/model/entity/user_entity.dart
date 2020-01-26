@@ -7,12 +7,14 @@ class FirebaseUserE {
   final String phone;
   final String uid;
   final List courseCode;
+  final bool isAdmin;
 
   const FirebaseUserE(
       {this.name,
       this.surname,
       this.phone,
       this.courseCode,
+      this.isAdmin,
       @required this.uid,
       this.email});
 
@@ -26,7 +28,8 @@ class FirebaseUserE {
           email == other.email &&
           phone == other.phone &&
           uid == other.uid &&
-          courseCode == other.courseCode;
+          courseCode == other.courseCode &&
+          isAdmin == other.isAdmin;
 
   @override
   int get hashCode =>
@@ -35,5 +38,6 @@ class FirebaseUserE {
       email.hashCode ^
       phone.hashCode ^
       uid.hashCode ^
+      isAdmin.hashCode ^
       courseCode.hashCode;
 }

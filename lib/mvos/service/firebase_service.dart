@@ -96,6 +96,7 @@ class FirebaseService implements Disposable {
             name: userDocument?.data['name'] ?? null,
             surname: userDocument?.data['surname'] ?? null,
             courseCode: userDocument?.data['courseCode'] ?? null,
+            isAdmin: userDocument?.data["isAdmin"] ?? null,
           ));
         } else {
           userE$.add(FirebaseUserE(uid: firebaseUser.uid));

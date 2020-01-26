@@ -95,7 +95,7 @@ class _LoginFormState extends State<LoginForm> {
                                   backgroundColor: Colors.white,
                                 ),
                               );
-                            });
+                      });
 
                         if (formKey.currentState.validate()) {
 //                      try login

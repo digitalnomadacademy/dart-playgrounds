@@ -15,6 +15,13 @@ List<SingleChildWidget> observables = [
     create: (context) =>
         Provider.of<UserModel>(context, listen: false).loggedInO$,
   ),
+
+  StreamProvider<IsAdminO>(
+    initialData: IsAdminO(isAdmin: false),
+    create: (context) =>
+        Provider.of<UserModel>(context, listen: false).isAdminO$,
+  ),
+
   Provider<LoginA>(
     create: (context) => Provider.of<UserModel>(context, listen: false).loginA,
   ),

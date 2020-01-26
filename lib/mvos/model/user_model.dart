@@ -22,6 +22,7 @@ class UserModel implements Disposable {
 
   BehaviorSubject<LoggedInO> loggedInO$ = BehaviorSubject<LoggedInO>();
   BehaviorSubject<UserO> userO$ = BehaviorSubject<UserO>();
+  BehaviorSubject<IsAdminO> isAdminO$ = BehaviorSubject<IsAdminO>();
   LoginA loginA;
   CreateAccountA createAccountA;
   LogOutA logOutA;
@@ -72,6 +73,7 @@ class UserModel implements Disposable {
   Future<void> dispose() {
     loggedInO$.close();
     userO$.close();
+    isAdminO$.close();
     return null;
   }
 }

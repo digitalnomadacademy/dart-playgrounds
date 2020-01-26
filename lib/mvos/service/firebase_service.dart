@@ -55,6 +55,7 @@ class FirebaseService implements Disposable {
         "surname": surname,
         "phone": phone,
         "coursecode": [courseCode],
+        "isAdmin" : false,
       });
       return null;
     } catch (e) {

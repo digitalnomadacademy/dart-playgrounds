@@ -86,6 +86,7 @@ class _LoginFormState extends State<LoginForm> {
                     height: 50,
                     child: RaisedButton(
                       onPressed: () async {
+                        FocusScope.of(context).requestFocus(FocusNode());
 //                    show spinning circle dialog, while we wait for the future
                         showDialog(
                             context: context,

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:playground_app/mvos/ui/page/about_page.dart';
 import 'package:playground_app/mvos/ui/page/create_account_page.dart';
+import 'package:playground_app/mvos/ui/page/create_course_page.dart';
+import 'package:playground_app/mvos/ui/page/edit_course_page.dart';
 import 'package:playground_app/mvos/ui/page/home.dart';
 import 'package:playground_app/mvos/ui/page/splash_screen.dart';
 import 'package:playground_app/mvos/ui/page/logIn_page.dart';
@@ -39,6 +41,16 @@ class Router {
           settings: settings,
           builder: (_) => CreateAccountPage(),
         );
+      case RouteName.createCoursePage:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => CreateCoursePage(),
+        );
+      case RouteName.editCoursePage:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => EditCoursePage(),
+        );
       default:
         return MaterialPageRoute(
           builder: (_) => HomePage(),
@@ -54,4 +66,6 @@ class RouteName {
   static const logInPage = 'welcome/login';
   static const welcomePage = 'welcome';
   static const createAccountPage = 'welcome/createAccount';
+  static const createCoursePage = 'createCourse';
+  static const editCoursePage = 'editCourse';
 }

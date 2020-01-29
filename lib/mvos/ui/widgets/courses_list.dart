@@ -22,17 +22,7 @@ class _CoursesListState extends State<CoursesList> {
               style: TextStyle(color: model.courses[index].color),
             ),
             subtitle: Text('${model.courses[index].description}'),
-            trailing: CircularPercentIndicator(
-              animation: true,
-              animationDuration: 1500,
-              radius: 40,
-              percent: model.courses[index].progress,
-              center: Text(
-                  '${(model.courses[index].progress * 100.ceil()).toStringAsFixed(0)}%'),
-              lineWidth: 4.0,
-              backgroundColor: Colors.red,
-              progressColor: Colors.green,
-            ),
+
           );
         },
       ),

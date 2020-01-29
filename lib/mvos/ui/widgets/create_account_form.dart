@@ -12,6 +12,8 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
   //Form Global Key
   final formKey = GlobalKey<FormState>();
 
+
+
   //Controllers
   var _nameController = TextEditingController();
   var _surnameController = TextEditingController();
@@ -46,6 +48,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
               Container(
                 height: 50,
                 child: TextFormField(
+
                   controller: _nameController,
                   textInputAction: TextInputAction.go,
                   onEditingComplete: () => _surnameFocusNode.requestFocus(),
@@ -74,6 +77,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
               Container(
                 height: 50,
                 child: TextFormField(
+
                   focusNode: _surnameFocusNode,
                   textInputAction: TextInputAction.go,
                   onEditingComplete: () => _phoneFocusNode.requestFocus(),
@@ -243,6 +247,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                   height: 50,
                   child: RaisedButton(
                     onPressed: () async {
+                      FocusScope.of(context).requestFocus(FocusNode());
                       showDialog(
                           context: context,
                           builder: (BuildContext context) {

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:playground_app/mvos/model/observable/user_observable.dart';
 import 'package:playground_app/router/router.dart';
+import 'package:provider/provider.dart';
+
+import 'logout_button.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({
@@ -12,23 +16,30 @@ class CustomDrawer extends StatelessWidget {
     return Container(
       color: Colors.white,
       width: 200,
-      child: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(28.0),
-            child: FlatButton(
-              child: Text(
-                'About',
-                style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
+      child: Consumer<LoggedInO>(
+        builder: (context, oLoggedIn, _) => Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(28.0),
+              child: FlatButton(
+                child: Text(
+                  'About',
+                  style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
+                ),
+                onPressed: () {
+                  route != RouteName.aboutPage
+                      ? Navigator.pushNamed(context, RouteName.aboutPage)
+                      : Navigator.pop(context);
+                },
               ),
-              onPressed: () {
-                route != RouteName.aboutPage
-                    ? Navigator.pushNamed(context, RouteName.aboutPage)
-                    : Navigator.pop(context);
-              },
             ),
-          ),
-        ],
+            Divider(
+              color: Colors.pink,
+              thickness: 2,
+            ),
+            oLoggedIn.loggedIn ? LogOutButton() : Container(),
+          ],
+        ),
       ),
     );
   }

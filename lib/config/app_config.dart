@@ -1,5 +1,5 @@
 
 
-var kAppEnvironment = AppEnvironment;
+AppEnvironment kAppEnvironment = AppEnvironment.develop;
 
 enum AppEnvironment { develop, production }

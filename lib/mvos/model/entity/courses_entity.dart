@@ -39,6 +39,32 @@ class CourseE {
   final Color color;
   final String videoPlaylistUrl;
   List<LessonE> lessons;
+
+  CourseE({@required this.id,@required this.name,@required this.description,
+    @required this.color,@required this.videoPlaylistUrl,@required this.lessons,});
+
+  @override
+  bool operator ==(Object other) =>
+      identical(
+          this, other) ||
+          other is CourseE &&
+              runtimeType == other.runtimeType &&
+              id == other.id &&
+              name == other.name &&
+              description == other.description &&
+              color == other.color &&
+              videoPlaylistUrl == other.videoPlaylistUrl &&
+              lessons == other.lessons;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      name.hashCode ^
+      description.hashCode ^
+      color.hashCode ^
+      videoPlaylistUrl.hashCode ^
+      lessons.hashCode;
+
 }
 
 class LessonE {
@@ -47,4 +73,28 @@ class LessonE {
   final String description;
   final String videoUrl;
   final String githubUrl;
+
+  const LessonE({@required this.id,@required this.name,
+    @required this.description,@required this.videoUrl,@required this.githubUrl,});
+
+  @override
+  bool operator ==(Object other) =>
+      identical(
+          this, other) ||
+          other is LessonE &&
+              runtimeType == other.runtimeType &&
+              id == other.id &&
+              name == other.name &&
+              description == other.description &&
+              videoUrl == other.videoUrl &&
+              githubUrl == other.githubUrl;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      name.hashCode ^
+      description.hashCode ^
+      videoUrl.hashCode ^
+      githubUrl.hashCode;
+
 }

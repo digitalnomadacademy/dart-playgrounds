@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:playground_app/mvos/ui/widgets/confirm_email_dialogue.dart';
 import 'package:playground_app/mvos/model/observable/user_observable.dart';
 import 'package:playground_app/router/router.dart';
 import 'package:provider/provider.dart';
@@ -272,31 +273,8 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                               context: context,
                               barrierDismissible: false,
                               builder: (context) => Align(
-                                child: Card(
-                                      child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.all(8.0),
-                                              child: Container(
-                                                child: Text(
-                                                    'Please verify your email address'),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.all(8.0),
-                                              child: RaisedButton(
-                                                child: Text('OK'),
-                                                onPressed: () {
-                                                  Navigator.of(context)
-                                                      .popAndPushNamed(
-                                                          RouteName.logInPage);
-                                                },
-                                              ),
-                                            )
-                                          ]),
-                                    ),
-                              ));
+                                    child: ConfirmEmailDialogue(),
+                                  ));
                         }).catchError((e) {
                           Navigator.pop(context);
                           Scaffold.of(context).showSnackBar(SnackBar(

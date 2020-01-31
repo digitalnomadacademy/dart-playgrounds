@@ -16,18 +16,22 @@ class _CoursesListState extends State<CoursesList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          Navigator.pushNamed(context, RouteName.createCoursePage);
-        },
+      floatingActionButton: Consumer<IsAdminO>(
+        builder: (context, admin, child) => admin.isAdmin
+            ? FloatingActionButton(
+                child: Icon(Icons.add),
+                onPressed: () {
+                  Navigator.pushNamed(context, RouteName.createCoursePage);
+                },
+              )
+            : Container(),
       ),
       body: Consumer2<IsAdminO, CoursesO>(
         builder: (context, admin, model, child) => ListView.separated(
           separatorBuilder: (context, index) => Divider(thickness: 2),
           itemCount: model.courses.length,
           itemBuilder: (context, index) {
-            if (!admin.isAdmin)
+            if (admin.isAdmin)
               return buildAdminSlider(model, index);
             else
               return CourseListTile(model, index);

@@ -89,12 +89,11 @@ class _CoursesListState extends State<CoursesList> {
                         Navigator.of(context).pop();
                       },
                     ),
-                    Consumer<UserModel>(
+                    Consumer<UserO>(
                         builder: (context, user, child) => FlatButton(
                               child: Text("Delete"),
                               onPressed: () {
-                                if (user.userO$.value.email ==
-                                    controller.value.text)
+                                if (user.email == controller.value.text)
                                   print("deleted");
                                 else
                                   Navigator.of(context).pop();

@@ -3,6 +3,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:playground_app/mvos/model/observable/courses_observable.dart';
 import 'package:playground_app/mvos/model/observable/user_observable.dart';
 import 'package:playground_app/mvos/model/user_model.dart';
+import 'package:playground_app/mvos/ui/widgets/admin_list_tile.dart';
 import 'package:playground_app/mvos/ui/widgets/course_list_tile.dart';
 import 'package:playground_app/router/router.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +18,7 @@ class _CoursesListState extends State<CoursesList> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: Consumer<IsAdminO>(
-        builder: (context, admin, child) => admin.isAdmin
+        builder: (context, isAdminO, child) => isAdminO.isAdmin
             ? FloatingActionButton(
                 child: Icon(Icons.add),
                 onPressed: () {
@@ -27,87 +28,17 @@ class _CoursesListState extends State<CoursesList> {
             : Container(),
       ),
       body: Consumer2<IsAdminO, CoursesO>(
-        builder: (context, admin, model, child) => ListView.separated(
+        builder: (context, isAdminO, coursesO, child) => ListView.separated(
           separatorBuilder: (context, index) => Divider(thickness: 2),
-          itemCount: model.courses.length,
+          itemCount: coursesO.courses.length,
           itemBuilder: (context, index) {
-            if (admin.isAdmin)
-              return buildAdminSlider(model, index);
+            if (isAdminO.isAdmin)
+              return AdminSlider(CourseListTile(coursesO.courses[index]));
             else
-              return CourseListTile(model, index);
+              return CourseListTile(coursesO.courses[index]);
           },
         ),
       ),
-    );
-  }
-
-  Widget buildAdminSlider(CoursesO model, int index) {
-    return Slidable(
-        actionPane: SlidableDrawerActionPane(),
-        secondaryActions: <Widget>[
-          IconSlideAction(
-            caption: 'Edit',
-            color: Colors.pink,
-            icon: Icons.edit,
-            onTap: () {
-              Navigator.pushNamed(context, RouteName.editCoursePage);
-            },
-          ),
-          IconSlideAction(
-            caption: 'Delete',
-            color: Colors.deepPurpleAccent,
-            icon: Icons.delete,
-            onTap: () {
-              _showDialog();
-            },
-          ),
-        ],
-        child: CourseListTile(model, index));
-  }
-
-  void _showDialog() {
-    final controller = TextEditingController();
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-            title: new Text("Enter your email to delete"),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Flexible(
-                      child: TextField(
-                        controller: controller,
-                      ),
-                    )
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    FlatButton(
-                      child: Text("Cancel"),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                    Consumer<UserO>(
-                        builder: (context, user, child) => FlatButton(
-                              child: Text("Delete"),
-                              onPressed: () {
-                                if (user.email == controller.value.text)
-                                  print("deleted");
-                                else
-                                  Navigator.of(context).pop();
-                              },
-                            )),
-                  ],
-                ),
-              ],
-            ));
-      },
     );
   }
 }

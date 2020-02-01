@@ -1,3 +1,4 @@
+import 'package:playground_app/mvos/model/entity/user_entity.dart';
 import 'package:playground_app/mvos/model/observable/courses_observable.dart';
 import 'package:playground_app/mvos/model/observable/user_observable.dart';
 import 'package:playground_app/mvos/model/user_model.dart';
@@ -21,6 +22,9 @@ List<SingleChildWidget> observables = [
     create: (context) =>
         Provider.of<UserModel>(context, listen: false).isAdminO$,
   ),
+  StreamProvider<UserO>(
+    create: (context) => Provider.of<UserModel>(context, listen: false).userO$,
+  ),
 
   Provider<LoginA>(
     create: (context) => Provider.of<UserModel>(context, listen: false).loginA,
@@ -32,7 +36,4 @@ List<SingleChildWidget> observables = [
   Provider<LogOutA>(
     create: (context) => Provider.of<UserModel>(context, listen: false).logOutA,
   ),
-  Provider<UserO>(
-    create: (context) => Provider.of<UserModel>(context, listen: false).userO,
-  )
 ];

@@ -10,9 +10,10 @@ List<SingleChildWidget> models = [
     dispose: (context, UserModel model) => model.dispose(),
     lazy: false,
   ),
+
   Provider<CoursesModel>(
     create: (context) =>
-        CoursesModel(coursesServices: Provider.of(context, listen: false)),
+        CoursesModel(coursesService : Provider.of(context, listen: false)),
     dispose: (context, CoursesModel model) => model.dispose(),
     lazy: false,
   )

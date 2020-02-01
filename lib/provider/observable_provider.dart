@@ -1,19 +1,19 @@
+import 'package:playground_app/mvos/model/courses_model.dart';
 import 'package:playground_app/mvos/model/observable/courses_observable.dart';
 import 'package:playground_app/mvos/model/observable/user_observable.dart';
 import 'package:playground_app/mvos/model/user_model.dart';
-import 'package:playground_app/mvos/model/courses_model.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
 ///Observables are immutable objects that can be consumed by the UI
 List<SingleChildWidget> observables = [
 //   COURSES
-  Provider<CoursesO>(
-      create: (context) =>
-          Provider.of<CoursesModel>(context, listen: false).coursesO),
-  Provider<CourseO>(
-      create: (context) =>
-          Provider.of<CoursesModel>(context, listen: false).courseO),
+ // Provider<CoursesO>(create: (context) => MockCoursesO.introduction),
+  StreamProvider<CoursesO>(
+   initialData: CoursesO(courses:List()),
+    create: (context) =>
+        Provider.of<CoursesModel>(context, listen: false).coursesO$,
+  ),
 
 //   USER
   StreamProvider<LoggedInO>(

@@ -25,7 +25,7 @@ class AdminSlider extends StatelessWidget {
           ),
           IconSlideAction(
             caption: 'Delete',
-            color: Colors.deepPurpleAccent,
+            color: Colors.deepPurple,
             icon: Icons.delete,
             onTap: () {
               _showDialog(context);

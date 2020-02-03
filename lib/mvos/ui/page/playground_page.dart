@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:playground_app/mvos/model/observable/user_observable.dart';
 import 'package:playground_app/mvos/ui/widgets/loginPage_form.dart';
-import 'package:playground_app/mvos/ui/widgets/my_custom_form.dart';
-import 'package:playground_app/mvos/ui/widgets/playground.dart';
 import 'package:provider/provider.dart';
+import 'package:wamf_playground/wamf_playground.dart';
 
 class PlaygroundPage extends StatelessWidget {
   @override

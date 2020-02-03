@@ -16,7 +16,7 @@ class CustomDrawer extends StatelessWidget {
       width: 200,
       child: Column(
         children: <Widget>[
-          AboutButton(),
+          AboutButton(route: route,),
           kAppEnvironment == AppEnvironment.develop
               ? PlaygroundButton()
               : Container()

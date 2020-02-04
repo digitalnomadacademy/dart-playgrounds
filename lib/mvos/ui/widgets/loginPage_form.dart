@@ -22,7 +22,7 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(left: 8.0, right: 8.0),
       child: Form(
         key: formKey,
         child: SingleChildScrollView(
@@ -86,6 +86,7 @@ class _LoginFormState extends State<LoginForm> {
                     height: 50,
                     child: RaisedButton(
                       onPressed: () async {
+                        FocusScope.of(context).requestFocus(FocusNode());
 //                    show spinning circle dialog, while we wait for the future
                         showDialog(
                             context: context,

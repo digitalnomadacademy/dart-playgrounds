@@ -8,11 +8,9 @@ import 'package:playground_app/mvos/model/entity/courses_entity.dart';
 
 class CoursesModel implements Disposable {
   final CoursesService coursesService;
+
   CoursesO coursesO;
-  // StreamController<CoursesO> _coursesO = StreamController<CoursesO>.broadcast();
-  // Stream<CoursesO> get coursesO => _coursesO.stream;
   BehaviorSubject<CoursesO> coursesO$ = BehaviorSubject<CoursesO>();
-  BehaviorSubject<CourseO> courseO$ = BehaviorSubject<CourseO>();
 
   CoursesModel({@required this.coursesService})
       : assert(coursesService != null) {
@@ -20,16 +18,15 @@ class CoursesModel implements Disposable {
   }
 
   Future<void> _initCoursesModel() {
-    coursesService.coursesE$.listen((CoursesE courses) {
+    coursesService.coursesE$.listen((CoursesE coursesE) {
       coursesO$.add(CoursesO(
-          courses: courses.courses
-              .map((doc) => courses.courses.add(CourseE(
-                  id: doc.id,
-                  name: doc.name,
-                  description: doc.description,
-                  color: doc.color,
-                  videoPlaylistUrl: doc.videoPlaylistUrl,
-                  lessons: doc.lessons)))
+          courses: coursesE.courses
+              .map((CourseE courseE) => CourseO(
+                    courseID: courseE.id,
+                    name: courseE.name,
+                    description: courseE.description,
+                    color: courseE.color,
+                  ))
               .toList()));
     });
     return null;
@@ -38,6 +35,6 @@ class CoursesModel implements Disposable {
   @override
   Future<void> dispose() async {
     coursesO$.close();
-    courseO$.close();
+    //  courseO$.close();
   }
 }

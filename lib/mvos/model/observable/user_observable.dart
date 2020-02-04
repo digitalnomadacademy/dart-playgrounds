@@ -86,7 +86,7 @@ class UserO {
 class IsAdminO {
   final bool isAdmin;
 
-  const IsAdminO({@required this.isAdmin}) : assert(isAdmin != null);
+  const IsAdminO({this.isAdmin = false});
 
   @override
   bool operator ==(Object other) =>

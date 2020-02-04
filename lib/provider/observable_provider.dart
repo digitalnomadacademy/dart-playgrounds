@@ -10,7 +10,7 @@ List<SingleChildWidget> observables = [
 //   COURSES
  // Provider<CoursesO>(create: (context) => MockCoursesO.introduction),
   StreamProvider<CoursesO>(
-   initialData: CoursesO(courses:List()),
+   initialData: CoursesO(courses:List<CourseO>()),
     create: (context) =>
         Provider.of<CoursesModel>(context, listen: false).coursesO$,
   ),

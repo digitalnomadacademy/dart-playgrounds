@@ -12,6 +12,7 @@ class PlaygroundPage extends StatelessWidget {
         ToyBox(
           issue: '#32',
           title: 'Login Form',
+
           toys: [
             Toy(
               title: 'Login Form success',
@@ -23,6 +24,7 @@ class PlaygroundPage extends StatelessWidget {
                         print('email: $email password: $password')),
               ),
             ),
+            
             Toy(
               title: 'Login Form error',
               issue: '#32',

@@ -58,11 +58,10 @@ class UserModel implements Disposable {
     firebaseService.userE$.listen((FirebaseUserE userE) {
       logger.info('user entity received $userE');
       bool isLoggedIn = userE.email != null;
-      bool isAdmin = userE.isAdmin != null;
       loggedInO$.add(LoggedInO(loggedIn: isLoggedIn));
-      isAdminO$.add(IsAdminO(isAdmin: isAdmin));
+      isAdminO$.add(IsAdminO(isAdmin: userE.isAdmin));
       if (userE.name != null) {
-        userO$.add(UserO(user: userE.name));
+        userO$.add(UserO(user: userE.name, email: userE.email));
       }
     });
 

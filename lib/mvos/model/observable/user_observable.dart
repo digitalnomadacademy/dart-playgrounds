@@ -71,16 +71,23 @@ class CreateAccountA {
 
 class UserO {
   final String user;
+  final String email;
 
-  const UserO({@required this.user}) : assert(user != null);
+  const UserO({
+    @required this.user,
+    @required this.email,
+  });
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is UserO && runtimeType == other.runtimeType && user == other.user;
+      other is UserO &&
+          runtimeType == other.runtimeType &&
+          user == other.user &&
+          email == other.email;
 
   @override
-  int get hashCode => user.hashCode;
+  int get hashCode => user.hashCode ^ email.hashCode;
 }
 
 class IsAdminO {

@@ -139,6 +139,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_slidable:
+    dependency: "direct main"
+    description:
+      name: flutter_slidable
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.4"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -240,6 +247,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.4.0"
+  plain_notification_token:
+    dependency: "direct main"
+    description:
+      name: plain_notification_token
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1"
+  platform:
+    dependency: transitive
+    description:
+      name: platform
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.1"
   provider:
     dependency: "direct main"
     description:
@@ -357,6 +378,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.8"
+  wamf_playground:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "6ef52be3fa9ab3f313f5c3f523d53e377aab4a38"
+      url: "git://github.com/matejthetree/playground.git"
+    source: git
+    version: "0.0.2"
   xml:
     dependency: transitive
     description:

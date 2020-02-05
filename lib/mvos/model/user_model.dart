@@ -61,7 +61,7 @@ class UserModel implements Disposable {
       loggedInO$.add(LoggedInO(loggedIn: isLoggedIn));
       isAdminO$.add(IsAdminO(isAdmin: userE.isAdmin));
       if (userE.name != null) {
-        userO$.add(UserO(user: userE.name));
+        userO$.add(UserO(user: userE.name, email: userE.email));
       }
     });
 

@@ -194,7 +194,7 @@ class _ConfigurableExpansionTileState extends State<ConfigurableExpansionTile>
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          GestureDetector(
+          InkWell(
               onTap: _handleTap,
               child: Container(
                   color: headerColor,
@@ -245,7 +245,8 @@ class _ConfigurableExpansionTileState extends State<ConfigurableExpansionTile>
           ? null
           : Container(
               color: widget.expandedBackgroundColor ?? Colors.transparent,
-              child: Column(children: widget.children)),
+              child: Column(
+                  mainAxisSize: MainAxisSize.max, children: widget.children)),
     );
   }
 }

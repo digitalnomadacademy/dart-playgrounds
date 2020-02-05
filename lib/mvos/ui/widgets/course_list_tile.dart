@@ -11,10 +11,10 @@ class CourseListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(
-        '${courseO.name}',
+        "${courseO.name}",
         style: TextStyle(color: courseO.color),
       ),
-      subtitle: Text('${courseO.description}'),
+      subtitle: Text("${courseO.description}"),
     );
   }
 }

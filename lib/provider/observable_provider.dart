@@ -1,3 +1,4 @@
+import 'package:playground_app/mvos/model/courses_model.dart';
 import 'package:playground_app/mvos/model/entity/user_entity.dart';
 import 'package:playground_app/mvos/model/observable/courses_observable.dart';
 import 'package:playground_app/mvos/model/observable/user_observable.dart';
@@ -8,7 +9,13 @@ import 'package:provider/single_child_widget.dart';
 ///Observables are immutable objects that can be consumed by the UI
 List<SingleChildWidget> observables = [
 //   COURSES
-  Provider<CoursesO>(create: (context) => MockCoursesO.introduction),
+ // Provider<CoursesO>(create: (context) => MockCoursesO.introduction),
+  StreamProvider<CoursesO>(
+   initialData: CoursesO(courses:List<CourseO>()),
+    create: (context) =>
+        Provider.of<CoursesModel>(context, listen: false).coursesO$,
+  ),
+
 //   USER
   StreamProvider<LoggedInO>(
     initialData: LoggedInO(loggedIn: false),

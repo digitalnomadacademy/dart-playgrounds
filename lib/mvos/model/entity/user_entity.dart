@@ -6,7 +6,7 @@ class FirebaseUserE {
   final String email;
   final String phone;
   final String uid;
-  final List courseCode;
+  final List<String> courseCode;
   final bool isAdmin;
 
   const FirebaseUserE(

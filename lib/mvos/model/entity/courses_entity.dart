@@ -1,6 +1,6 @@
 import 'dart:ui';
-
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 class CoursesE {
   final List<CourseE> courses;
@@ -33,66 +33,115 @@ class CoursesE {
 }
 
 class CourseE {
-  final String courseID;
-
+  final String id;
   final String name;
   final String description;
-
-  final double progress;
-
   final Color color;
+  final String videoPlaylistUrl;
+  List<LessonE> lessons;
 
-  final bool unlocked;
-
-  const CourseE({
-    @required this.courseID,
+  CourseE({
+    @required this.id,
     @required this.name,
-    @required this.color,
     @required this.description,
-    @required this.progress,
-    @required this.unlocked,
-  }) : assert(progress <= 1 && progress >= 0, 'Progress out of bounds');
+    @required this.color,
+    @required this.videoPlaylistUrl,
+    @required this.lessons,
+  });
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is CourseE &&
           runtimeType == other.runtimeType &&
-          courseID == other.courseID &&
+          id == other.id &&
           name == other.name &&
           description == other.description &&
-          progress == other.progress &&
           color == other.color &&
-          unlocked == other.unlocked;
+          videoPlaylistUrl == other.videoPlaylistUrl &&
+          lessons == other.lessons;
 
   @override
   int get hashCode =>
-      courseID.hashCode ^
+      id.hashCode ^
       name.hashCode ^
       description.hashCode ^
-      progress.hashCode ^
       color.hashCode ^
-      unlocked.hashCode;
+      videoPlaylistUrl.hashCode ^
+      lessons.hashCode;
 
   Map<String, dynamic> toMap() {
     return {
-      'courseID': this.courseID,
       'name': this.name,
       'description': this.description,
-      'progress': this.progress,
-      'color': this.color,
-      'unlocked': this.unlocked,
+      'color': this.color.value,
+      'videoPlaylistUrl': this.videoPlaylistUrl,
+      'lessons': this.lessons,
     };
   }
 
-  factory CourseE.fromMap(Map<String, dynamic> map) {
+  factory CourseE.fromMap(Map<String, dynamic> map, String id) {
+    Iterable<LessonE> iterable = map['lessons'].map<LessonE>((lesson) {
+      var lessonE = LessonE.fromMap(lesson);
+      return lessonE;
+    });
+    List<LessonE> list = iterable.toList();
     return new CourseE(
-      courseID: map['courseID'] as String,
+      id: id,
       name: map['name'] as String,
       description: map['description'] as String,
-      progress: map['progress'] as double,
-      color: map['color'] as Color,
-      unlocked: map['unlocked'] as bool,
+      color: map['color'] != null ? Color(map['color']) : Colors.pink,
+      videoPlaylistUrl: map['videoPlaylistUrl'] as String,
+      lessons: list,
+    );
+  }
+}
+
+class LessonE {
+  final String name;
+  final String description;
+  final String videoUrl;
+  final String githubUrl;
+
+  const LessonE({
+    @required this.name,
+    @required this.description,
+    @required this.videoUrl,
+    @required this.githubUrl,
+  });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is LessonE &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          description == other.description &&
+          videoUrl == other.videoUrl &&
+          githubUrl == other.githubUrl;
+
+  @override
+  int get hashCode =>
+      name.hashCode ^
+      description.hashCode ^
+      videoUrl.hashCode ^
+      githubUrl.hashCode;
+
+  Map<String, dynamic> toMap() {
+    return {
+      'name': this.name,
+      'description': this.description,
+      'videoUrl': this.videoUrl,
+      'githubUrl': this.githubUrl,
+    };
+  }
+
+  factory LessonE.fromMap(Map<dynamic, dynamic> map) {
+    return new LessonE(
+      name: map['name'] as String,
+      description: map['description'] as String,
+      videoUrl: map['videoUrl'] as String,
+      githubUrl: map['githubUrl'] as String,
     );
   }
 }

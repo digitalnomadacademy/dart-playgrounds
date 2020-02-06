@@ -1,3 +1,4 @@
+import 'package:playground_app/mvos/model/course_model.dart';
 import 'package:playground_app/mvos/model/user_model.dart';
 import 'package:playground_app/mvos/model/courses_model.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +16,13 @@ List<SingleChildWidget> models = [
     create: (context) =>
         CoursesModel(coursesService : Provider.of(context, listen: false)),
     dispose: (context, CoursesModel model) => model.dispose(),
+    lazy: false,
+  ),
+
+  Provider<CourseModel>(
+    create: (context)=>
+    CourseModel(courseService: Provider.of(context,listen: false)),
+    dispose: (context, CourseModel model)=> model.dispose(),
     lazy: false,
   )
 ];

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:playground_app/mvos/model/observable/courses_observable.dart';
 import 'package:playground_app/mvos/model/observable/user_observable.dart';
 import 'package:playground_app/mvos/ui/widgets/course_list_tile.dart';
-import 'package:playground_app/mvos/ui/widgets/course_silver_list.dart';
+import 'package:playground_app/mvos/ui/widgets/course_page.dart';
 import 'package:playground_app/mvos/ui/widgets/loginPage_form.dart';
 import 'package:provider/provider.dart';
 import 'package:wamf_playground/wamf_playground.dart';
@@ -55,7 +55,7 @@ class PlaygroundPage extends StatelessWidget {
                       unlocked: true),
                   child: Consumer<CourseO>(
                     builder: (context, value, child) {
-                      return CourseSlivers(value);
+                      return CoursePage(value);
                     },
                   )),
             )

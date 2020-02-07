@@ -12,14 +12,19 @@ typedef Future<void> CreateCourse({
   String videoPlaylistUrl,
 });
 
+typedef Future<void> DeleteCourse({
+  String name,
+});
+
 class CourseModel implements Disposable {
   final CourseService courseService;
   CreateCourseA createCourseA;
-
+  DeleteCourseA deleteCourseA;
   CourseModel({
     @required this.courseService,
   }) : assert(courseService != null) {
     createCourseA = CreateCourseA(createCourse: createCourse);
+    deleteCourseA = DeleteCourseA(deleteCourse: deleteCourse);
   }
 
   Future<void> createCourse({
@@ -36,6 +41,12 @@ class CourseModel implements Disposable {
       name,
       videoPlaylistUrl,
     );
+  }
+
+  Future<void> deleteCourse({
+    String name,
+  }) async {
+    return courseService.deleteCourse(name);
   }
 
   @override

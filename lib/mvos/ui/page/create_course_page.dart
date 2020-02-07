@@ -11,14 +11,11 @@ class _CreateCoursePageState extends State<CreateCoursePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Consumer<CreateCourseA>(
+      body: Consumer<DeleteCourseA>(
           builder: (context,action,_)=>
-              FloatingActionButton(onPressed: ()=> action.createCourse(
-               color : 4280391411,
-               description : "description",
-               lessons : List(),
+              FloatingActionButton(onPressed: ()=> action.deleteCourse(
+
                 name : "name",
-                videoPlaylistUrl : "video url",
 
               ),
               ),));

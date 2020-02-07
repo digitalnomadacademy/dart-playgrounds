@@ -69,3 +69,22 @@ class CreateCourseA {
   @override
   int get hashCode => createCourse.hashCode;
 }
+
+class DeleteCourseA{
+  final DeleteCourse deleteCourse;
+
+  const DeleteCourseA({@required this.deleteCourse})
+  :assert(deleteCourse !=null);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(
+          this, other) ||
+          other is DeleteCourseA &&
+              runtimeType == other.runtimeType &&
+              deleteCourse == other.deleteCourse;
+
+  @override
+  int get hashCode => deleteCourse.hashCode;
+
+}

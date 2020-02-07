@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:playground_app/mvos/model/courses_model.dart';
-import 'package:playground_app/mvos/model/course_model.dart';
 import 'package:playground_app/mvos/model/observable/courses_observable.dart';
 import 'package:playground_app/mvos/model/observable/user_observable.dart';
 import 'package:playground_app/mvos/model/user_model.dart';
@@ -59,11 +58,11 @@ List<SingleChildWidget> observables = [
 
   Provider<CreateCourseA>(
     create: (context) =>
-        Provider.of<CourseModel>(context, listen: false).createCourseA,
+        Provider.of<CoursesModel>(context, listen: false).createCourseA,
   ),
   Provider<DeleteCourseA>(
     create: (context) =>
-        Provider.of<CourseModel>(context, listen: false).deleteCourseA,
+        Provider.of<CoursesModel>(context, listen: false).deleteCourseA,
   ),
   Provider<SelectCourseA>(
     create: (context) =>

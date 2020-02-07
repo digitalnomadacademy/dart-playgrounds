@@ -1,5 +1,5 @@
 import 'dart:ui';
-
+import 'package:playground_app/mvos/model/course_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -27,20 +27,14 @@ class CourseO {
   final String name;
   final String description;
 
-  final double progress;
-
   final Color color;
-
-  final bool unlocked;
 
   const CourseO({
     @required this.courseID,
     @required this.name,
     @required this.color,
     @required this.description,
-    @required this.progress,
-    @required this.unlocked,
-  }) : assert(progress <= 1 && progress >= 0, 'Progress out of bounds');
+  });
 
   @override
   bool operator ==(Object other) =>
@@ -50,37 +44,47 @@ class CourseO {
           courseID == other.courseID &&
           name == other.name &&
           description == other.description &&
-          progress == other.progress &&
-          color == other.color &&
-          unlocked == other.unlocked;
+          color == other.color;
 
   @override
   int get hashCode =>
-      courseID.hashCode ^
-      name.hashCode ^
-      description.hashCode ^
-      progress.hashCode ^
-      color.hashCode ^
-      unlocked.hashCode;
+      courseID.hashCode ^ name.hashCode ^ description.hashCode ^ color.hashCode;
 }
 
-class MockCoursesO {
-  static List<CourseO> get _introductionCourses => [
-        CourseO(
-            courseID: '1',
-            name: 'Dart Introduction 1',
-            color: Colors.blue,
-            description: 'Basic steps into programming',
-            progress: 0.5,
-            unlocked: true),
-        CourseO(
-            courseID: '2',
-            name: 'Dart Introduction 2',
-            color: Colors.blueAccent,
-            description:
-                'Once you finished the basics, get ready for some advanced topics',
-            progress: 0,
-            unlocked: false),
-      ];
-  static CoursesO get introduction => CoursesO(courses: _introductionCourses);
+
+
+class CreateCourseA {
+  final CreateCourse createCourse;
+
+  const CreateCourseA({@required this.createCourse})
+      : assert(createCourse != null);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is CreateCourseA &&
+              runtimeType == other.runtimeType &&
+              createCourse == other.createCourse;
+
+  @override
+  int get hashCode => createCourse.hashCode;
+}
+
+class DeleteCourseA{
+  final DeleteCourse deleteCourse;
+
+  const DeleteCourseA({@required this.deleteCourse})
+  :assert(deleteCourse !=null);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(
+          this, other) ||
+          other is DeleteCourseA &&
+              runtimeType == other.runtimeType &&
+              deleteCourse == other.deleteCourse;
+
+  @override
+  int get hashCode => deleteCourse.hashCode;
+
 }

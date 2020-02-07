@@ -21,6 +21,17 @@ class CourseService implements Disposable {
     });
   }
 
+  void deleteCourse(
+    String name,
+  ) async {
+    final reference = database.collection("courses");
+
+    reference
+        .where("name", isEqualTo: name)
+        .getDocuments()
+        .then((snapshot) => snapshot.documents.first.reference.delete());
+  }
+
   @override
   Future<void> dispose() {
     return null;

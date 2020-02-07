@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:playground_app/mvos/model/observable/course_observable.dart';
-import 'package:playground_app/mvos/model/course_model.dart';
+import 'package:playground_app/mvos/model/observable/courses_observable.dart';
 
 class CreateCoursePage extends StatefulWidget {
   @override
@@ -23,6 +22,6 @@ class _CreateCoursePageState extends State<CreateCoursePage> {
 
               ),
               ),));
-
+// change this,only leave lessons: List()
   }
 }

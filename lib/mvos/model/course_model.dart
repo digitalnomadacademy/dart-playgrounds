@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
-import 'package:playground_app/mvos/model/observable/course_observable.dart';
+import 'package:playground_app/mvos/model/observable/courses_observable.dart';
 import 'package:playground_app/mvos/service/course_service.dart';
 import 'package:playground_app/shared/interfaces.dart';
 

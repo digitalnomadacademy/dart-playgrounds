@@ -2,7 +2,6 @@ import 'package:playground_app/mvos/model/courses_model.dart';
 import 'package:playground_app/mvos/model/course_model.dart';
 import 'package:playground_app/mvos/model/entity/user_entity.dart';
 import 'package:playground_app/mvos/model/observable/courses_observable.dart';
-import 'package:playground_app/mvos/model/observable/course_observable.dart';
 import 'package:playground_app/mvos/model/observable/user_observable.dart';
 import 'package:playground_app/mvos/model/user_model.dart';
 import 'package:provider/provider.dart';

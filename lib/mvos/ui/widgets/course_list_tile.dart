@@ -16,7 +16,6 @@ class CourseListTile extends StatelessWidget {
       return ListTile(
         onTap: () {
           selectCourseA.selectCourse(courseO: courseO);
-          print(activeCourseO.activeCourse.description + "val");
           Navigator.push(
             context,
             MaterialPageRoute(

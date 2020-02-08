@@ -25,7 +25,6 @@ class CourseModel implements Disposable {
   DeleteCourseA deleteCourseA;
   SelectCourseA selectCourseA;
 
-  ActiveCourseO activeCourseO;
   BehaviorSubject<ActiveCourseO> activeCourseO$ =
       BehaviorSubject<ActiveCourseO>();
 
@@ -59,7 +58,7 @@ class CourseModel implements Disposable {
     return courseService.deleteCourse(name);
   }
 
-  void selectCourse({CourseO courseO}) {
+  selectCourse({CourseO courseO}) {
     activeCourseO$.add(ActiveCourseO(activeCourse: courseO));
   }
 

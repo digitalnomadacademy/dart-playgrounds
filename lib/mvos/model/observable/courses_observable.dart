@@ -108,7 +108,7 @@ class SelectCourseA {
 
   const SelectCourseA({
     @required this.selectCourse,
-  });
+  }) : assert(selectCourse != null);
 
   @override
   bool operator ==(Object other) =>

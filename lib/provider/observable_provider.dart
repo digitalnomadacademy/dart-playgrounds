@@ -35,6 +35,12 @@ List<SingleChildWidget> observables = [
   ),
 
   StreamProvider<ActiveCourseO>(
+    initialData: ActiveCourseO(
+        activeCourse: CourseO(
+            name: "A",
+            description: "A",
+            color: Color.fromARGB(1, 2, 3, 4),
+            courseID: "1")),
     create: (context) =>
         Provider.of<CourseModel>(context, listen: false).activeCourseO$,
   ),

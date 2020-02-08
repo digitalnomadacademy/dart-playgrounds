@@ -11,15 +11,19 @@ class CourseListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer2<SelectCourseA, ActiveCourseO>(
-        builder: (context, selectCourseA, activeCourseO, child) {
+    return Consumer<SelectCourseA>(builder: (context, selectCourseA, child) {
       return ListTile(
         onTap: () {
           selectCourseA.selectCourse(courseO: courseO);
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => CoursePage(activeCourseO.activeCourse)),
+                builder: (context) => Consumer<ActiveCourseO>(
+                      builder: (BuildContext context, ActiveCourseO value,
+                          Widget child) {
+                        return CoursePage(value.activeCourse);
+                      },
+                    )),
           );
         },
         title: Text(

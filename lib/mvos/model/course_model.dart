@@ -58,7 +58,7 @@ class CourseModel implements Disposable {
     return courseService.deleteCourse(name);
   }
 
-  selectCourse({CourseO courseO}) {
+  void selectCourse({CourseO courseO}) {
     activeCourseO$.add(ActiveCourseO(activeCourse: courseO));
   }
 

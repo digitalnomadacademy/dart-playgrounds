@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:playground_app/mvos/model/observable/courses_observable.dart';
 import 'package:playground_app/mvos/service/course_service.dart';
 import 'package:playground_app/shared/interfaces.dart';
+import 'package:rxdart/subjects.dart';
 
 typedef Future<void> CreateCourse({
   int color,
@@ -16,15 +17,24 @@ typedef Future<void> DeleteCourse({
   String name,
 });
 
+typedef SelectCourse({CourseO courseO});
+
 class CourseModel implements Disposable {
   final CourseService courseService;
   CreateCourseA createCourseA;
   DeleteCourseA deleteCourseA;
+  SelectCourseA selectCourseA;
+
+  ActiveCourseO activeCourseO;
+  BehaviorSubject<ActiveCourseO> activeCourseO$ =
+      BehaviorSubject<ActiveCourseO>();
+
   CourseModel({
     @required this.courseService,
   }) : assert(courseService != null) {
     createCourseA = CreateCourseA(createCourse: createCourse);
     deleteCourseA = DeleteCourseA(deleteCourse: deleteCourse);
+    selectCourseA = SelectCourseA(selectCourse: selectCourse);
   }
 
   Future<void> createCourse({
@@ -49,8 +59,13 @@ class CourseModel implements Disposable {
     return courseService.deleteCourse(name);
   }
 
+  void selectCourse({CourseO courseO}) {
+    activeCourseO$.add(ActiveCourseO(activeCourse: courseO));
+  }
+
   @override
   Future<void> dispose() {
+    activeCourseO$.close();
     return null;
   }
 }

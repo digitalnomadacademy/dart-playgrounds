@@ -47,12 +47,11 @@ class PlaygroundPage extends StatelessWidget {
               issue: '#51',
               builder: (context) => Provider<CourseO>.value(
                   value: CourseO(
-                      courseID: '1',
-                      name: 'Dart Introduction 1',
-                      color: Colors.blue,
-                      description: 'Basic steps into programming',
-                      progress: 0.5,
-                      unlocked: true),
+                    courseID: '1',
+                    name: 'Dart Introduction 1',
+                    color: Colors.blue,
+                    description: 'Basic steps into programming',
+                  ),
                   child: Consumer<CourseO>(
                     builder: (context, value, child) {
                       return CoursePage(value);

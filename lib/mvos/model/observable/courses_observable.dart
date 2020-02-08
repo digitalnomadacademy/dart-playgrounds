@@ -51,8 +51,6 @@ class CourseO {
       courseID.hashCode ^ name.hashCode ^ description.hashCode ^ color.hashCode;
 }
 
-
-
 class CreateCourseA {
   final CreateCourse createCourse;
 
@@ -62,29 +60,63 @@ class CreateCourseA {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is CreateCourseA &&
-              runtimeType == other.runtimeType &&
-              createCourse == other.createCourse;
+      other is CreateCourseA &&
+          runtimeType == other.runtimeType &&
+          createCourse == other.createCourse;
 
   @override
   int get hashCode => createCourse.hashCode;
 }
 
-class DeleteCourseA{
+class DeleteCourseA {
   final DeleteCourse deleteCourse;
 
   const DeleteCourseA({@required this.deleteCourse})
-  :assert(deleteCourse !=null);
+      : assert(deleteCourse != null);
 
   @override
   bool operator ==(Object other) =>
-      identical(
-          this, other) ||
-          other is DeleteCourseA &&
-              runtimeType == other.runtimeType &&
-              deleteCourse == other.deleteCourse;
+      identical(this, other) ||
+      other is DeleteCourseA &&
+          runtimeType == other.runtimeType &&
+          deleteCourse == other.deleteCourse;
 
   @override
   int get hashCode => deleteCourse.hashCode;
+}
 
+class ActiveCourseO {
+  final CourseO activeCourse;
+
+  const ActiveCourseO({
+    @required this.activeCourse,
+  });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ActiveCourseO &&
+          runtimeType == other.runtimeType &&
+          activeCourse == other.activeCourse;
+
+  @override
+  int get hashCode => activeCourse.hashCode;
+}
+
+class SelectCourseA {
+  final SelectCourse selectCourse;
+
+  const SelectCourseA({
+    @required this.selectCourse,
+  });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SelectCourseA &&
+          runtimeType == other.runtimeType &&
+          selectCourse == other.selectCourse;
+
+  @override
+  int get hashCode => selectCourse.hashCode;
 }

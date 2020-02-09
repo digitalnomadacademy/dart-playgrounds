@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:playground_app/config/app_config.dart';
 import 'package:playground_app/provider/provider_main.dart';
 import 'package:playground_app/router/router.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +28,9 @@ class MyApp extends StatelessWidget {
           ),
         ),
         onGenerateRoute: Router.generator,
-        initialRoute: RouteName.homePage,
+        initialRoute: kAppEnvironment == AppEnvironment.develop
+            ? RouteName.homePage
+            : RouteName.splashScreen,
       ),
     );
   }

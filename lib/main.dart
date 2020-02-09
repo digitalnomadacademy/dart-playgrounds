@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:playground_app/config/app_config.dart';
 import 'package:playground_app/provider/provider_main.dart';
 import 'package:playground_app/router/router.dart';
 import 'package:provider/provider.dart';
+import 'package:universal_html/html.dart';
 
 void main() {
   Provider.debugCheckInvalidValueType = null;
@@ -26,7 +28,9 @@ class MyApp extends StatelessWidget {
           ),
         ),
         onGenerateRoute: Router.generator,
-        initialRoute: RouteName.splashScreen,
+        initialRoute: kAppEnvironment == AppEnvironment.develop
+            ? RouteName.homePage
+            : RouteName.splashScreen,
       ),
     );
   }

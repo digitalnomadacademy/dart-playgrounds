@@ -40,12 +40,6 @@ class _CreateCourseFormState extends State<CreateCourseForm> {
                 height: 75,
                 child: TextFormField(
                   controller: _courseNameController,
-                  validator: (value) {
-                    if (value.length < 2) {
-                      return 'Please enter some text';
-                    }
-                    return null;
-                  },
                   decoration: InputDecoration(
                     icon: Icon(Icons.text_fields),
                     labelText: 'Name',

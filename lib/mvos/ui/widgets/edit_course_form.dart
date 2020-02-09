@@ -11,11 +11,7 @@ class _EditCourseFormState extends State<EditCourseForm> {
   @override
   Widget build(BuildContext context) {
     return Consumer<ActiveCourseO>(builder: (context, activeCourseO, child) {
-      return Center(
-        child: Container(
-          child: Text(activeCourseO.activeCourse.name),
-        ),
-      );
+      return Text(activeCourseO.activeCourse.name);
     });
   }
 }

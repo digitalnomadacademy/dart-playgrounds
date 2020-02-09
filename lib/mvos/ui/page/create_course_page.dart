@@ -13,7 +13,7 @@ class _CreateCoursePageState extends State<CreateCoursePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Create course'),
+          title: Text('Edit course'),
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () => Navigator.pop(context),

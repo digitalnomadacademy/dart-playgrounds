@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:playground_app/config/app_config.dart';
+import 'package:playground_app/mvos/ui/widgets/home_button.dart';
 import 'package:playground_app/mvos/ui/widgets/playground_button.dart';
 import 'package:playground_app/mvos/ui/widgets/about_button.dart';
+import 'package:playground_app/router/router.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({
@@ -16,10 +18,15 @@ class CustomDrawer extends StatelessWidget {
       width: 200,
       child: Column(
         children: <Widget>[
-          AboutButton(route: route,),
+          AboutButton(
+            route: route,
+          ),
           kAppEnvironment == AppEnvironment.develop
               ? PlaygroundButton()
-              : Container()
+              : Container(),
+          HomeButton(
+            route: RouteName.homePage,
+          )
         ],
       ),
     );

@@ -9,7 +9,9 @@ class EditCourseForm extends StatefulWidget {
 }
 
 class _EditCourseFormState extends State<EditCourseForm> {
-  TextEditingController _courseNameController = TextEditingController();
+  var _courseNameController = TextEditingController();
+  var _courseDescriptionController = TextEditingController();
+  var _coursePlaylistURLController = TextEditingController();
   CourseService courseService = CourseService();
   String initialName;
 
@@ -39,6 +41,69 @@ class _EditCourseFormState extends State<EditCourseForm> {
                   ),
                 ),
               ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Row(
+              children: <Widget>[
+                Flexible(
+                  child: Container(
+                    height: 75,
+                    child: TextFormField(
+                      controller: _courseDescriptionController
+                        ..text = (activeCourseO.activeCourse.description),
+                      decoration: InputDecoration(
+                        icon: Icon(Icons.text_fields),
+                        labelText: 'Description',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(5.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                IconButton(
+                  icon: Icon(Icons.attachment),
+                  tooltip: "From TXT",
+                  onPressed: () {
+//                    _showDialog(context);
+                  },
+                )
+              ],
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Container(
+              height: 75,
+              child: TextFormField(
+                controller: _coursePlaylistURLController
+                  ..text = "Missing url in CourseO",
+                decoration: InputDecoration(
+                  icon: Icon(Icons.video_library),
+                  labelText: 'Video playlist URL',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(5.0),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            RaisedButton(
+              onPressed: () {
+//                showColorPicker();
+              },
+              child: Icon(Icons.colorize),
+            ),
+            SizedBox(
+              height: 100,
             ),
             RaisedButton(
               child: Icon(Icons.mode_edit),

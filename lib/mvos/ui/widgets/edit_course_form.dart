@@ -81,7 +81,7 @@ class _EditCourseFormState extends State<EditCourseForm> {
               height: 75,
               child: TextFormField(
                 controller: _coursePlaylistURLController
-                  ..text = "Missing url in CourseO",
+                  ..text = (activeCourseO.activeCourse.videoPlaylistUrl),
                 decoration: InputDecoration(
                   icon: Icon(Icons.video_library),
                   labelText: 'Video playlist URL',

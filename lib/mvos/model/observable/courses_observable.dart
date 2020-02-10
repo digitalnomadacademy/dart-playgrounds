@@ -28,12 +28,13 @@ class CourseO {
   final String description;
 
   final Color color;
-
+  final String videoPlaylistUrl;
   const CourseO({
     @required this.courseID,
     @required this.name,
     @required this.color,
     @required this.description,
+    @required this.videoPlaylistUrl,
   });
 
   @override
@@ -44,11 +45,16 @@ class CourseO {
           courseID == other.courseID &&
           name == other.name &&
           description == other.description &&
-          color == other.color;
+          color == other.color &&
+          videoPlaylistUrl == other.videoPlaylistUrl;
 
   @override
   int get hashCode =>
-      courseID.hashCode ^ name.hashCode ^ description.hashCode ^ color.hashCode;
+      courseID.hashCode ^
+      name.hashCode ^
+      description.hashCode ^
+      color.hashCode ^
+      videoPlaylistUrl.hashCode;
 }
 
 class CreateCourseA {

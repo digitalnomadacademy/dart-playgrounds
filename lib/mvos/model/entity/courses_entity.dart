@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -36,7 +35,7 @@ class CourseE {
   final String id;
   final String name;
   final String description;
-  final Color color;
+  final int color;
   final String videoPlaylistUrl;
   List<LessonE> lessons;
 
@@ -74,7 +73,7 @@ class CourseE {
     return {
       'name': this.name,
       'description': this.description,
-      'color': this.color.value,
+      'color': this.color,
       'videoPlaylistUrl': this.videoPlaylistUrl,
       'lessons': this.lessons,
     };
@@ -90,7 +89,7 @@ class CourseE {
       id: id,
       name: map['name'] as String,
       description: map['description'] as String,
-      color: map['color'] != null ? Color(map['color']) : Colors.pink,
+      color: map['color'] as int,
       videoPlaylistUrl: map['videoPlaylistUrl'] as String,
       lessons: list,
     );

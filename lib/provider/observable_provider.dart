@@ -1,16 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:playground_app/mvos/model/courses_model.dart';
 import 'package:playground_app/mvos/model/observable/courses_observable.dart';
 import 'package:playground_app/mvos/model/observable/user_observable.dart';
 import 'package:playground_app/mvos/model/user_model.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
-import 'package:universal_html/html.dart';
 
 ///Observables are immutable objects that can be consumed by the UI
 List<SingleChildWidget> observables = [
 //   COURSES
-//   Provider<CoursesO>(create: (context) => MockCoursesO.introduction),
+  // Provider<CoursesO>(create: (context) => MockCoursesO.introduction),
   StreamProvider<CoursesO>(
     initialData: CoursesO(courses: List<CourseO>()),
     create: (context) =>
@@ -30,19 +28,12 @@ List<SingleChildWidget> observables = [
     create: (context) =>
         Provider.of<UserModel>(context, listen: false).isAdminO$,
   ),
+
+  StreamProvider<CourseO>(
+    create: (context)=> Provider.of<CoursesModel>(context,listen: false).courseO$,
+  ),
   StreamProvider<UserO>(
     create: (context) => Provider.of<UserModel>(context, listen: false).userO$,
-  ),
-
-  StreamProvider<ActiveCourseO>(
-    initialData: ActiveCourseO(
-        activeCourse: CourseO(
-            name: "A",
-            description: "A",
-            color: Color.fromARGB(1, 2, 3, 4),
-            courseID: "1")),
-    create: (context) =>
-        Provider.of<CourseModel>(context, listen: false).activeCourseO$,
   ),
 
   Provider<LoginA>(
@@ -64,12 +55,12 @@ List<SingleChildWidget> observables = [
     create: (context) =>
         Provider.of<CoursesModel>(context, listen: false).deleteCourseA,
   ),
-  Provider<SelectCourseA>(
-    create: (context) =>
-        Provider.of<CourseModel>(context, listen: false).selectCourseA,
-  ),
   Provider<UpdateCourseA>(
-    create: (context) =>
-        Provider.of<CourseModel>(context, listen: false).updateCourseA,
+    create: (context)=>
+    Provider.of<CoursesModel>(context,listen: false).updateCourseA,
+  ),
+  Provider<GetCourseA>(
+    create: (context)=>
+    Provider.of<CoursesModel>(context,listen: false).getCourseA,
   ),
 ];

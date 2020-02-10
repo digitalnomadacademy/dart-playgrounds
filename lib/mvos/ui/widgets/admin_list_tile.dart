@@ -11,9 +11,7 @@ class AdminSlider extends StatelessWidget {
   AdminSlider(this.child, this.courseO);
   @override
   Widget build(BuildContext context) {
-    return Consumer<SelectCourseA>(
-//      stream: null,
-        builder: (context, a, snapshot) {
+    return Consumer<SelectCourseA>(builder: (context, a, s) {
       return Slidable(
           actionPane: SlidableDrawerActionPane(),
           secondaryActions: <Widget>[

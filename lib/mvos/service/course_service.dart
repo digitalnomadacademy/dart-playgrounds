@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:playground_app/shared/interfaces.dart';
 
 class CourseService implements Disposable {
@@ -32,10 +33,29 @@ class CourseService implements Disposable {
         .then((snapshot) => snapshot.documents.first.reference.delete());
   }
 
-  getCourseID(String name) async {
+  Future<String> getCourseID(String name) async {
     final reference = database.collection("courses");
-    reference.where("name", isEqualTo: name).getDocuments().then((value) {
-      return value.documents.first.documentID;
+    String id;
+    await reference.where("name", isEqualTo: name).getDocuments().then((value) {
+      id = value.documents.first.documentID;
+    });
+    return id;
+  }
+
+  void updateCourseData(String initialName,
+      {String newName,
+      description,
+      videoPlaylistUrl,
+      List lessons,
+      Color color}) async {
+    final reference = database.collection("courses");
+    final String id = await getCourseID(initialName);
+    reference.document(id).updateData({
+      "color": color,
+      "description": description,
+      "lessons": lessons,
+      "name": newName,
+      "videoPlaylistUrl": videoPlaylistUrl,
     });
   }
 

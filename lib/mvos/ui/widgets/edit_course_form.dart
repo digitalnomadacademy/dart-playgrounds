@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:playground_app/mvos/model/observable/courses_observable.dart';
 import 'package:playground_app/mvos/service/course_service.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +15,10 @@ class _EditCourseFormState extends State<EditCourseForm> {
   var _coursePlaylistURLController = TextEditingController();
   CourseService courseService = CourseService();
   String initialName;
+  Color _pickerColor = Color(0xff443a49);
+  Color _currentColor = Color(0xff443a49);
 
+  int _colorValue;
   @override
   Widget build(BuildContext context) {
     if (Provider.of<ActiveCourseO>(context).activeCourse.name != "A") {
@@ -100,7 +104,7 @@ class _EditCourseFormState extends State<EditCourseForm> {
               ),
               RaisedButton(
                 onPressed: () {
-//                showColorPicker();
+                  showColorPicker();
                 },
                 child: Icon(Icons.colorize),
               ),
@@ -111,7 +115,7 @@ class _EditCourseFormState extends State<EditCourseForm> {
                 child: Icon(Icons.mode_edit),
                 onPressed: () {
                   updateCourseA.updateCourse(
-                    color: Colors.red.value,
+                    color: _colorValue,
                     newName: _courseNameController.text,
                     videoPlaylistUrl: _coursePlaylistURLController.text,
                     activeCourseO: activeCourseO,
@@ -126,5 +130,38 @@ class _EditCourseFormState extends State<EditCourseForm> {
         ),
       );
     });
+  }
+
+  void showColorPicker() {
+    void changeColor(Color color) {
+      setState(() => _pickerColor = color);
+    }
+
+    showDialog(
+      context: context,
+      child: AlertDialog(
+        title: const Text('Pick a color!'),
+        content: SingleChildScrollView(
+          child: ColorPicker(
+            pickerColor: _pickerColor,
+            onColorChanged: changeColor,
+            enableLabel: true,
+            pickerAreaHeightPercent: 0.8,
+          ),
+        ),
+        actions: <Widget>[
+          FlatButton(
+            child: const Text('Done'),
+            onPressed: () {
+              setState(() {
+                _currentColor = _pickerColor;
+                _colorValue = _currentColor.value;
+              });
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      ),
+    );
   }
 }

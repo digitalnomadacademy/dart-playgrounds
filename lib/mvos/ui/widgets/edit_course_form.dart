@@ -25,8 +25,7 @@ class _EditCourseFormState extends State<EditCourseForm> {
       initialName = Provider.of<ActiveCourseO>(context).activeCourse.name;
       print(initialName);
     }
-    return Consumer2<ActiveCourseO, UpdateCourseA>(
-        builder: (context, activeCourseO, updateCourseA, child) {
+    return Consumer<ActiveCourseO>(builder: (context, activeCourseO, child) {
       return Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
@@ -102,34 +101,51 @@ class _EditCourseFormState extends State<EditCourseForm> {
               SizedBox(
                 height: 30,
               ),
-              RaisedButton(
-                onPressed: () {
-                  showColorPicker();
-                },
-                child: Icon(Icons.colorize),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  RaisedButton(
+                    onPressed: () {
+                      showColorPicker();
+                    },
+                    child: Icon(Icons.colorize),
+                  ),
+                  Consumer<UpdateCourseA>(builder: (context, updateCourseA, c) {
+                    return RaisedButton(
+                      child: Icon(Icons.save),
+                      onPressed: () {
+                        updateCourseA.updateCourse(
+                          color: _colorValue,
+                          newName: _courseNameController.text,
+                          videoPlaylistUrl:
+                              handleUrl(_coursePlaylistURLController.text),
+                          activeCourseO: activeCourseO,
+                          description: _courseDescriptionController.text,
+                          lessons: List(),
+                        );
+                        Navigator.of(context).pop();
+                      },
+                    );
+                  })
+                ],
               ),
               SizedBox(
                 height: 100,
               ),
-              RaisedButton(
-                child: Icon(Icons.mode_edit),
-                onPressed: () {
-                  updateCourseA.updateCourse(
-                    color: _colorValue,
-                    newName: _courseNameController.text,
-                    videoPlaylistUrl: _coursePlaylistURLController.text,
-                    activeCourseO: activeCourseO,
-                    description: _courseDescriptionController.text,
-                    lessons: List(),
-                  );
-                  Navigator.of(context).pop();
-                },
-              )
             ],
           ),
         ),
       );
     });
+  }
+
+  String handleUrl(String url) {
+    if (url.contains("http://") || url.contains("http://")) {
+      return url;
+    } else {
+      url = "https://" + url;
+      return url;
+    }
   }
 
   void showColorPicker() {

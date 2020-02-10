@@ -103,40 +103,46 @@ class _CreateCourseFormState extends State<CreateCourseForm> {
               SizedBox(
                 height: 30,
               ),
-              RaisedButton(
-                onPressed: () {
-                  showColorPicker();
-                },
-                child: Icon(Icons.colorize),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  RaisedButton(
+                    onPressed: () {
+                      showColorPicker();
+                    },
+                    child: Icon(Icons.colorize),
+                  ),
+                  Consumer<CreateCourseA>(
+                    builder: (context, createCourseA, child) {
+                      return RaisedButton(
+                        child: Text("Add course"),
+                        onPressed: () {
+                          if (_courseDescriptionController.text.length > 5 &&
+                              _courseNameController.text.length > 5 &&
+                              isURL(_coursePlaylistURLController.text)) {
+                            createCourseA.createCourse(
+                              color: _colorValue,
+                              description: _textFromUrl != null
+                                  ? _textFromUrl
+                                  : _courseDescriptionController.text,
+                              lessons: list,
+                              name: _courseNameController.text,
+                              videoPlaylistUrl:
+                                  _coursePlaylistURLController.text,
+                            );
+                            Navigator.of(context).pop();
+                          } else {
+                            print("error");
+                          }
+                        },
+                      );
+                    },
+                  )
+                ],
               ),
               SizedBox(
                 height: 100,
               ),
-              Consumer<CreateCourseA>(
-                builder: (context, createCourseA, child) {
-                  return RaisedButton(
-                    child: Text("Add course"),
-                    onPressed: () {
-                      if (_courseDescriptionController.text.length > 5 &&
-                          _courseNameController.text.length > 5 &&
-                          isURL(_coursePlaylistURLController.text)) {
-                        createCourseA.createCourse(
-                          color: _colorValue,
-                          description: _textFromUrl != null
-                              ? _textFromUrl
-                              : _courseDescriptionController.text,
-                          lessons: list,
-                          name: _courseNameController.text,
-                          videoPlaylistUrl: _coursePlaylistURLController.text,
-                        );
-                        Navigator.of(context).pop();
-                      } else {
-                        print("error");
-                      }
-                    },
-                  );
-                },
-              )
             ],
           ),
         ),

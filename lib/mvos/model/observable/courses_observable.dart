@@ -126,3 +126,21 @@ class SelectCourseA {
   @override
   int get hashCode => selectCourse.hashCode;
 }
+
+class UpdateCourseA {
+  final UpdateCourse updateCourse;
+
+  const UpdateCourseA({
+    @required this.updateCourse,
+  });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UpdateCourseA &&
+          runtimeType == other.runtimeType &&
+          updateCourse == other.updateCourse;
+
+  @override
+  int get hashCode => updateCourse.hashCode;
+}

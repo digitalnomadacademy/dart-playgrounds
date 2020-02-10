@@ -21,7 +21,8 @@ class _EditCourseFormState extends State<EditCourseForm> {
       initialName = Provider.of<ActiveCourseO>(context).activeCourse.name;
       print(initialName);
     }
-    return Consumer<ActiveCourseO>(builder: (context, activeCourseO, child) {
+    return Consumer2<ActiveCourseO, UpdateCourseA>(
+        builder: (context, activeCourseO, updateCourseA, child) {
       return Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
@@ -109,11 +110,11 @@ class _EditCourseFormState extends State<EditCourseForm> {
               RaisedButton(
                 child: Icon(Icons.mode_edit),
                 onPressed: () {
-                  courseService.updateCourseData(
-                    initialName,
-                    color: Colors.pink.value,
+                  updateCourseA.updateCourse(
+                    color: Colors.red.value,
                     newName: _courseNameController.text,
                     videoPlaylistUrl: _coursePlaylistURLController.text,
+                    activeCourseO: activeCourseO,
                     description: _courseDescriptionController.text,
                     lessons: List(),
                   );

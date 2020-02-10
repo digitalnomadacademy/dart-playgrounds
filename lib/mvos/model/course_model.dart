@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:playground_app/mvos/model/observable/courses_observable.dart';
 import 'package:playground_app/mvos/service/course_service.dart';
@@ -18,13 +19,20 @@ typedef Future<void> DeleteCourse({
 });
 
 typedef SelectCourse({CourseO courseO});
+typedef void UpdateCourse(
+    {ActiveCourseO activeCourseO,
+    String newName,
+    String description,
+    String videoPlaylistUrl,
+    List lessons,
+    int color});
 
 class CourseModel implements Disposable {
   final CourseService courseService;
   CreateCourseA createCourseA;
   DeleteCourseA deleteCourseA;
   SelectCourseA selectCourseA;
-
+  UpdateCourseA updateCourseA;
   BehaviorSubject<ActiveCourseO> activeCourseO$ =
       BehaviorSubject<ActiveCourseO>();
 
@@ -34,6 +42,7 @@ class CourseModel implements Disposable {
     createCourseA = CreateCourseA(createCourse: createCourse);
     deleteCourseA = DeleteCourseA(deleteCourse: deleteCourse);
     selectCourseA = SelectCourseA(selectCourse: selectCourse);
+    updateCourseA = UpdateCourseA(updateCourse: updateCourse);
   }
 
   Future<void> createCourse({
@@ -60,6 +69,25 @@ class CourseModel implements Disposable {
 
   void selectCourse({CourseO courseO}) {
     activeCourseO$.add(ActiveCourseO(activeCourse: courseO));
+  }
+
+  void updateCourse(
+      {ActiveCourseO activeCourseO,
+      String newName,
+      String description,
+      String videoPlaylistUrl,
+      List lessons,
+      int color}) {
+    var activeCourse = activeCourseO.activeCourse;
+
+    return courseService.updateCourseData(
+      activeCourse.name,
+      newName: newName,
+      lessons: lessons,
+      videoPlaylistUrl: videoPlaylistUrl,
+      description: description,
+      color: color,
+    );
   }
 
   @override

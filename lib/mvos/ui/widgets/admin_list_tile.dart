@@ -7,32 +7,35 @@ import 'package:provider/provider.dart';
 
 class AdminSlider extends StatelessWidget {
   final Widget child;
-
-  AdminSlider(this.child);
-
+  final CourseO courseO;
+  AdminSlider(this.child, this.courseO);
   @override
   Widget build(BuildContext context) {
-    return Slidable(
-        actionPane: SlidableDrawerActionPane(),
-        secondaryActions: <Widget>[
-          IconSlideAction(
-            caption: 'Edit',
-            color: Colors.pink,
-            icon: Icons.edit,
-            onTap: () {
-              Navigator.pushNamed(context, RouteName.editCoursePage);
-            },
-          ),
-          IconSlideAction(
-            caption: 'Delete',
-            color: Colors.deepPurple,
-            icon: Icons.delete,
-            onTap: () {
-              _showDialog(context);
-            },
-          ),
-        ],
-        child: child);
+    return Consumer<SelectCourseA>(builder: (context, a, s) {
+      return Slidable(
+          actionPane: SlidableDrawerActionPane(),
+          secondaryActions: <Widget>[
+            IconSlideAction(
+              caption: 'Edit',
+              color: Colors.pink,
+              icon: Icons.edit,
+              onTap: () {
+                a.selectCourse(courseO: courseO);
+                Navigator.pushNamed(context, RouteName.editCoursePage);
+              },
+            ),
+            IconSlideAction(
+              caption: 'Delete',
+              color: Colors.deepPurple,
+              icon: Icons.delete,
+              onTap: () {
+                a.selectCourse(courseO: courseO);
+                _showDialog(context);
+              },
+            ),
+          ],
+          child: child);
+    });
   }
 
   void _showDialog(BuildContext context) {
@@ -63,13 +66,17 @@ class AdminSlider extends StatelessWidget {
                         Navigator.of(context).pop();
                       },
                     ),
-                    Consumer<UserO>(
-                        builder: (context, userO, child) => FlatButton(
+                    Consumer3<UserO, ActiveCourseO, DeleteCourseA>(
+                        builder: (context, userO, activeCourseO, deleteCourseA,
+                                child) =>
+                            FlatButton(
                               child: Text("Delete"),
                               onPressed: () {
-                                if (userO.email == controller.value.text)
+                                if (userO.email == controller.value.text) {
+                                  deleteCourseA.deleteCourse(
+                                      name: activeCourseO.activeCourse.name);
                                   print("deleted");
-                                else
+                                } else
                                   Navigator.of(context).pop();
                               },
                             )),

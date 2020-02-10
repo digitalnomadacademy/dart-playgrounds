@@ -6,6 +6,7 @@ import 'package:playground_app/mvos/model/observable/user_observable.dart';
 import 'package:playground_app/mvos/model/user_model.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
+import 'package:universal_html/html.dart';
 
 ///Observables are immutable objects that can be consumed by the UI
 List<SingleChildWidget> observables = [
@@ -67,5 +68,9 @@ List<SingleChildWidget> observables = [
   Provider<SelectCourseA>(
     create: (context) =>
         Provider.of<CourseModel>(context, listen: false).selectCourseA,
+  ),
+  Provider<UpdateCourseA>(
+    create: (context) =>
+        Provider.of<CourseModel>(context, listen: false).updateCourseA,
   ),
 ];

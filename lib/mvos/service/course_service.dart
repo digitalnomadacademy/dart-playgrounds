@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:playground_app/shared/interfaces.dart';
 
 class CourseService implements Disposable {
@@ -30,6 +31,22 @@ class CourseService implements Disposable {
         .where("name", isEqualTo: name)
         .getDocuments()
         .then((snapshot) => snapshot.documents.first.reference.delete());
+  }
+
+  void updateCourseData(String courseID,
+      {String newName,
+      description,
+      videoPlaylistUrl,
+      List lessons,
+      int color}) async {
+    final reference = database.collection("courses");
+    reference.document(courseID).updateData({
+      "color": color,
+      "description": description,
+      "lessons": lessons,
+      "name": newName,
+      "videoPlaylistUrl": videoPlaylistUrl,
+    });
   }
 
   @override

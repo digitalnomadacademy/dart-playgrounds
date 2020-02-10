@@ -16,7 +16,6 @@ class CoursesList extends StatefulWidget {
 class _CoursesListState extends State<CoursesList> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       floatingActionButton: Consumer<IsAdminO>(
         builder: (context, isAdminO, child) => isAdminO.isAdmin
@@ -34,7 +33,8 @@ class _CoursesListState extends State<CoursesList> {
           itemCount: coursesO.courses.length,
           itemBuilder: (context, index) {
             if (isAdminO.isAdmin)
-              return AdminSlider(CourseListTile(coursesO.courses[index]));
+              return AdminSlider(CourseListTile(coursesO.courses[index]),
+                  coursesO.courses[index]);
             else
               return CourseListTile(coursesO.courses[index]);
           },

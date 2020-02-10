@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playground_app/mvos/model/observable/courses_observable.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CoursePage extends StatelessWidget {
   ///Will be changed to [final ActiveCourseO course;]
@@ -22,11 +23,18 @@ class CoursePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
+                    SizedBox(
+                      height: 30,
+                    ),
                     Text(
                       course.description,
                       style: TextStyle(fontSize: 20),
                     ),
-                    Text("url")
+                    InkWell(
+                        onTap: () {
+                          _launchURL(course.videoPlaylistUrl);
+                        },
+                        child: Text(course.videoPlaylistUrl))
                   ],
                 ),
               ),
@@ -38,6 +46,15 @@ class CoursePage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  _launchURL(String url) async {
+    if (!url.contains("http")) url = "https://" + url;
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
 

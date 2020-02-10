@@ -22,11 +22,11 @@ class CoursesModel implements Disposable {
       coursesO$.add(CoursesO(
           courses: coursesE.courses
               .map((CourseE courseE) => CourseO(
-                    courseID: courseE.id,
-                    name: courseE.name,
-                    description: courseE.description,
-                    color: courseE.color,
-                  ))
+                  courseID: courseE.id,
+                  name: courseE.name,
+                  description: courseE.description,
+                  color: courseE.color,
+                  videoPlaylistUrl: courseE.videoPlaylistUrl))
               .toList()));
     });
     return null;

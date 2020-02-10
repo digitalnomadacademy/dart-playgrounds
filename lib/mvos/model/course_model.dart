@@ -81,7 +81,7 @@ class CourseModel implements Disposable {
     var activeCourse = activeCourseO.activeCourse;
 
     return courseService.updateCourseData(
-      activeCourse.name,
+      activeCourse.courseID,
       newName: newName,
       lessons: lessons,
       videoPlaylistUrl: videoPlaylistUrl,

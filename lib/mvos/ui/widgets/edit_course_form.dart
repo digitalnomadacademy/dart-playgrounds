@@ -14,16 +14,17 @@ class _EditCourseFormState extends State<EditCourseForm> {
   var _courseDescriptionController = TextEditingController();
   var _coursePlaylistURLController = TextEditingController();
   CourseService courseService = CourseService();
-  String initialName;
   Color _pickerColor = Color(0xff443a49);
   Color _currentColor = Color(0xff443a49);
 
-  int _colorValue;
+  int _colorValue = Colors.pink.value;
+
+  String courseID;
   @override
   Widget build(BuildContext context) {
-    if (Provider.of<ActiveCourseO>(context).activeCourse.name != "A") {
-      initialName = Provider.of<ActiveCourseO>(context).activeCourse.name;
-      print(initialName);
+    if (Provider.of<ActiveCourseO>(context).activeCourse.courseID != "1") {
+      courseID = Provider.of<ActiveCourseO>(context).activeCourse.courseID;
+      print(courseID);
     }
     return Consumer<ActiveCourseO>(builder: (context, activeCourseO, child) {
       return Padding(
@@ -117,8 +118,7 @@ class _EditCourseFormState extends State<EditCourseForm> {
                         updateCourseA.updateCourse(
                           color: _colorValue,
                           newName: _courseNameController.text,
-                          videoPlaylistUrl:
-                              handleUrl(_coursePlaylistURLController.text),
+                          videoPlaylistUrl: _coursePlaylistURLController.text,
                           activeCourseO: activeCourseO,
                           description: _courseDescriptionController.text,
                           lessons: List(),
@@ -137,15 +137,6 @@ class _EditCourseFormState extends State<EditCourseForm> {
         ),
       );
     });
-  }
-
-  String handleUrl(String url) {
-    if (url.contains("http://") || url.contains("http://")) {
-      return url;
-    } else {
-      url = "https://" + url;
-      return url;
-    }
   }
 
   void showColorPicker() {

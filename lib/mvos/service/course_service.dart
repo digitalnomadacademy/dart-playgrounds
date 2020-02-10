@@ -33,24 +33,14 @@ class CourseService implements Disposable {
         .then((snapshot) => snapshot.documents.first.reference.delete());
   }
 
-  Future<String> getCourseID(String name) async {
-    final reference = database.collection("courses");
-    String id;
-    await reference.where("name", isEqualTo: name).getDocuments().then((value) {
-      id = value.documents.first.documentID;
-    });
-    return id;
-  }
-
-  void updateCourseData(String initialName,
+  void updateCourseData(String courseID,
       {String newName,
       description,
       videoPlaylistUrl,
       List lessons,
       int color}) async {
     final reference = database.collection("courses");
-    final String id = await getCourseID(initialName);
-    reference.document(id).updateData({
+    reference.document(courseID).updateData({
       "color": color,
       "description": description,
       "lessons": lessons,

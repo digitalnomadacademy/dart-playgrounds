@@ -49,6 +49,7 @@ class CoursePage extends StatelessWidget {
   }
 
   _launchURL(String url) async {
+    if (!url.contains("http")) url = "https://" + url;
     if (await canLaunch(url)) {
       await launch(url);
     } else {

@@ -109,7 +109,15 @@ class _EditCourseFormState extends State<EditCourseForm> {
               RaisedButton(
                 child: Icon(Icons.mode_edit),
                 onPressed: () {
-                  courseService.updateCourseData(initialName);
+                  courseService.updateCourseData(
+                    initialName,
+                    color: Colors.pink.value,
+                    newName: _courseNameController.text,
+                    videoPlaylistUrl: _coursePlaylistURLController.text,
+                    description: _courseDescriptionController.text,
+                    lessons: List(),
+                  );
+                  Navigator.of(context).pop();
                 },
               )
             ],

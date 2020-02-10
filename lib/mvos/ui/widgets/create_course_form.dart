@@ -129,6 +129,7 @@ class _CreateCourseFormState extends State<CreateCourseForm> {
                           name: _courseNameController.text,
                           videoPlaylistUrl: _coursePlaylistURLController.text,
                         );
+                        Navigator.of(context).pop();
                       } else {
                         print("error");
                       }

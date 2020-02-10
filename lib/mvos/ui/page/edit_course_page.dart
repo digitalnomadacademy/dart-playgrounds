@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playground_app/mvos/model/observable/courses_observable.dart';
 import 'package:playground_app/mvos/ui/widgets/edit_course_form.dart';
-import 'package:provider/provider.dart';
 
 class EditCoursePage extends StatefulWidget {
   @override
@@ -19,8 +17,6 @@ class _EditCoursePageState extends State<EditCoursePage> {
             onPressed: () => Navigator.pop(context),
           ),
         ),
-        body: Consumer<ActiveCourseO>(builder: (context, activeCourseO, child) {
-          return EditCourseForm();
-        }));
+        body: EditCourseForm());
   }
 }

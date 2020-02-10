@@ -33,11 +33,8 @@ class _CoursesListState extends State<CoursesList> {
           itemCount: coursesO.courses.length,
           itemBuilder: (context, index) {
             if (isAdminO.isAdmin)
-              return Consumer<SelectCourseA>(
-                  builder: (context, selectCourseA, snapshot) {
-                return AdminSlider(CourseListTile(coursesO.courses[index]),
-                    coursesO.courses[index]);
-              });
+              return AdminSlider(CourseListTile(coursesO.courses[index]),
+                  coursesO.courses[index]);
             else
               return CourseListTile(coursesO.courses[index]);
           },

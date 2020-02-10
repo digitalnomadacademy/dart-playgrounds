@@ -47,7 +47,7 @@ class CourseService implements Disposable {
       description,
       videoPlaylistUrl,
       List lessons,
-      Color color}) async {
+      int color}) async {
     final reference = database.collection("courses");
     final String id = await getCourseID(initialName);
     reference.document(id).updateData({

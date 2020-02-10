@@ -20,7 +20,7 @@ typedef Future<void> DeleteCourse({
 
 typedef SelectCourse({CourseO courseO});
 typedef void UpdateCourse(
-    {ActiveCourseO activeCourseO,
+    {String courseID,
     String newName,
     String description,
     String videoPlaylistUrl,
@@ -72,16 +72,14 @@ class CourseModel implements Disposable {
   }
 
   void updateCourse(
-      {ActiveCourseO activeCourseO,
+      {String courseID,
       String newName,
       String description,
       String videoPlaylistUrl,
       List lessons,
       int color}) {
-    var activeCourse = activeCourseO.activeCourse;
-
     return courseService.updateCourseData(
-      activeCourse.courseID,
+      courseID,
       newName: newName,
       lessons: lessons,
       videoPlaylistUrl: videoPlaylistUrl,

@@ -19,13 +19,8 @@ class _EditCourseFormState extends State<EditCourseForm> {
 
   int _colorValue = Colors.pink.value;
 
-  String courseID;
   @override
   Widget build(BuildContext context) {
-    if (Provider.of<ActiveCourseO>(context).activeCourse.courseID != "1") {
-      courseID = Provider.of<ActiveCourseO>(context).activeCourse.courseID;
-      print(courseID);
-    }
     return Consumer<ActiveCourseO>(builder: (context, activeCourseO, child) {
       return Padding(
         padding: const EdgeInsets.all(8.0),
@@ -119,7 +114,7 @@ class _EditCourseFormState extends State<EditCourseForm> {
                           color: _colorValue,
                           newName: _courseNameController.text,
                           videoPlaylistUrl: _coursePlaylistURLController.text,
-                          activeCourseO: activeCourseO,
+                          courseID: activeCourseO.activeCourse.courseID,
                           description: _courseDescriptionController.text,
                           lessons: List(),
                         );

@@ -49,7 +49,7 @@ class PlaygroundPage extends StatelessWidget {
                   value: CourseO(
                     courseID: '1',
                     name: 'Dart Introduction 1',
-                    color: Colors.blue,
+                    color: Colors.blue.value,
                     description: 'Basic steps into programming',
                   ),
                   child: Consumer<CourseO>(

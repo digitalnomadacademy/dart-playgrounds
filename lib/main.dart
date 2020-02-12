@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         ),
         onGenerateRoute: Router.generator,
         initialRoute: kAppEnvironment == AppEnvironment.develop
-            ? RouteName.logInPage
+            ? RouteName.welcomePage
             : RouteName.splashScreen,
       ),
     );

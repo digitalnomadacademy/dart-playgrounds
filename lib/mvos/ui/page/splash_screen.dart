@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:playground_app/config/app_config.dart';
 import 'package:playground_app/mvos/model/observable/user_observable.dart';
+import 'package:playground_app/mvos/service/firebase_service.dart';
 import 'package:playground_app/router/router.dart';
 import 'package:provider/provider.dart';
-import 'package:playground_app/mvos/service/firebase_service.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -26,7 +27,8 @@ class _SplashScreenState extends State<SplashScreen>
     _fadingString = _strings.first;
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 2),
+      duration: Duration(
+          milliseconds: kAppEnvironment == AppEnvironment.develop ? 500 : 1500),
     );
     _animation = Tween(
       begin: 0.0,

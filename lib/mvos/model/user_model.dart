@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:playground_app/logger/logger.dart';
 import 'package:playground_app/mvos/model/entity/user_entity.dart';
@@ -59,7 +60,7 @@ class UserModel implements Disposable {
       logger.info('user entity received $userE');
       bool isLoggedIn = userE.email != null;
       loggedInO$.add(LoggedInO(loggedIn: isLoggedIn));
-      isAdminO$.add(IsAdminO(isAdmin: userE.isAdmin));
+      isAdminO$.add(IsAdminO(isAdmin: userE.isAdmin ?? false));
       if (userE.name != null) {
         userO$.add(UserO(user: userE.name, email: userE.email));
       }

@@ -37,8 +37,8 @@ class ConfirmEmailDialogue extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
               ),
               onPressed: () {
-                Navigator.of(context)
-                    .pushNamedAndRemoveUntil(RouteName.logInPage, (Route<dynamic> route) => false);
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                    RouteName.logInPage, (Route<dynamic> route) => false);
               },
             ),
           )

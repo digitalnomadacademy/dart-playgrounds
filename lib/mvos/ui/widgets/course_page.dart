@@ -4,14 +4,13 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CoursePage extends StatelessWidget {
-
   CoursePage();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Consumer<ActiveCourseO>(
-        builder: (context, activeCourseO, child)=> CustomScrollView(
+        builder: (context, activeCourseO, child) => CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
               pinned: true,
@@ -32,9 +31,11 @@ class CoursePage extends StatelessWidget {
                       ),
                       InkWell(
                           onTap: () {
-                            _launchURL(activeCourseO.activeCourse.videoPlaylistUrl);
+                            _launchURL(
+                                activeCourseO.activeCourse.videoPlaylistUrl);
                           },
-                          child: Text(activeCourseO.activeCourse.videoPlaylistUrl))
+                          child:
+                              Text(activeCourseO.activeCourse.videoPlaylistUrl))
                     ],
                   ),
                 ),

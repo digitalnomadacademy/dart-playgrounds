@@ -27,11 +27,13 @@ class CoursesService implements Disposable {
     });
   }
 
-  Future<void> addCourse(int color,
-      String description,
-      List lessons,
-      String name,
-      String videoPlaylistUrl,) async {
+  Future<void> addCourse(
+    int color,
+    String description,
+    List lessons,
+    String name,
+    String videoPlaylistUrl,
+  ) async {
     final reference = database.collection("courses");
     return reference.document().setData({
       "color": color,
@@ -42,7 +44,9 @@ class CoursesService implements Disposable {
     });
   }
 
-  Future<void> deleteCourse(String name,) async {
+  Future<void> deleteCourse(
+    String name,
+  ) async {
     final reference = database.collection("courses");
 
     return reference
@@ -53,10 +57,10 @@ class CoursesService implements Disposable {
 
   Future<void> updateCourseData(String courseID,
       {String newName,
-        description,
-        videoPlaylistUrl,
-        List lessons,
-        int color}) async {
+      description,
+      videoPlaylistUrl,
+      List lessons,
+      int color}) async {
     final reference = database.collection("courses");
     return reference.document(courseID).updateData({
       "color": color,

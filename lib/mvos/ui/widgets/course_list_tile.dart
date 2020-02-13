@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:playground_app/mvos/model/observable/courses_observable.dart';
-import 'package:playground_app/mvos/ui/widgets/course_page.dart';
 import 'package:playground_app/router/router.dart';
 import 'package:provider/provider.dart';
 
@@ -16,10 +14,7 @@ class CourseListTile extends StatelessWidget {
       return ListTile(
         onTap: () {
           selectCourseA.selectCourse(courseO: courseO);
-          Navigator.pushNamed(
-            context,
-            RouteName.coursePage
-          );
+          Navigator.pushNamed(context, RouteName.coursePage);
         },
         title: Text(
           "${courseO.name}",

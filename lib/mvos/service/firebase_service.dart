@@ -1,5 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:playground_app/logger/logger.dart';
 import 'package:playground_app/mvos/model/entity/user_entity.dart';
 import 'package:playground_app/shared/interfaces.dart';
@@ -55,7 +55,7 @@ class UserService implements Disposable {
         "surname": surname,
         "phone": phone,
         "coursecode": [courseCode],
-        "isAdmin" : false,
+        "isAdmin": false,
       });
       return null;
     } catch (e) {

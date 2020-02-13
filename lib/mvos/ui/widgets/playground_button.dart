@@ -11,7 +11,10 @@ class PlaygroundButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Divider(color: Colors.pink,thickness: 2,),
+        Divider(
+          color: Colors.pink,
+          thickness: 2,
+        ),
         Padding(
           padding: const EdgeInsets.all(28.0),
           child: FlatButton(

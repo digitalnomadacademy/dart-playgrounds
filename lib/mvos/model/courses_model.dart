@@ -20,12 +20,13 @@ typedef Future<void> DeleteCourse({
 });
 
 typedef SelectCourse({CourseO courseO});
-typedef void UpdateCourse({String courseID,
-  String newName,
-  String description,
-  String videoPlaylistUrl,
-  List lessons,
-  int color});
+typedef void UpdateCourse(
+    {String courseID,
+    String newName,
+    String description,
+    String videoPlaylistUrl,
+    List lessons,
+    int color});
 
 class CoursesModel implements Disposable {
   final CoursesService coursesService;
@@ -35,7 +36,7 @@ class CoursesModel implements Disposable {
   SelectCourseA selectCourseA;
   UpdateCourseA updateCourseA;
   BehaviorSubject<ActiveCourseO> activeCourseO$ =
-  BehaviorSubject<ActiveCourseO>();
+      BehaviorSubject<ActiveCourseO>();
   BehaviorSubject<CoursesO> coursesO$ = BehaviorSubject<CoursesO>();
 
   CoursesModel({@required this.coursesService})
@@ -53,11 +54,11 @@ class CoursesModel implements Disposable {
       coursesO$.add(CoursesO(
           courses: coursesE.courses
               .map((CourseE courseE) => CourseO(
-              courseID: courseE.id,
-              name: courseE.name,
-              description: courseE.description,
-              color: courseE.color,
-              videoPlaylistUrl: courseE.videoPlaylistUrl))
+                  courseID: courseE.id,
+                  name: courseE.name,
+                  description: courseE.description,
+                  color: courseE.color,
+                  videoPlaylistUrl: courseE.videoPlaylistUrl))
               .toList()));
     });
     return null;
@@ -89,12 +90,13 @@ class CoursesModel implements Disposable {
     activeCourseO$.add(ActiveCourseO(activeCourse: courseO));
   }
 
-  Future<void> updateCourse({String courseID,
-    String newName,
-    String description,
-    String videoPlaylistUrl,
-    List lessons,
-    int color}) {
+  Future<void> updateCourse(
+      {String courseID,
+      String newName,
+      String description,
+      String videoPlaylistUrl,
+      List lessons,
+      int color}) {
     return coursesService.updateCourseData(
       courseID,
       newName: newName,

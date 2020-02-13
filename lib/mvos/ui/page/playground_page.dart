@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playground_app/mvos/model/observable/courses_observable.dart';
 import 'package:playground_app/mvos/model/observable/user_observable.dart';
-import 'package:playground_app/mvos/ui/widgets/course_list_tile.dart';
 import 'package:playground_app/mvos/ui/widgets/course_page.dart';
 import 'package:playground_app/mvos/ui/widgets/loginPage_form.dart';
 import 'package:provider/provider.dart';
@@ -45,18 +44,22 @@ class PlaygroundPage extends StatelessWidget {
             Toy(
               title: 'Course Tile',
               issue: '#51',
-              builder: (context) => Provider<CourseO>.value(
-                  value: CourseO(
-                    courseID: '1',
-                    name: 'Dart Introduction 1',
-                    color: Colors.blue,
-                    description: 'Basic steps into programming',
-                  ),
+              builder: (context) {
+                var courseO = CourseO(
+                  courseID: '1',
+                  name: 'Dart Introduction 1',
+                  color: Colors.blue,
+                  description: 'Basic steps into programming',
+                );
+                return Provider<ActiveCourseO>.value(
+                  value: ActiveCourseO(activeCourse: courseO),
                   child: Consumer<CourseO>(
                     builder: (context, value, child) {
-                      return CoursePage(value);
+                      return CoursePage();
                     },
-                  )),
+                  ),
+                );
+              },
             )
           ],
         )

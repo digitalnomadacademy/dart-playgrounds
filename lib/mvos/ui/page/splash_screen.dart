@@ -66,7 +66,7 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   Future anonymousSignIn() async {
-    Provider.of<FirebaseService>(context, listen: false).signInAnonymously();
+    Provider.of<UserService>(context, listen: false).signInAnonymously();
   }
 
   void newRouting() {

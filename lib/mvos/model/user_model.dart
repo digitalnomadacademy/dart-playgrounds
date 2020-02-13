@@ -19,7 +19,7 @@ typedef Future<void> CreateAccount(
     String password});
 
 class UserModel implements Disposable {
-  final FirebaseService firebaseService;
+  final UserService firebaseService;
 
   BehaviorSubject<LoggedInO> loggedInO$ = BehaviorSubject<LoggedInO>();
   BehaviorSubject<UserO> userO$ = BehaviorSubject<UserO>();

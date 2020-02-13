@@ -1,7 +1,7 @@
 import 'dart:ui';
-import 'package:playground_app/mvos/model/course_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:playground_app/mvos/model/courses_model.dart';
 
 class CoursesO {
   final List<CourseO> courses;

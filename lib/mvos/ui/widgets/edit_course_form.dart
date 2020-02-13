@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:playground_app/mvos/model/observable/courses_observable.dart';
-import 'package:playground_app/mvos/service/course_service.dart';
 import 'package:provider/provider.dart';
 
 class EditCourseForm extends StatefulWidget {
@@ -13,7 +12,6 @@ class _EditCourseFormState extends State<EditCourseForm> {
   var _courseNameController = TextEditingController();
   var _courseDescriptionController = TextEditingController();
   var _coursePlaylistURLController = TextEditingController();
-  CourseService courseService = CourseService();
   Color _pickerColor = Color(0xff443a49);
   Color _currentColor = Color(0xff443a49);
 

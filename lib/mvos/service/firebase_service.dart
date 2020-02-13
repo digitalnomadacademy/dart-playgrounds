@@ -5,12 +5,12 @@ import 'package:playground_app/mvos/model/entity/user_entity.dart';
 import 'package:playground_app/shared/interfaces.dart';
 import 'package:rxdart/rxdart.dart';
 
-class FirebaseService implements Disposable {
+class UserService implements Disposable {
   final database = Firestore.instance;
 
   PublishSubject<FirebaseUserE> userE$ = PublishSubject<FirebaseUserE>();
 
-  FirebaseService() {
+  UserService() {
     _initFirebase();
   }
 

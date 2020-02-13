@@ -6,8 +6,6 @@ import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:playground_app/mvos/model/observable/courses_observable.dart';
 import 'package:provider/provider.dart';
 import 'package:validators/validators.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:http/http.dart' as http;
 
 class CreateCourseForm extends StatefulWidget {
   @override
@@ -117,9 +115,24 @@ class _CreateCourseFormState extends State<CreateCourseForm> {
                       return RaisedButton(
                         child: Text("Add course"),
                         onPressed: () {
-                          if (_courseDescriptionController.text.length > 5 &&
-                              _courseNameController.text.length > 5 &&
-                              isURL(_coursePlaylistURLController.text)) {
+                          if (_courseNameController.text.length < 1) {
+                            Scaffold.of(context).showSnackBar(SnackBar(
+                              content:
+                                  Text('Name must have at least 2 characters'),
+                            ));
+                          } else if (_courseDescriptionController.text.length <
+                              5) {
+                            Scaffold.of(context).showSnackBar(SnackBar(
+                              content: Text(
+                                  'description must have at least 5 characters'),
+                            ));
+                          } else if (!isURL(
+                              _coursePlaylistURLController.text)) {
+                            Scaffold.of(context).showSnackBar(SnackBar(
+                              content: Text('Your playlist link is not url'),
+                            ));
+                            return null;
+                          } else {
                             createCourseA.createCourse(
                               color: _colorValue,
                               description: _textFromUrl != null
@@ -131,8 +144,6 @@ class _CreateCourseFormState extends State<CreateCourseForm> {
                                   _coursePlaylistURLController.text,
                             );
                             Navigator.of(context).pop();
-                          } else {
-                            print("error");
                           }
                         },
                       );

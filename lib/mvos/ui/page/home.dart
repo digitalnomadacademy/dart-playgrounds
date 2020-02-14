@@ -3,7 +3,7 @@ import 'package:playground_app/mvos/ui/widgets/courses_list.dart';
 import 'package:playground_app/mvos/ui/widgets/drawer.dart';
 
 class HomePage extends StatelessWidget {
-  @override
+@override
   Widget build(BuildContext context) {
     return Scaffold(
       endDrawer: CustomDrawer(),

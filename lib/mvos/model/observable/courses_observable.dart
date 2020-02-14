@@ -32,9 +32,9 @@ class CourseO {
   const CourseO({
     @required this.courseID,
     @required this.name,
-    @required this.color,
-    @required this.description,
-    @required this.videoPlaylistUrl,
+    this.color = Colors.pink,
+    this.description = '',
+    this.videoPlaylistUrl = '',
   });
 
   @override

@@ -5,9 +5,9 @@ import 'package:playground_app/mvos/ui/page/create_account_page.dart';
 import 'package:playground_app/mvos/ui/page/create_course_page.dart';
 import 'package:playground_app/mvos/ui/page/edit_course_page.dart';
 import 'package:playground_app/mvos/ui/page/home.dart';
+import 'package:playground_app/mvos/ui/page/logIn_page.dart';
 import 'package:playground_app/mvos/ui/page/playground_page.dart';
 import 'package:playground_app/mvos/ui/page/splash_screen.dart';
-import 'package:playground_app/mvos/ui/page/logIn_page.dart';
 import 'package:playground_app/mvos/ui/page/welcome_page.dart';
 import 'package:playground_app/mvos/ui/widgets/course_page.dart';
 
@@ -59,7 +59,7 @@ class Router {
           settings: settings,
           builder: (_) => EditCoursePage(),
         );
-      case RouteName.editCoursePage:
+      case RouteName.coursePage:
         return MaterialPageRoute(
           settings: settings,
           builder: (_) => CoursePage(),
@@ -80,7 +80,7 @@ class RouteName {
   static const welcomePage = 'welcome';
   static const createAccountPage = 'welcome/createAccount';
   static const playgroundPage = '/playground';
-  static const createCoursePage = 'welcome/createCourse';
-  static const editCoursePage = 'welcome/editCourse';
-  static const coursePage = 'welcome/editCourse';
+  static const createCoursePage = '/createCourse';
+  static const editCoursePage = '/editCourse';
+  static const coursePage = '/coursePage';
 }

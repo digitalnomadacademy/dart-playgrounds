@@ -45,8 +45,8 @@ class UserModel implements Disposable {
     if (rememberMe) {
       secureStorageService.addNewSecureUser(email, password);
       secureStorageService.savedCredsE$.listen((value) {
-        savedUserO$
-            .add(SavedUserO(emailKey: value.emailKey, passwordKey: value.passwordKey));
+        savedUserO$.add(SavedUserO(
+            emailKey: value.emailKey, passwordKey: value.passwordKey));
       });
     }
 
@@ -55,8 +55,7 @@ class UserModel implements Disposable {
 
   Future<void> logOut() async {
     secureStorageService.deleteAll();
-    savedUserO$
-        .add(null);
+    savedUserO$.add(null);
     return firebaseService.logOut();
   }
 

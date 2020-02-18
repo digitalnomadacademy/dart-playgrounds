@@ -18,7 +18,7 @@ class SecureStorageService implements Disposable {
     final String emailKey = 'email';
     final String passwordValue = password;
     final String emailValue = email;
-    savedCredsE$.add(SavedCredentialsE(emailValue,passwordKey));
+    savedCredsE$.add(SavedCredentialsE(emailKey,passwordKey));
     await _storage.write(key: passwordKey, value: passwordValue);
     await _storage.write(key: emailKey, value: emailValue);
   }

@@ -285,7 +285,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                       'Create account',
                       style: Theme.of(context)
                           .textTheme
-                          .display1
+                          .headline4
                           .copyWith(color: Colors.white),
                     ),
                   ),

@@ -30,7 +30,7 @@ class WelcomePage extends StatelessWidget {
                   'Login',
                   style: Theme.of(context)
                       .textTheme
-                      .display2
+                      .headline3
                       .copyWith(color: Colors.white),
                 ),
               ),
@@ -49,7 +49,7 @@ class WelcomePage extends StatelessWidget {
                   'Create Account',
                   style: Theme.of(context)
                       .textTheme
-                      .display2
+                      .headline3
                       .copyWith(color: Colors.white),
                 ),
               ),

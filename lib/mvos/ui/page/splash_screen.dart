@@ -57,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen>
           child: Center(
             child: Text(
               "$_fadingString",
-              style: Theme.of(context).textTheme.display1,
+              style: Theme.of(context).textTheme.headline4,
             ),
           ),
         ),

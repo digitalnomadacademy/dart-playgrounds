@@ -21,7 +21,7 @@ class PlaygroundPage extends StatelessWidget {
               builder: (context) => Provider<LoginA>.value(
                 child: LoginForm(),
                 value: LoginA(
-                    login: ({String email, String password}) async =>
+                    login: ({String email, String password,bool rememberMe}) async =>
                         print('email: $email password: $password')),
               ),
             ),
@@ -31,7 +31,7 @@ class PlaygroundPage extends StatelessWidget {
               builder: (context) => Provider<LoginA>.value(
                 child: LoginForm(),
                 value: LoginA(
-                    login: ({String email, String password}) async =>
+                    login: ({String email, String password,bool rememberMe}) async =>
                         throw ('login failed')),
               ),
             )

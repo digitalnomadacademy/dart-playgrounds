@@ -22,17 +22,25 @@ class LoggedInO {
 class LoginA {
   final Login login;
 
-  const LoginA({@required this.login}) : assert(login != null);
+  bool rememberMe;
+
+  LoginA({
+    @required this.login,
+    this.rememberMe=false,
+  });
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is LoginA &&
-          runtimeType == other.runtimeType &&
-          login == other.login;
+          other is LoginA &&
+              runtimeType == other.runtimeType &&
+              rememberMe == other.rememberMe;
 
   @override
-  int get hashCode => login.hashCode;
+  int get hashCode => rememberMe.hashCode;
+
+
+
 }
 
 class LogOutA {
@@ -104,4 +112,30 @@ class IsAdminO {
 
   @override
   int get hashCode => isAdmin.hashCode;
+}
+
+class SavedUserO{
+  final String emailKey;
+  final String passwordKey;
+
+  const SavedUserO({
+    @required this.emailKey,
+    @required this.passwordKey,
+  });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is SavedUserO &&
+              runtimeType == other.runtimeType &&
+              emailKey == other.emailKey &&
+              passwordKey == other.passwordKey;
+
+  @override
+  int get hashCode =>
+      emailKey.hashCode ^
+      passwordKey.hashCode;
+
+
+
 }

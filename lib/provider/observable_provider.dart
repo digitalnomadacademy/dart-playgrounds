@@ -32,6 +32,9 @@ List<SingleChildWidget> observables = [
   StreamProvider<UserO>(
     create: (context) => Provider.of<UserModel>(context, listen: false).userO$,
   ),
+  StreamProvider<SavedUserO>(
+    create: (context) => Provider.of<UserModel>(context, listen: false).savedUserO$,
+  ),
 
   StreamProvider<ActiveCourseO>(
     initialData: ActiveCourseO(

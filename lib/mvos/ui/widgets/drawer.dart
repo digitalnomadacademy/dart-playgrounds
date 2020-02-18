@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:playground_app/config/app_config.dart';
 import 'package:playground_app/mvos/ui/widgets/home_button.dart';
+import 'package:playground_app/mvos/ui/widgets/logout_button.dart';
 import 'package:playground_app/mvos/ui/widgets/playground_button.dart';
 import 'package:playground_app/mvos/ui/widgets/about_button.dart';
 import 'package:playground_app/router/router.dart';
@@ -26,6 +27,8 @@ class CustomDrawer extends StatelessWidget {
               : Container(),
           HomeButton(
             route: RouteName.homePage,
+          ),
+          LogOutButton(
           )
         ],
       ),

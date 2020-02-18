@@ -22,8 +22,8 @@ class MyApp extends StatelessWidget {
             buttonColor: Colors.pink,
           ),
           textTheme: TextTheme(
-            display1: TextStyle(fontSize: 18),
-            display2: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            headline4: TextStyle(fontSize: 18),
+            headline3: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ),
         onGenerateRoute: Router.generator,

@@ -1,5 +1,6 @@
 import 'package:playground_app/mvos/service/courses_service.dart';
 import 'package:playground_app/mvos/service/firebase_service.dart';
+import 'package:playground_app/mvos/service/secure_storage_service.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
@@ -16,4 +17,10 @@ List<SingleChildWidget> services = [
     dispose: (context, CoursesService service) => service.dispose(),
     lazy: false, // to create them immediately
   ),
+  Provider<SecureStorageService>(
+    create: (context) => SecureStorageService(),
+    dispose: (context, SecureStorageService service) => service.dispose(),
+    lazy: false, // to create them immediately
+  ),
+
 ];

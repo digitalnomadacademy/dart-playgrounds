@@ -5,8 +5,9 @@ import 'package:provider/single_child_widget.dart';
 
 List<SingleChildWidget> models = [
   Provider<UserModel>(
-    create: (context) =>
-        UserModel(firebaseService: Provider.of(context, listen: false)),
+    create: (context) => UserModel(
+        firebaseService: Provider.of(context, listen: false),
+        secureStorageService: Provider.of(context, listen: false)),
     dispose: (context, UserModel model) => model.dispose(),
     lazy: false,
   ),
